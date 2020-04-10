@@ -5,8 +5,8 @@ module.exports = {
   // https://webpack.js.org/concepts/entry-points/#multi-page-application
   entry: {
     index: './src/index.js',
-    about: './src/about.js', 
-    contacts: './src/contacts.js'
+    login: './src/login.js', 
+    members: './src/members.js'
   },
   module: {
     rules: [
@@ -43,16 +43,16 @@ module.exports = {
       filename: 'index.html'
     }),
     new HtmlWebpackPlugin({
-        template: './src/about.html',
+        template: './src/login.html',
         inject: true,
-        chunks: ['about'],
-        filename: 'about.html'
+        chunks: ['login'],
+        filename: 'login.html'
     }),
     new HtmlWebpackPlugin({
-        template: './src/contacts.html',
+        template: './src/members.html',
         inject: true,
-        chunks: ['contacts'],
-        filename: 'contacts.html'
+        chunks: ['members'],
+        filename: 'members.html'
     })
   ]
 };
