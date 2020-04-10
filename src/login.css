@@ -1,0 +1,43 @@
+* {
+  /* background-color: turquoise; */
+}
+
+form div label {
+  color: red;
+  margin-left: 20px;
+}
+
+.inputfield {
+  margin: 0px 250px;
+}
+/* 
+.sign-in-btn {
+  padding: 10px 60px;
+  margin: 0px 50%;
+} */
+
+/* .sign-in-btn {
+  text-align: center;
+}
+
+.button {
+  position: absolute;
+  top: 50%;
+} */
+
+.sign-in-btn {
+  margin: auto;
+  display: block;
+  padding: 10px 60px;
+}
+
+/* div input {
+  color: red;
+  background-color: royalblue;
+  /* margin: 0px 300px 0px 300px; */
+/* width: 40px; */
+/* } */
+
+div input:hover {
+  background-color: rgb(208, 215, 235);
+}
