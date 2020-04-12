@@ -87,10 +87,17 @@
           data-slide-to="0"
           class="active"
         ></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li
+          data-target="#carouselExampleIndicators"
+          data-slide-to="1"
+          class="active"
+        ></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
       </ol>
       <div class="carousel-inner">
+        <!-- Item 1 -->
         <div class="carousel-item active">
           <!-- <img
             class="d-block w-100"
@@ -107,13 +114,16 @@
           <div class="header-text hidden-xs">
             <div class="col-md-12 text-center">
               <h2>
-                <span id="title">Welcome to LOREM IPSUM</span>
+                <!-- <div id="res"></div> -->
+                <span id="title1"></span>
+                <!-- <span>Welcome to LOREM IPSUM</span> -->
               </h2>
               <br />
               <h3>
-                <div id="body">
+                <!-- <div id="newsbody1">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </div>
+                </div> -->
+                <div id="newsbody1"></div>
               </h3>
               <br />
               <div class="">
@@ -126,12 +136,8 @@
             </div>
           </div>
         </div>
+        <!-- Item 2 -->
         <div class="carousel-item">
-          <!-- <img
-            class="d-block w-100"
-            src="http://unsplash.s3.amazonaws.com/batch%209/barcelona-boardwalk.jpg"
-            alt="Second slide"
-          /> -->
           <div style="height: 500px; background-color: rgba(255, 0, 0, 0.1);">
             <div
               class="h-100 w-100"
@@ -141,13 +147,12 @@
           <div class="header-text hidden-xs">
             <div class="col-md-12 text-center">
               <h2>
-                <span>Welcome to LOREM IPSUM</span>
+                <span id="title2"></span>
+                <!-- <span>Welcome to LOREM IPSUM</span> -->
               </h2>
               <br />
               <h3>
-                <div>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </div>
+                <div id="newsbody2"></div>
               </h3>
               <br />
               <div class="">
@@ -160,12 +165,8 @@
             </div>
           </div>
         </div>
+        <!-- Item 3 -->
         <div class="carousel-item">
-          <!-- <img
-            class="d-block w-100"
-            src="http://unsplash.s3.amazonaws.com/batch%209/barcelona-boardwalk.jpg"
-            alt="Third slide"
-          /> -->
           <div style="height: 500px; background-color: rgba(255, 0, 0, 0.1);">
             <div
               class="h-100 w-100"
@@ -175,21 +176,78 @@
           <div class="header-text hidden-xs">
             <div class="col-md-12 text-center">
               <h2>
-                <span>Welcome to LOREM IPSUM</span>
+                <span id="title3"></span>
+                <!-- <span>Welcome to LOREM IPSUM</span> -->
               </h2>
               <br />
               <h3>
-                <div>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </div>
+                <div id="newsbody3"></div>
               </h3>
               <br />
               <div class="">
                 <a
-                class="btn btn-theme btn-block btn-min-block"
-                href="./login.html"
-                >Login</a
-              >
+                  class="btn btn-theme btn-block btn-min-block"
+                  href="./login.html"
+                  >Login</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Item 4 -->
+        <div class="carousel-item">
+          <div style="height: 500px; background-color: rgba(255, 0, 0, 0.1);">
+            <div
+              class="h-100 w-100"
+              style="background-color: rgba(19, 33, 230, 0.1);"
+            ></div>
+          </div>
+          <div class="header-text hidden-xs">
+            <div class="col-md-12 text-center">
+              <h2>
+                <span id="title4"></span>
+                <!-- <span>Welcome to LOREM IPSUM</span> -->
+              </h2>
+              <br />
+              <h3>
+                <div id="newsbody4"></div>
+              </h3>
+              <br />
+              <div class="">
+                <a
+                  class="btn btn-theme btn-block btn-min-block"
+                  href="./login.html"
+                  >Login</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Item 5 -->
+        <div class="carousel-item">
+          <div style="height: 500px; background-color: rgba(255, 0, 0, 0.1);">
+            <div
+              class="h-100 w-100"
+              style="background-color: rgba(19, 33, 230, 0.1);"
+            ></div>
+          </div>
+          <div class="header-text hidden-xs">
+            <div class="col-md-12 text-center">
+              <h2>
+                <span id="title5"></span>
+                <!-- <span>Welcome to LOREM IPSUM</span> -->
+              </h2>
+              <br />
+              <h3>
+                <div id="newsbody5"></div>
+              </h3>
+              <br />
+              <div class="">
+                <a
+                  class="btn btn-theme btn-block btn-min-block"
+                  href="./login.html"
+                  >Login</a
+                >
               </div>
             </div>
           </div>
@@ -216,34 +274,12 @@
     </div>
     <!--end of carousel -->
 
+    <div id="theArray"></div>
+
+    <div id="res"></div>
+
     <!-- the disqus -->
     <div id="disqus_thread" class="temp"></div>
-    <!-- <script>
-      /**
-       *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-       *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-
-      var disqus_config = function () {
-        this.page.url = 'http://localhost:8080/members.html'; // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = '/members.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-      };
-
-      (function () {
-        // DON'T EDIT BELOW THIS LINE
-        var d = document,
-          s = d.createElement('script');
-        s.src = 'https://tempwish.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-      })();
-    </script>
-    <noscript
-      >Please enable JavaScript to view the
-      <a href="https://disqus.com/?ref_noscript"
-        >comments powered by Disqus.</a
-      ></noscript
-    > -->
-
     <!-- the disqus -->
   </body>
 </html>
