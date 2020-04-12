@@ -4,6 +4,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
+    <!-- ////////////////////////////////////////////////////// -->
+
+    <style type="text/css">
+      /* body {
+        padding-top: 20px;
+      } */
+      #myCarousel .nav a small {
+        display: block;
+      }
+      /* #myCarousel .nav {
+        background: #eee;
+      } */
+      .nav-justified > li > a {
+        border-radius: 0px;
+      }
+      /* .nav-pills > li[data-slide-to="0"].active a {
+        background-color: #16a085;
+      }
+      .nav-pills > li[data-slide-to="1"].active a {
+        background-color: #e67e22;
+      } */
+    </style>
+
+    <link
+      href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+    <!-- ////////////////////////////////////////////////////// -->
   </head>
   <body>
     <!-- Navbar -->
@@ -43,80 +76,138 @@
         <li class="list-group-item list-group-item-primary">Name 4</li>
       </ul>
     </div> -->
-    <!-- The current sidebar -->
 
-    <!-- temp -->
-    <div class="temp">
-      <h2>LEARN.zoom Stats during COVID-19</h2>
-      <iframe
-        width="100%"
-        height="800"
-        src="https://datastudio.google.com/embed/reporting/a6bbbf99-de99-414e-842e-7fb21552d6bd/page/nWoKB"
-        frameborder="0"
-        style="border: 0;"
-        allowfullscreen
-      ></iframe>
-    </div>
+    <!-- /////////////////////////////////////////////////////////// -->
+    <!-- /////////////////////////////////////////////////////////// -->
 
-    <div class="temp">
-      <iframe
-        width="100%"
-        height="800"
-        src="https://datastudio.google.com/embed/reporting/1adef32e-6c48-4326-b5d8-2b044f4e5e1d/page/faBKB"
-        frameborder="0"
-        style="border: 0;"
-        allowfullscreen
-      ></iframe>
-    </div>
+    <!-- Starts the carousel -->
+    <div class="container">
+      <div id="myCarousel" class="carousel slide">
+        <!-- <ul class="nav nav-pills nav-justified row">
+          <li
+            class="col 6"
+            data-target="#myCarousel"
+            data-slide-to="0"
+            class="active"
+          >
+            <button class="btn btn-default btn-lg">
+              Zoom meetings hosted by LEARN
+            </button>
+          </li>
+          <li class="col 6" data-target="#myCarousel" data-slide-to="1">
+            <button class="btn btn-default btn-lg">
+              LEARN.zoom University Stats
+            </button>
+          </li>
+        </ul> -->
 
-    <!-- temp -->
+        <!-- <div class="container">
+          <div class="row">
+            <div class="col text-center">
+              <button class="btn btn-default">Centered button</button>
+            </div>
+          </div>
+        </div> -->
 
-    <!-- User Profile old-->
-
-    <!-- <div class="row">
-      <div class="col-9">
-        <h2>LEARN.zoom Stats during COVID-19</h2>
-        <iframe
-          width="60%"
-          height="800"
-          src="https://datastudio.google.com/embed/reporting/a6bbbf99-de99-414e-842e-7fb21552d6bd/page/nWoKB"
-          frameborder="0"
-          style="border: 0;"
-          allowfullscreen
-        ></iframe>
-      </div>
-      <div class="col-3">
-        <h2 class="text-center">User Profile</h2>
-
-        <ul class="list-group">
-          <li class="list-group-item list-group-item-info">Name</li>
-          <li class="list-group-item list-group-item-info">Occupation</li>
-          <li class="list-group-item list-group-item-info">University</li>
-          <li class="list-group-item list-group-item-info">EXAMPLECODE</li>
+        <ul class="nav nav-pills nav-justified row">
+          <li
+            class="col text-center"
+            data-target="#myCarousel"
+            data-slide-to="0"
+            class="active"
+          >
+            <button type="button" class="btn btn-outline-dark btn-lg display-1">
+              <h2>Zoom meetings hosted by LEARN</h2>
+            </button>
+          </li>
+          <li
+            class="col text-center"
+            data-target="#myCarousel"
+            data-slide-to="1"
+          >
+            <button type="button" class="btn btn-outline-dark btn-lg display-1">
+              <h2>LEARN.zoom University Stats</h2>
+            </button>
+          </li>
         </ul>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <div class="item active">
+            <div class="temp">
+              <h2 class="text-center">LEARN.zoom Stats during COVID-19</h2>
+              <iframe
+                width="100%"
+                height="800"
+                src="https://datastudio.google.com/embed/reporting/a6bbbf99-de99-414e-842e-7fb21552d6bd/page/nWoKB"
+                frameborder="0"
+                style="border: 0;"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+          <!-- End Item -->
+
+          <div class="item">
+            <div class="temp">
+              <h2 class="text-center">
+                LEARN.zoom University Stats during COVID-19
+              </h2>
+
+              <iframe
+                width="100%"
+                height="800"
+                src="https://datastudio.google.com/embed/reporting/1adef32e-6c48-4326-b5d8-2b044f4e5e1d/page/faBKB"
+                frameborder="0"
+                style="border: 0;"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+        <!-- End Carousel Inner -->
       </div>
-    </div> -->
+    </div>
 
-    <!-- User Profile old-->
+    <!-- End Carousel -->
 
-    <!-- <iframe width="420" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY">
-      </iframe> -->
-
-    <!-- <div class="col-md-4 order-md-1 mb-4">
-        <h4 class="d-flex justify-content-between align-items-center mb-3"></h4>
-          <h2 class="text-center">User Profile</h2> 
-        </h4>
-          <ul class="list-group">
-            <li class="list-group-item list-group-item-success">Name</li>
-            <li class="list-group-item list-group-item-info">Occupation</li>
-            <li class="list-group-item list-group-item-warning">University</li>
-            <li class="list-group-item list-group-item-danger">EXAMPLECODE</li>
-          </ul>
-        
-      </div> -->
-    <!-- User Profile -->
+    <!-- /////////////////////////////////////////////////////////// -->
+    <!-- /////////////////////////////////////////////////////////// -->
 
     <div id="disqus_thread" class="temp"></div>
+
+    <!-- ///////////////////////////////// -->
+
+    <!-- <script type="text/javascript">
+  $(document).ready(function () {
+    // $('#myCarousel').carousel({
+    //   interval: 4000,
+    // });
+
+    var clickEvent = false;
+    $('#myCarousel')
+      .on('click', '.nav a', function () {
+        clickEvent = true;
+        $('.nav li').removeClass('active');
+        $(this).parent().addClass('active');
+      })
+      .on('slid.bs.carousel', function (e) {
+        if (!clickEvent) {
+          var count = $('.nav').children().length - 1;
+          var current = $('.nav li.active');
+          current.removeClass('active').next().addClass('active');
+          var id = parseInt(current.data('slide-to'));
+          if (count == id) {
+            $('.nav li').first().addClass('active');
+          }
+        }
+        clickEvent = false;
+      });
+  });
+</script> -->
+
+    <!-- /////////////////////////////////// -->
+
     <!-- <script>
       /**
        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
