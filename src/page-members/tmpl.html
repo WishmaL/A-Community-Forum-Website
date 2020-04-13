@@ -8,24 +8,13 @@
     <!-- ////////////////////////////////////////////////////// -->
 
     <style type="text/css">
-      /* body {
-        padding-top: 20px;
-      } */
       #myCarousel .nav a small {
         display: block;
       }
-      /* #myCarousel .nav {
-        background: #eee;
-      } */
+
       .nav-justified > li > a {
         border-radius: 0px;
       }
-      /* .nav-pills > li[data-slide-to="0"].active a {
-        background-color: #16a085;
-      }
-      .nav-pills > li[data-slide-to="1"].active a {
-        background-color: #e67e22;
-      } */
     </style>
 
     <link
@@ -41,41 +30,9 @@
   <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="index.html"><h2>LMS Analysis System</h2></a>
+      <a class="navbar-brand" href="index.html"><h1>LMS Analysis System</h1></a>
     </nav>
     <!-- Navbar -->
-
-    <!-- unnecessary
-    tabs
-    <div class="container">
-      <div class="row">
-        <div class="col text-center">
-          <span><a href="#">Menu 1</a></span>
-          <span><a href="#">Menu 2</a></span>
-        </div>
-      </div>
-    </div>
-    tabs
-    unnecessary -->
-
-    <!-- The current sidebar -->
-    <!-- <div id="mySidenav" class="sidenav">
-      <h2>Self Information</h2>
-      <ul class="list-group">
-        <li class="list-group-item list-group-item-info">Name</li>
-        <li class="list-group-item list-group-item-info">Occupation</li>
-        <li class="list-group-item list-group-item-info">University</li>
-        <li class="list-group-item list-group-item-info">EXAMPLECODE</li>
-      </ul>
-
-      <h2>Online Users</h2>
-      <ul class="list-group">
-        <li class="list-group-item list-group-item-primary">Name 1</li>
-        <li class="list-group-item list-group-item-primary">Name 2</li>
-        <li class="list-group-item list-group-item-primary">Name 3</li>
-        <li class="list-group-item list-group-item-primary">Name 4</li>
-      </ul>
-    </div> -->
 
     <!-- /////////////////////////////////////////////////////////// -->
     <!-- /////////////////////////////////////////////////////////// -->
@@ -83,32 +40,6 @@
     <!-- Starts the carousel -->
     <div class="container">
       <div id="myCarousel" class="carousel slide">
-        <!-- <ul class="nav nav-pills nav-justified row">
-          <li
-            class="col 6"
-            data-target="#myCarousel"
-            data-slide-to="0"
-            class="active"
-          >
-            <button class="btn btn-default btn-lg">
-              Zoom meetings hosted by LEARN
-            </button>
-          </li>
-          <li class="col 6" data-target="#myCarousel" data-slide-to="1">
-            <button class="btn btn-default btn-lg">
-              LEARN.zoom University Stats
-            </button>
-          </li>
-        </ul> -->
-
-        <!-- <div class="container">
-          <div class="row">
-            <div class="col text-center">
-              <button class="btn btn-default">Centered button</button>
-            </div>
-          </div>
-        </div> -->
-
         <ul class="nav nav-pills nav-justified row">
           <li
             class="col text-center"
@@ -168,70 +99,112 @@
         <!-- End Carousel Inner -->
       </div>
     </div>
-
     <!-- End Carousel -->
 
+    <!-- news submission -->
+    <div class="container">
+      <h2>Post a Notification on Homepage</h2>
+      <form>
+        <div class="row">
+          <div class="form-group col">
+            <label for="exampleFormControlInput1">User Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="userName"
+              placeholder="User Name"
+            />
+          </div>
+          <!-- <label for="exampleFormControlInput1">Email address</label>
+            <input
+              type="email"
+              class="form-control"
+              id="emailAddress"
+              placeholder="name@example.com"
+            /> -->
+          <div class="form-group col">
+            <!-- the checkbox for the select the news -->
+            <div>
+              <label for="exampleFormControlInput1"
+                >Select the Topic Number</label
+              >
+            </div>
+            <span class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox1"
+                value="option1"
+              />
+              <label class="form-check-label" for="inlineCheckbox1">1</label>
+            </span>
+            <span class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox2"
+                value="option2"
+              />
+              <label class="form-check-label" for="inlineCheckbox2">2</label>
+            </span>
+            <span class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox3"
+                value="option3"
+              />
+              <label class="form-check-label" for="inlineCheckbox3">3</label>
+            </span>
+            <span class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox4"
+                value="option4"
+              />
+              <label class="form-check-label" for="inlineCheckbox4">4</label>
+            </span>
+            <span class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="inlineCheckbox5"
+                value="option5"
+              />
+              <label class="form-check-label" for="inlineCheckbox5">5</label>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="newsTitle"
+            placeholder="Title"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Description</label>
+          <textarea class="form-control" id="newsBody" rows="3"></textarea>
+        </div>
+      </form>
+      <button id="post" class="btn btn-primary">Submit</button>
+    </div>
+    <!-- news submission -->
+
     <!-- /////////////////////////////////////////////////////////// -->
     <!-- /////////////////////////////////////////////////////////// -->
+
+    <!-- for edv purposes remove later-->
+
+    <div class="res"></div>
+
+    <!-- for edv purposes remove later-->
 
     <div id="disqus_thread" class="temp"></div>
-
-    <!-- ///////////////////////////////// -->
-
-    <!-- <script type="text/javascript">
-  $(document).ready(function () {
-    // $('#myCarousel').carousel({
-    //   interval: 4000,
-    // });
-
-    var clickEvent = false;
-    $('#myCarousel')
-      .on('click', '.nav a', function () {
-        clickEvent = true;
-        $('.nav li').removeClass('active');
-        $(this).parent().addClass('active');
-      })
-      .on('slid.bs.carousel', function (e) {
-        if (!clickEvent) {
-          var count = $('.nav').children().length - 1;
-          var current = $('.nav li.active');
-          current.removeClass('active').next().addClass('active');
-          var id = parseInt(current.data('slide-to'));
-          if (count == id) {
-            $('.nav li').first().addClass('active');
-          }
-        }
-        clickEvent = false;
-      });
-  });
-</script> -->
-
-    <!-- /////////////////////////////////// -->
-
-    <!-- <script>
-      /**
-       *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-       *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-
-      var disqus_config = function () {
-        this.page.url = "http://localhost:8080/members.html"; // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "/members.html"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-      };
-
-      (function () {
-        // DON'T EDIT BELOW THIS LINE
-        var d = document,
-          s = d.createElement("script");
-        s.src = "https://tempwish.disqus.com/embed.js";
-        s.setAttribute("data-timestamp", +new Date());
-        (d.head || d.body).appendChild(s);
-      })();
-    </script>
-    <noscript
-      >Please enable JavaScript to view the
-      <a href="https://disqus.com/?ref_noscript"
-        >comments powered by Disqus.</a
-      ></noscript
-    > -->
   </body>
 </html>
