@@ -23,72 +23,106 @@ var disqus_config = function () {
 
 // adding a news
 
-document.getElementById("post").addEventListener("click", updatenews1);
+// document.getElementById("post").addEventListener("click", updatenews1);
 
 function updatenews1() {
   var name1 = document.getElementById("userName").value;
   var title1 = document.getElementById("newsTitle").value;
   var newsBody1 = document.getElementById("newsBody").value;
   axios
-    .post("https://my-json-server.typicode.com/WishmaL/demo/news", {
+    .patch("http://localhost:3000/news/1", {
       username: name1,
       title: title1,
       body: newsBody1,
     })
-    .then((res) => console.log(res))
+    .then((res) => showOutput(res))
     .catch((err) => console.error(err));
-  //   console.log('news is changed successfully');
+  console.log("topic 1 updated");
 }
 
-// function showOutput(res) {
-//   document.getElementById("res").innerHTML = `
-//     <div class="card card-body mb-4">
-//       <h5>Status: ${res.status}</h5>
-//     </div>
+function updatenews2() {
+  var name1 = document.getElementById("userName").value;
+  var title1 = document.getElementById("newsTitle").value;
+  var newsBody1 = document.getElementById("newsBody").value;
+  axios
+    .patch("http://localhost:3000/news/2", {
+      username: name1,
+      title: title1,
+      body: newsBody1,
+    })
+    .then((res) => showOutput(res))
+    .catch((err) => console.error(err));
+  console.log("topic 2 updated");
+}
 
-//     <div class="card mt-3">
-//       <div class="card-header">
-//         Headers
-//       </div>
-//       <div class="card-body">
-//         <pre>${JSON.stringify(res.headers, null, 2)}</pre>
-//       </div>
-//     </div>
+function updatenews3() {
+  var name1 = document.getElementById("userName").value;
+  var title1 = document.getElementById("newsTitle").value;
+  var newsBody1 = document.getElementById("newsBody").value;
+  axios
+    .patch("http://localhost:3000/news/3", {
+      username: name1,
+      title: title1,
+      body: newsBody1,
+    })
+    .then((res) => showOutput(res))
+    .catch((err) => console.error(err));
+  console.log("topic 3 updated");
+}
 
-//     <div class="card mt-3">
-//       <div class="card-header">
-//         Data
-//       </div>
-//       <div class="card-body">
-//         <pre>${JSON.stringify(res.data, null, 2)}</pre>
-//       </div>
-//     </div>
+function updatenews4() {
+  var name1 = document.getElementById("userName").value;
+  var title1 = document.getElementById("newsTitle").value;
+  var newsBody1 = document.getElementById("newsBody").value;
+  axios
+    .patch("http://localhost:3000/news/4", {
+      username: name1,
+      title: title1,
+      body: newsBody1,
+    })
+    .then((res) => showOutput(res))
+    .catch((err) => console.error(err));
+  console.log("topic 4 updated");
+}
 
-//     <div class="card mt-3">
-//       <div class="card-header">
-//         Config
-//       </div>
-//       <div class="card-body">
-//         <pre>${JSON.stringify(res.config, null, 2)}</pre>
-//       </div>
-//     </div>
-//   `;
-// }
+function updatenews5() {
+  var name1 = document.getElementById("userName").value;
+  var title1 = document.getElementById("newsTitle").value;
+  var newsBody1 = document.getElementById("newsBody").value;
+  axios
+    .patch("http://localhost:3000/news/5", {
+      username: name1,
+      title: title1,
+      body: newsBody1,
+    })
+    .then((res) => showOutput(res))
+    .catch((err) => console.error(err));
+  console.log("topic 5 updated");
+}
 
-// function updatenews1() {
+const findTheCheckbox = () => {
+  var box1 = document.getElementById("inlineCheckbox1").checked;
+  var box2 = document.getElementById("inlineCheckbox2").checked;
+  var box3 = document.getElementById("inlineCheckbox3").checked;
+  var box4 = document.getElementById("inlineCheckbox4").checked;
+  var box5 = document.getElementById("inlineCheckbox5").checked;
 
-//   let title1 = document.getElementById('title1');
-//   let body1 = document.getElementById('body1');
-//   let user1 = document.getElementById('user1');
+  if (
+    box1 == false &&
+    box2 == false &&
+    box3 == false &&
+    box4 == false &&
+    box5 == false
+  ) {
+    alert("Please Select at least one topic id!");
+    return;
+  }
 
-//   axios
-//     .patch('https://my-json-server.typicode.com/WishmaL/demo/news/1', {
-//       title: title1,
-//       body: body1,
-//       user:user1
-//     })
-//     .then(res => console.log(res))
-//     .catch(err => console.error(err));
-// }
+  box1 && updatenews1();
+  box2 && updatenews2();
+  box3 && updatenews3();
+  box4 && updatenews4();
+  box5 && updatenews5();
+};
 
-// }
+document.getElementById("post").addEventListener("click", findTheCheckbox);
