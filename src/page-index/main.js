@@ -22,7 +22,7 @@ var disqus_config = function () {
 
 const axios = require("axios");
 axios
-  .get("https://my-json-server.typicode.com/WishmaL/demo/news")
+  .get("http://localhost:3000/news")
   // .then((res) => console.log(res.data))
   .then((res) => showOutput1(res))
   .catch((err) => console.error(err));
