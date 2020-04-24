@@ -12,8 +12,8 @@ process.env.SECRET_KEY = 'secret'
 route.post('/register', (req, res) => {
 //   const today = new Date()
   const userData = {
-    name: req.body.first_name,
-    email: req.body.last_name,
+    name: req.body.name,
+    email: req.body.email,
     password: req.body.password,
     contact: req.body.contact,
     roll:req.body.roll
@@ -22,7 +22,9 @@ route.post('/register', (req, res) => {
 
   User.findOne({
     where: {
-      email: req.body.email
+        name: req.body.name,
+        email: req.body.email,
+        roll:req.body.roll
     }
   })
     //TODO bcrypt
@@ -32,7 +34,7 @@ route.post('/register', (req, res) => {
           userData.password = hash
           User.create(userData)
             .then(user => {
-              res.json({ status: user.email + 'Registered!' })
+              res.json({ status: user.email + ' Registered!' })
             })
             .catch(err => {
               res.send('error: ' + err)
@@ -54,13 +56,17 @@ route.post('/login', (req, res) => {
     }
   })
     .then(user => {
+        
       if (user) {
+        console.log(user.password)
         if (bcrypt.compareSync(req.body.password, user.password)) {
           let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
             expiresIn: 1440
+            
           })
+          
           res.send({token,
-                    msg:"New user is created!"})
+                    msg: user.name+" is logged in!"})
         }
       } else {
         res.status(400).json({ error: 'User does not exist' })
