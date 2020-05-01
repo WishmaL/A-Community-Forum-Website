@@ -12,6 +12,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 var Users = require('./routes/Users')
 app.use('/users',Users)
 
+var Notices = require('./routes/Notices.js')
+app.use('/notices',Notices)
+
 
 app.listen(port, () => {
   console.log('Server is running on port', port);
