@@ -8,4 +8,4 @@ var db = mysql.createConnection({
   multipleStatements: true
 });
 
-module.exports = db;
+module.exports = db; 
