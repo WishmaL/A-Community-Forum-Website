@@ -5,6 +5,7 @@ var db = mysql.createConnection({
   user: 'root',
   password: '',
   database: 'db_learn',
+  multipleStatements: true
 });
 
 module.exports = db;

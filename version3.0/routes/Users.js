@@ -13,6 +13,9 @@ db.connect((err) => {
 });
 
 
+// IMPORTANT ADD CONNECTION SCAPE TO IGNORE SQL INJECTIONS
+
+
 
 //   fetch data
 router.get('/getUsers', (req, res) => {
@@ -38,33 +41,32 @@ router.get('/getUser', (req, res) => {
 // ///////////////////////////////////////////
 // insert a user
 router.post('/newUser', (req, res) => {
-  const newUser = {
-    id: uuid.v4(), 
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-    contact: req.body.contact,
-    roll: req.body.roll,
-  };
+ 
+  const newUser = [
+    req.body.id,
+    req.body.name,
+    req.body.email, 
+    req.body.password,
+    req.body.contact,
+    req.body.roll
+] 
 
-  let check = `SELECT * FROM users WHERE name = ? OR email = ?`;
-  let check_query = db.query(check, [newUser[1],newUser[2]], (err, results) => {
-    if (err) throw err;
-    console.log(results);
-    res.send(results);
-  });
+  let sql = `SET @id = ?; SET @name = ?; SET @email = ?; SET @password = ?; SET @contact = ?; SET @roll = ?; CALL myprocedure(@id, @name, @email, @password, @contact, @roll)`;
+  let query = db.query(sql, [newUser[0],newUser[1],newUser[2],newUser[3],newUser[4],newUser[5]], (err, results) => {
 
+    if(err) throw err;
 
+    results.forEach(element => {
+      if(element.constructor == Array){
+        var msg = element[0].msg
+        res.send('inserted element id : '+msg); 
+        console.log(element[0])  
+      }
+      
+    });
 
-
-  let sql = `INSERT INTO users SET ?`;
-  let query = db.query(sql, newUser, (err, results) => {
-    if (err) throw err;
-    console.log(results);
-    res.send(results);
   });
 });
-
 
 
 // ////////////////////////////////////////////
@@ -105,11 +107,12 @@ router.put('/updateUser', (req, res, next) => {
 // ///////////////////////////////////////////
 // Delete a user
 router.delete('/deleteUser', (req, res) => {
-    const deleteUser = {
-      id: req.body.id
-    };
+    const deleteUser = [
+      req.body.id
+    ]
+      
     let sql = `DELETE FROM users WHERE id = ?`;
-    let query = db.query(sql, deleteUser.id, (err, results) => {
+    let query = db.query(sql, deleteUser[0], (err, results) => {
       if (err) throw err;
       console.log("deleted");
       res.send("successfully deleted!");
