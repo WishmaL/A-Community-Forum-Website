@@ -21,6 +21,9 @@ app.use('/articles',Articles)
 var Graphs = require('./routes/Graphs.js')
 app.use('/graphs',Graphs)
 
+var Comments = require('./routes/Comments.js')
+app.use('/comments',Comments)
+
 app.listen(port, () => {
   console.log('Server is running on port', port);
 });
