@@ -1,7 +1,7 @@
 import React from 'react';
 import Banner from '../components/Banner';
 import  Carousel  from "../components/Carousel";
-import Artcle from "../components/Article";
+import Article from "../components/Article";
 import Timeline from "../components/Timeline";
 
 // import Brands from '../components/Brands';
@@ -17,7 +17,7 @@ function Home() {
         ></Banner>
 
       <Carousel />
-      <Artcle />
+      <Article />
       <Timeline />
 
       
