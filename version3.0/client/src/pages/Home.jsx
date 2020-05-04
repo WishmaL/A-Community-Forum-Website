@@ -1,6 +1,7 @@
 import React from 'react';
 import Hero from '../components/Hero';
 import Banner from '../components/Banner';
+import  Carousel  from "../components/Carousel";
 // import Brands from '../components/Brands';
 // import FeaturedRooms from '../components/FeaturedRoom';
 
@@ -13,6 +14,10 @@ function Home() {
           subtitle="This will be the description"
         ></Banner>
       </Hero>
+
+
+
+      <Carousel />
 
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
       <strong>Oh snap! You got an error!</strong> 

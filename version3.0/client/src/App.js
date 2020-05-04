@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import Home from './pages/Home';
 import Member from './pages/Member';
