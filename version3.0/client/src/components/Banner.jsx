@@ -1,11 +1,12 @@
 import React from 'react';
+// import Carousel from 'react-bootstrap/Carousel';
 
 function Banner({ children, title, subtitle }) {
   return (
     <div className="banner">
-      <h1>{title}</h1>
+      <p class="h1 text-center">{title}</p>
       <div></div>
-      <p>{subtitle}</p>
+      <p class="h3 text-center">{subtitle}</p>
       {children}
     </div>
   );

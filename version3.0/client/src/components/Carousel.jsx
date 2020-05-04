@@ -8,7 +8,7 @@ export default function Carousel_() {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="http://lorempics.com/750x450/CCC444/969696"
+            src="http://lorempics.com/550x250/CCC444/969696"
             alt="First slide"
           />
           <Carousel.Caption>
@@ -19,7 +19,7 @@ export default function Carousel_() {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="http://lorempics.com/750x450/7d5a5a/f1d1d1"
+            src="http://lorempics.com/550x250/7d5a5a/f1d1d1"
             alt="Third slide"
           />
 
@@ -31,7 +31,7 @@ export default function Carousel_() {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="http://lorempics.com/750x450/162447/faf2f2"
+            src="http://lorempics.com/550x250/162447/faf2f2"
             alt="Third slide"
           />
 
