@@ -15,9 +15,6 @@ function Home() {
           title="The Home page"
           subtitle="This will be the description"
         ></Banner>
-      
-
-
 
       <Carousel />
       <Artcle />

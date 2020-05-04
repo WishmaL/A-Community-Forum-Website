@@ -1,23 +1,18 @@
-import React from 'react';
-import Hero from '../components/Hero';
-import Banner from '../components/Banner';
-import { Link } from 'react-router-dom';
-import MemberContainer from '../components/MemberContainer';
+import React, { Component } from 'react';
+import SubNavbar from '../components/Sub-navbar';
+// import Carousel from '../components/Carousel';
+import Artcle from '../components/Article';
 
-function Member() {
-  return (
-    <div>
-      <Hero hero="roomsHero">
-        <Banner title="our rooms">
-          <Link to="/" className="btn-primary">
-            Return Home
-          </Link>
-        </Banner>
-      </Hero>
-
-      <MemberContainer />
-    </div>
-  );
+export class Member extends Component {
+  render() {
+    return (
+      <div>
+        <SubNavbar />
+        {/* <Carousel /> */}
+        <Artcle />
+      </div>
+    );
+  }
 }
 
 export default Member;
