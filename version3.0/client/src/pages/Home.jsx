@@ -1,7 +1,7 @@
 import React from 'react';
 import Banner from '../components/Banner';
 import  Carousel  from "../components/Carousel";
-import Article from "../components/Article";
+import Article_N_comment from "../components/Articles_n_Comments";
 import Timeline from "../components/Timeline";
 
 // import Brands from '../components/Brands';
@@ -12,12 +12,12 @@ function Home() {
     <div>
       
         <Banner
-          title="The Home page"
+          title="The Learn Home page"
           subtitle="This will be the description"
         ></Banner>
 
       <Carousel />
-      <Article />
+      <Article_N_comment />
       <Timeline />
 
       

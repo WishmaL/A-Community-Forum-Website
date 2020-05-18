@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SubNavbar from '../components/Sub-navbar';
 import Graph from '../components/Graphs';
-import Artcle from '../components/Article';
+import Article_N_comment from "../components/Articles_n_Comments";
 import Banner from '../components/Banner';
 import Carousel from '../components/Carousel';
 
@@ -16,7 +16,7 @@ export class Admin extends Component {
         ></Banner>
         <Carousel />
         <Graph />
-        <Artcle />
+        <Article_N_comment />
       </div>
     );
   }

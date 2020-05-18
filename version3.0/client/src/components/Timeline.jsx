@@ -6,7 +6,7 @@ export class Timeline extends Component {
     return (
       <div>
         
-        <div class="alert alert-primary" role="alert">
+        <div className="alert alert-primary" role="alert">
             <h1>The timeline</h1>
         </div>
 

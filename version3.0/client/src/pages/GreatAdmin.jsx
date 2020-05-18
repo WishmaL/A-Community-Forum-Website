@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import SubNavbar from '../components/Sub-navbar';
 // import Graph from '../components/Graphs';
-import Artcle from '../components/Article';
+import Article_N_comment from "../components/Articles_n_Comments";
 import Banner from '../components/Banner';
 import Carousel from '../components/Carousel';
 import AllowedUsers from "../components/AllowedUsers";
 
 export class GreatAdmin extends Component {
-  render() {
+  render() { 
     return (
       <div>
         <SubNavbar />
@@ -20,7 +20,7 @@ export class GreatAdmin extends Component {
         {/* <AllowedUsers /> */}
         {/* <Graph /> */}
         <AllowedUsers />
-        <Artcle />
+        <Article_N_comment />
       </div>
     );
   }

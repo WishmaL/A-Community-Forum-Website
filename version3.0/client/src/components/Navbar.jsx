@@ -22,11 +22,11 @@ export class Navbar_ extends Component {
             {/* ___check following if want___ */}
             {/* <ul class="list-inline"> */}
 
-            <div class="d-flex bd-highlight">
-              <div class="p-2 flex-grow-1 bd-highlight"><Link to="/">HOME</Link></div>
-              <div class="p-2 bd-highlight"><Link to="/Member">Member</Link></div>
-              <div class="p-2 bd-highlight"><Link to="/Admin">Admin</Link></div>
-              <div class="p-2 bd-highlight"><Link to="/GreatAdmin">Great Admin</Link></div>
+            <div className="d-flex bd-highlight">
+              <div className="p-2 flex-grow-1 bd-highlight"><Link to="/">HOME</Link></div>
+              <div className="p-2 bd-highlight"><Link to="/Member">Member</Link></div>
+              <div className="p-2 bd-highlight"><Link to="/Admin">Admin</Link></div>
+              <div className="p-2 bd-highlight"><Link to="/GreatAdmin">Great Admin</Link></div>
             </div>
 
             {/* <Nav.Link href="#home"> <Link to="/">HOME</Link></Nav.Link>
