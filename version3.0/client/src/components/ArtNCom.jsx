@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import Carousel from 'react-bootstrap/Carousel';
 import Comments from './Comments';
 import axios from 'axios';
 import '../styles/carousel.css';
 import Addcomment from './Addcomment';
 
-class ArtNCom extends Component {
+export class ArtNCom extends Component {
   constructor(props) {
     super(props);
 
@@ -20,7 +21,7 @@ class ArtNCom extends Component {
     axios
       .get('/articles/getArticles')
       .then((res) => {
-        // console.log(res)
+        
         this.setState({ articles: res.data });
       })
       .catch((err) => {
@@ -37,90 +38,72 @@ class ArtNCom extends Component {
         console.log(err);
       });
   }
-
-  // clickHandler = (commentID) => {
-  //   axios
-  //     .post('/comments/newComment', {
-  //       commentId: commentID,
-  //     })
-  //     .then(function (response) {
-  //       console.log(response);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // };
-
   render() {
     const articleList = this.state.articles;
     const commentList = this.state.comments;
+    // console.log(Object.keys(articleList)[0])
 
     return (
       <div>
         <div className="alert alert-primary" role="alert">
           <h1>Article section</h1>
         </div>
-        <Container>
-          <Carousel interval={null}>
+        <div className="container">
+          <Tabs
+            defaultActiveKey={Object.keys(articleList)[0]}
+            transition={false}
+            id="noanim-tab-example"
+          >
+            {/* <Carousel interval={null}> */}
             {articleList.map((article) => {
               return (
-                <Carousel.Item>
-                  <div key={article.id}>
-                    <Col>
-                      <h3>Article</h3>
-                      <Row>
-                        <Card>
-                          <Card.Body>
-                            <Card.Title>{article.title}</Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted">
-                              Card Subtitle*****optional*******
-                            </Card.Subtitle>
-                            <img
-                              src="http://lorempics.com/300x200/142850/f7f7f7"
-                              alt="the pic"
-                            />
-                            <Card.Text>{article.body}</Card.Text>
-                            <Card.Link href="#">Card 1</Card.Link>
-                            <Card.Link href="#">Link 2</Card.Link>
-                          </Card.Body>
-                        </Card>
-                      </Row>
+                //  <div key={article.id}>
+                <Tab eventKey={article.id} title={article.title}>
+                  <Col>
+                    <h3>Article</h3>
+                    <Row>
+                      <Card>
+                        <Card.Body>
+                          <Card.Title>{article.title}</Card.Title>
+                          <Card.Subtitle className="mb-2 text-muted">
+                            Card Subtitle*****optional*******
+                          </Card.Subtitle>
+                          <img
+                            src="http://lorempics.com/300x200/142850/f7f7f7"
+                            alt="the pic"
+                          />
+                          <Card.Text>{article.body}</Card.Text>
+                          <Card.Link href="#">Card 1</Card.Link>
+                          <Card.Link href="#">Link 2</Card.Link>
+                        </Card.Body>
+                      </Card>
+                    </Row>
+                    <Row>
+                      <Col>
+                        {/* remove the arrow icons here */}
+                        <h3>Comments</h3>
 
-                      <Row>
-                        <Col>
-                          {/* remove the arrow icons here */}
-                          <h3>Comments</h3>
-
-                          {commentList
-                            .filter((comment) => {
-                              return comment.articleId === article.id;
-                            })
-                            .map((comment) => (
-                              <div key={comment.id}>
-                                <Comments
-                                  thread={comment.thread}
-                                  time={comment.time}
-                                />
-                              </div>
-                            ))}
-
-                          {/* <form action="" method="post">
-                            <input type="text" /> */}
-                            {/* the adding comment form */}
-                            <Addcomment />
-                            {/* <button onSubmit={() => clickHandler}>
-                              Add a comment
-                            </button> */}
-                          {/* </form> */}
-                        </Col>
-                      </Row>
-                    </Col>
-                  </div>
-                </Carousel.Item>
+                        {commentList
+                          .filter((comment) => {
+                            return comment.articleId === article.id;
+                          })
+                          .map((comment) => (
+                            <div key={comment.id}>
+                              <Comments
+                                thread={comment.thread}
+                                time={comment.time}
+                              />
+                            </div>
+                          ))}
+                        <Addcomment />
+                      </Col>
+                    </Row>
+                  </Col>
+                </Tab>
               );
             })}
-          </Carousel>
-        </Container>
+          </Tabs>
+        </div>
       </div>
     );
   }

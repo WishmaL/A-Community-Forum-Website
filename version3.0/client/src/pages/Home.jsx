@@ -5,6 +5,7 @@ import TheCarousel from '../components/TheCarousel';
 import Timeline from '../components/Timeline';
 import Axios from 'axios';
 import ArtNCom from '../components/ArtNCom';
+import Delthis from '../components/Delthis';
 
 // import Brands from '../components/Brands';
 // import FeaturedRooms from '../components/FeaturedRoom';
@@ -32,6 +33,7 @@ function Home() {
       <TheCarousel />
 
       <ArtNCom />
+      {/* <Delthis /> */}
       {/* <Article_N_comment /> */}
       <Timeline />
 
