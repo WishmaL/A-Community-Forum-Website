@@ -5,6 +5,7 @@ import Article_N_comment from "../components/Articles_n_Comments";
 import Banner from '../components/Banner';
 import Carousel from '../components/Carousel';
 import AllowedUsers from "../components/AllowedUsers";
+import Timeline from '../components/Timeline';
 
 export class GreatAdmin extends Component {
   render() { 
@@ -21,6 +22,7 @@ export class GreatAdmin extends Component {
         {/* <Graph /> */}
         <AllowedUsers />
         <Article_N_comment />
+        <Timeline />
       </div>
     );
   }

@@ -35,17 +35,16 @@ router.post('/newComment', (req, res) => {
     req.body.userId,
     req.body.articleId,
     req.body.thread,
-    req.body.userName
-    // // req.body.body,
-    // // req.body.time,
-    // req.body.admin_r,
-    // req.body.admin_w,
-    // req.body.member_r,
-    // req.body.member_w,
-    // req.body.viewer_r,
+    // req.body.body,
+    // req.body.time,
+    req.body.admin_r,
+    req.body.admin_w,
+    req.body.member_r,
+    req.body.member_w,
+    req.body.viewer_r,
   ];
 
-  let sql = `SET @id = ?; SET @userId = ?; SET @articleId = ?; SET @thread = ?; SET @userName = ?;CALL addCommentProcedure(@id, @userId, @articleId, @thread, @userName)`;
+  let sql = `SET @id = ?; SET @userId = ?; SET @articleId = ?; SET @thread = ?; SET @admin_r = ?; SET @admin_w = ?; SET @member_r = ?; SET @member_w = ?; SET @viewer_r = ?;CALL addCommentProcedure(@id, @userId, @articleId, @thread, @admin_r, @admin_w, @member_r, @member_w, @viewer_r)`;
   let query = db.query(
     sql,
     [
@@ -54,10 +53,10 @@ router.post('/newComment', (req, res) => {
       newComment[2],
       newComment[3],
       newComment[4],
-      // newComment[5],
-      // newComment[6],
-      // newComment[7],
-      // newComment[8],
+      newComment[5],
+      newComment[6],
+      newComment[7],
+      newComment[8],
     ],
     (err, rows) => {
       
@@ -88,18 +87,17 @@ router.put('/updateComment', (req, res, next) => {
      req.body.userId,
      req.body.articleId,
      req.body.thread,
-     req.body.userName,
      // req.body.body,
      // req.body.time,
-    //  req.body.admin_r,
-    //  req.body.admin_w,
-    //  req.body.member_r,
-    //  req.body.member_w,
-    //  req.body.viewer_r,
+     req.body.admin_r,
+     req.body.admin_w,
+     req.body.member_r,
+     req.body.member_w,
+     req.body.viewer_r,
      req.body.id
   ];
 
-  let sql = `UPDATE comments SET userId = ?, articleId = ?, thread =?, userName = ? WHERE id = ?`;
+  let sql = `UPDATE comments SET userId = ?, articleId = ?, thread =?, admin_r = ?, admin_w = ?, member_r =?, member_w = ?, viewer_r = ? WHERE id = ?`;
 
   let query = db.query(sql, updated_comment, (err, rows) => {
     if (err) throw err;

@@ -1,7 +1,8 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 
-export default function Carousel_() {
+function Carousel_() {
+
   return (
     <div>
       <Carousel>
@@ -46,3 +47,4 @@ export default function Carousel_() {
     </div>
   );
 }
+export default Carousel_;

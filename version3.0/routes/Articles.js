@@ -37,8 +37,8 @@ router.post('/newArticle', (req, res) => {
     req.body.body,
     // req.body.time,
     req.body.admin_r,
-    req.body.admin_w,
-    req.body.member_r,
+    req.body.admin_w,//says can comment
+    req.body.member_r,//says can read
     req.body.member_w,
     req.body.viewer_r,
   ];

@@ -12,7 +12,7 @@ export default function AllowedUsers() {
           <Accordion.Collapse eventKey="0">
             <Card.Body>
                 <ListGroup className="list-group-flush">
-                    <Button variant="primary">Admin</Button>
+                    <Button className="primary">Admin</Button>
                     <Button variant="primary">Member</Button>
                     <Button variant="primary">Viewer</Button>
                 </ListGroup>

@@ -3,6 +3,14 @@ import { Media, Card, Container } from 'react-bootstrap';
 import React from 'react';
 
 function Comments({ thread, time }) {
+
+
+
+
+
+  const clickHandler = () => {
+
+  }
   return (
     <div>
         <Card>
@@ -43,6 +51,7 @@ function Comments({ thread, time }) {
                       </p>
                     </Media.Body>
                   </Media> */}
+                  <button onClick={clickHandler}>Reply</button>
               </Media.Body>
             </Media>
           </Card.Body>
