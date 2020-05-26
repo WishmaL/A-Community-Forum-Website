@@ -1,13 +1,8 @@
-import { Media, Card, Container } from 'react-bootstrap';
+import { Media, Card } from 'react-bootstrap';
 
 import React from 'react';
 
 function Comments({ thread, time }) {
-
-
-
-
-
   const clickHandler = () => {
 
   }

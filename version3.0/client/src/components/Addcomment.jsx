@@ -1,6 +1,6 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
-import { Button, Row, Col, Card } from 'react-bootstrap';
+import { Button, Row, Col } from 'react-bootstrap';
 
 function Addcomment() {
   return (

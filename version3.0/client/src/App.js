@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import Member from './pages/Member';
 import Admin from './pages/Admin';
 import GreatAdmin from './pages/GreatAdmin';
-// import Signin from './pages/Signin';
+import Login from './pages/Login';
 import Error from './pages/Error';
 import Navbar from './components/Navbar';
 
@@ -17,7 +17,7 @@ function App() {
     <Navbar />
     <Switch>
       <Route exact path="/" component={Home} />
-      {/* <Route exact path="/Signin/" component={Signin} /> */}
+      <Route exact path="/Login/" component={Login} />
       <Route exact path="/Member/" component={Member} />
       <Route exact path="/Admin/" component={Admin} />
       <Route exact path="/GreatAdmin/" component={GreatAdmin} />

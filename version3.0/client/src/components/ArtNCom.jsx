@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Row, Col, Card } from 'react-bootstrap';
 import Comments from './Comments';
 import axios from 'axios';
 import '../styles/carousel.css';
