@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React,  { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { Container, Row, Col } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
@@ -7,7 +7,7 @@ import axios from 'axios';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [LoggedIn, setLoggedIn] = useState(false)
+  // const [LoggedIn, setLoggedIn] = useState(false);
 
   function validateForm() {
     return email.length > 0 && password.length > 0;
@@ -30,15 +30,22 @@ function Login() {
           response.data[0].email === email &&
           response.data[0].password === password
         ) {
-          console.log('Login successfull');
-          // alert('logging successful');
-          // setLoggedIn(true)
-          // if(LoggedIn === true){
-            window.open("/Member/");
-          // }
-          // var uploadScreen=[];
-          // uploadScreen.push(<UploadScreen appContext={self.props.appContext}/>)
-          // self.props.appContext.setState({loginPage:[],uploadScreen:uploadScreen})
+          console.log('The roll of the user: ', response.data[0].roll);
+         
+          if(response.data[0].roll === 'greatAdmin'){
+            window.location = '/GreatAdmin/';
+           
+          }else if(response.data[0].roll === 'admin'){
+            window.location = '/Admin/';
+            // following is to open up a new window
+            // window.open('/Admin/');
+          }else if(response.data[0].roll === 'member'){
+            window.location = '/Member/';
+            // window.open('/Member/');
+          }else{
+            alert("Membership is not defined!!")
+          }
+          //
         }
       })
       .catch(function (error) {

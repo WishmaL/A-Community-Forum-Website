@@ -10,6 +10,7 @@ import GreatAdmin from './pages/GreatAdmin';
 import Login from './pages/Login';
 import Error from './pages/Error';
 import Navbar from './components/Navbar';
+// import Delthis from './components/Delthis';
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/Login/" component={Login} />
+
+      {/* <Route exact path="/delthis/" component={Delthis} /> */}
       <Route exact path="/Member/" component={Member} />
       <Route exact path="/Admin/" component={Admin} />
       <Route exact path="/GreatAdmin/" component={GreatAdmin} />

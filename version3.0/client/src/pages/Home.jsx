@@ -10,6 +10,7 @@ import ArtNCom from '../components/ArtNCom';
 // import Delthis from '../components/Delthis';
 // import Login from './Login';
 import { Link } from 'react-router-dom';
+// import Delthis from '../components/Delthis';
 
 // import Brands from '../components/Brands';
 // import FeaturedRooms from '../components/FeaturedRoom';
