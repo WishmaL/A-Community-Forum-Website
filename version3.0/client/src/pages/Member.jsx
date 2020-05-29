@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SubNavbar from '../components/Sub-navbar';
+import CurrentUser from '../components/CurrentUser';
 import Graph from '../components/Graphs';
 // import Article_N_comment from "../components/Articles_n_Comments";
 import Banner from '../components/Banner';
@@ -11,7 +11,7 @@ export class Member extends Component {
   render() {
     return (
       <div>
-        <SubNavbar />
+        <CurrentUser currentUser={this.props.match.params.userName}/>
         <Banner
           title="The Member page"
           subtitle="This will be the description"

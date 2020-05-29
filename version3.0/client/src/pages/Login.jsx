@@ -1,4 +1,4 @@
-import React,  { useState } from 'react';
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { Container, Row, Col } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
@@ -9,9 +9,11 @@ function Login() {
   const [password, setPassword] = useState('');
   // const [LoggedIn, setLoggedIn] = useState(false);
 
-  function validateForm() {
+  function validateForm(props) {
     return email.length > 0 && password.length > 0;
   }
+
+  // const membership = props.match.params.roll
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -30,20 +32,18 @@ function Login() {
           response.data[0].email === email &&
           response.data[0].password === password
         ) {
-          console.log('The roll of the user: ', response.data[0].roll);
-         
-          if(response.data[0].roll === 'greatAdmin'){
-            window.location = '/GreatAdmin/';
-           
-          }else if(response.data[0].roll === 'admin'){
-            window.location = '/Admin/';
-            // following is to open up a new window
+          if (response.data[0].roll === 'greatAdmin') {
+            // if({membership} !== response.data[0].roll)alert("You are a great admin")
+            window.location = `/GreatAdmin/${response.data[0].name}`;
+          } else if (response.data[0].roll === 'admin') {
+            window.location = `/Admin/${response.data[0].name}`;
+            // following is to open up a new window/tab
             // window.open('/Admin/');
-          }else if(response.data[0].roll === 'member'){
-            window.location = '/Member/';
+          } else if (response.data[0].roll === 'member') {
+            window.location = `/Member/${response.data[0].name}`;
             // window.open('/Member/');
-          }else{
-            alert("Membership is not defined!!")
+          } else {
+            alert('Membership is not defined!!');
           }
           //
         }
@@ -55,6 +55,7 @@ function Login() {
 
   return (
     <div>
+      {/* {membership = props.match.params.roll}; */}
       <Container>
         <h1 className="text-center">The Learn-Site</h1>
         <h2 className="text-center">Sign in</h2>

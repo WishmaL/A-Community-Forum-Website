@@ -1,3 +1,7 @@
+/**
+ * THIS ONE IS NOT USED
+ */
+
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 

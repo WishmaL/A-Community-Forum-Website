@@ -1,3 +1,8 @@
+/**
+ * THIS ONE BUILT WITH HORIZONTAL GALARRY NPM LIBRARAY 
+ * NOT USING
+ */
+
 import React, { Component } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import Comments from './Comments';
@@ -30,7 +35,7 @@ class Articles_n_Comments extends Component {
     axios
       .get('/comments/getComments')
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         this.setState({ comments: res.data });
       })
       .catch((err) => {

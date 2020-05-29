@@ -18,12 +18,12 @@ function App() {
     <Navbar />
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route exact path="/Login/" component={Login} />
+      <Route exact path="/Login" component={Login} />
 
       {/* <Route exact path="/delthis/" component={Delthis} /> */}
-      <Route exact path="/Member/" component={Member} />
-      <Route exact path="/Admin/" component={Admin} />
-      <Route exact path="/GreatAdmin/" component={GreatAdmin} />
+      <Route exact path="/Member/:userName" component={Member} />
+      <Route exact path="/Admin/:userName" component={Admin} />
+      <Route exact path="/GreatAdmin/:userName" component={GreatAdmin} />
       <Route component={Error} />
 
       {/* setting up the route parameter */}

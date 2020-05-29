@@ -1,11 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { Button, Row, Col } from 'react-bootstrap';
+import axios from 'axios';
 
-function Addcomment() {
+function Addcomment({articleId}) {
+
+  // add the following params from useContext
+  // userId, userName, 
+
+  const [thread, setThread] = useState('');
+  // const [userName, setUserName] = useState({userName})
+  // const [password, setPassword] = useState('');
+
+  const handleSubmit = () => {
+
+    // event.preventDefault();
+    let data_ = {
+      thread: thread,
+      // userName:{userName},
+      articleId: {articleId},
+      // userId: {userId}
+
+      // password: password,
+    };
+
+    axios
+    .post('comments/newComment/', data_)
+    .then(function (response) {
+      console.log("Successfully comment has been added!");
+      // if (!response.data.length) {
+      //   alert('Username or Password is incorrect! Try again');
+      // } else if (
+      //   response.data[0].email === email &&
+      //   response.data[0].password === password
+      // ) {
+      //   console.log('The roll of the user: ', response.data[0].roll);
+       
+      //   if(response.data[0].roll === 'greatAdmin'){
+      //     window.location = '/GreatAdmin/';
+         
+      //   }else if(response.data[0].roll === 'admin'){
+      //     window.location = '/Admin/';
+      //     // following is to open up a new window
+      //     // window.open('/Admin/');
+      //   }else if(response.data[0].roll === 'member'){
+      //     window.location = '/Member/';
+      //     // window.open('/Member/');
+      //   }else{
+      //     alert("Membership is not defined!!")
+      //   }
+        //
+      // }
+    })
+    .catch(function (error) {
+      console.log('Error occured! ', error);
+    });
+}
+
+
   return (
     <div>
-      <Form>
+       {/* <form onSubmit={handleSubmit}> */}
+      <Form onSubmit={handleSubmit}>
         {/* <Form.Group as={Row} controlId="formHorizontalEmail">
           <Form.Label column sm={2}>
             Email
@@ -21,7 +77,7 @@ function Addcomment() {
           </Form.Label>
           <Col sm={10}>
             {/* <Form.Label>Example textarea</Form.Label> */}
-            <Form.Control as="textarea" rows="3" />
+            <Form.Control as="textarea" rows="3" value={thread} onChange={(e) => setThread(e.target.value)}/>
           </Col>
         </Form.Group>
 
@@ -55,6 +111,7 @@ function Addcomment() {
           </Col>
         </Form.Group>
       </Form>
+      {/* </form> */}
     </div>
   );
 }

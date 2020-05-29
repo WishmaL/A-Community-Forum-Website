@@ -1,8 +1,11 @@
 import { Media, Card } from 'react-bootstrap';
-
 import React from 'react';
 
+// REPLY FUNCTION HAS TO BE BUILT UP
+
 function Comments({ thread, time }) {
+
+
   const clickHandler = () => {
 
   }

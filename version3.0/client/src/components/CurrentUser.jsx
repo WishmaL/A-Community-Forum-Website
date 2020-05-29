@@ -1,7 +1,11 @@
+/**
+ * THIS ONE IS USING FOR DISPLAY CURRENT THE CIRRENT USER WHO LOGGING IN
+ */
+
 import React, { Component } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 
-export class Subnavbar extends Component {
+export class CurrentUser extends Component {
   render() {
     return (
       <div>
@@ -10,7 +14,7 @@ export class Subnavbar extends Component {
           {/* <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end"> */}
             <Navbar.Text>
-              Signed in as: <a href="#login">Mark Otto</a>
+              Signed in as: <a href="#login">{this.props.currentUser}</a>
             </Navbar.Text>
           {/* </Navbar.Collapse>*/}
         </Navbar> 
@@ -19,4 +23,4 @@ export class Subnavbar extends Component {
   }
 }
 
-export default Subnavbar;
+export default CurrentUser;

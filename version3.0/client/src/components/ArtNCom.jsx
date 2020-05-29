@@ -31,7 +31,7 @@ export class ArtNCom extends Component {
     axios
       .get('/comments/getComments')
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         this.setState({ comments: res.data });
       })
       .catch((err) => {
@@ -58,7 +58,7 @@ export class ArtNCom extends Component {
             {articleList.map((article) => {
               return (
                 //  <div key={article.id}>
-                <Tab eventKey={article.id} title={article.title}>
+                <Tab key={article.id} eventKey={article.id} title={article.title}>
                   <Col>
                     <h3>Article</h3>
                     <Row>
@@ -100,6 +100,7 @@ export class ArtNCom extends Component {
                     </Row>
                   </Col>
                 </Tab>
+               
               );
             })}
           </Tabs>

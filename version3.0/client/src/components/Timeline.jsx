@@ -1,3 +1,8 @@
+/**
+ * THIS HAVE TO BE COMPLETED 
+ * CREATE THE TABLES KIND OF STUFF
+ */
+
 import React, { Component } from 'react';
 import Media from 'react-bootstrap/Media';
 
