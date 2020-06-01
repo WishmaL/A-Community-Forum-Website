@@ -32,7 +32,7 @@ router.post('/newComment', (req, res) => {
   const newComment = [
     // req.body.id,
     uuid.v4(),
-    req.body.userId,
+    // req.body.userId,
     req.body.articleId,
     req.body.thread,
     req.body.userName
@@ -45,7 +45,7 @@ router.post('/newComment', (req, res) => {
     // req.body.viewer_r,
   ];
 
-  let sql = `SET @id = ?; SET @userId = ?; SET @articleId = ?; SET @thread = ?; SET @userName = ?;CALL addCommentProcedure(@id, @userId, @articleId, @thread, @userName)`;
+  let sql = `SET @id = ?; SET @articleId = ?; SET @thread = ?; SET @userName = ?;CALL addCommentProcedure(@id, @articleId, @thread, @userName)`;
   let query = db.query(
     sql,
     [
@@ -53,7 +53,7 @@ router.post('/newComment', (req, res) => {
       newComment[1],
       newComment[2],
       newComment[3],
-      newComment[4],
+      // newComment[4],
       // newComment[5],
       // newComment[6],
       // newComment[7],
@@ -70,7 +70,7 @@ router.post('/newComment', (req, res) => {
           if (element.constructor == Array) {
             var msg = element[0].id;
             res.send('Inserted Comment id : ' + msg);
-            console.log(element[0]); 
+            // console.log("sent item is ",element[0]); 
           } 
         }); 
       } 
@@ -85,7 +85,7 @@ router.post('/newComment', (req, res) => {
 router.put('/updateComment', (req, res, next) => {
   const updated_comment = [
      // req.body.id,
-     req.body.userId,
+    //  req.body.userId,
      req.body.articleId,
      req.body.thread,
      req.body.userName,
@@ -99,7 +99,7 @@ router.put('/updateComment', (req, res, next) => {
      req.body.id
   ];
 
-  let sql = `UPDATE comments SET userId = ?, articleId = ?, thread =?, userName = ? WHERE id = ?`;
+  let sql = `UPDATE comments SET articleId = ?, thread =?, userName = ? WHERE id = ?`;
 
   let query = db.query(sql, updated_comment, (err, rows) => {
     if (err) throw err;

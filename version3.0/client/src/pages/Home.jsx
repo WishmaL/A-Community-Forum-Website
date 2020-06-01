@@ -48,7 +48,7 @@ function Home() {
      
       <TheCarousel />
 
-      <ArtNCom />
+      {/* <ArtNCom /> */}
       {/* <Delthis /> */}
       {/* <Article_N_comment /> */}
       <Timeline />

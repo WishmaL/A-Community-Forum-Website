@@ -1,60 +1,55 @@
-import { Media, Card } from 'react-bootstrap';
-import React from 'react';
-
+import { Media, Card, FormControl, Button } from 'react-bootstrap';
+import InputGroup from 'react-bootstrap/InputGroup';
+import React, { useState } from 'react';
+import AddReply from './AddReply';
+import { UserConsumer, ArticleIdConsumer } from '../components/Context';
 // REPLY FUNCTION HAS TO BE BUILT UP
 
 function Comments({ thread, time }) {
 
-
-  const clickHandler = () => {
-
-  }
   return (
     <div>
-        <Card>
-          <Card.Body>
-            <Media>
-              <img
-                // width={64}
-                // height={64}
-                className="mr-3"
-                src="http://lorempics.com/64x64/f9b384/142850"
-                alt="Generic placeholder"
-              />
-              <Media.Body>
-                <h5>{thread}</h5>
-                <p>{time}</p>
+      <Card>
+        <Card.Body>
+          <Media>
+            <img
+              // width={64}
+              // height={64}
+              className="mr-3"
+              src="http://lorempics.com/64x64/f9b384/142850"
+              alt="Generic placeholder"
+            />
+            <Media.Body>
+              <h5>{thread}</h5>
+              <p>{time}</p>
 
-                {/* 
-                  
-                    // this will be the reply part
-                  
-                  
-                  <Media>
-                    <img
-                      // width={64}
-                      // height={64}
-                      className="mr-3"
-                      src="http://lorempics.com/64x64/f9b384/142850"
-                      alt="Generic placeholder"
-                    />
-                    <Media.Body>
-                      <h5>Media Heading</h5>
-                      <p>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel
-                        metus scelerisque ante sollicitudin commodo. Cras purus
-                        odio, vestibulum in vulputate at, tempus viverra turpis.
-                        Fusce condimentum nunc ac nisi vulputate fringilla.
-                        Donec lacinia congue felis in faucibus.
-                      </p>
-                    </Media.Body>
-                  </Media> */}
-                  <button onClick={clickHandler}>Reply</button>
-              </Media.Body>
-            </Media>
-          </Card.Body>
-        </Card>
+              
+                 {/* look for the media component in bootstrap for better reply style*/}
 
+              <UserConsumer>
+                {(username) => {
+                  return (
+                    <ArticleIdConsumer>
+                      {(commentId) => {
+                        return (
+                          <AddReply userName={username} commentId={commentId}  />
+                        );
+                      }}
+                    </ArticleIdConsumer>
+                  );
+                }}
+              </UserConsumer>
+
+              {/* <AddReply /> */}
+
+              {/* </Dropdown.Item> */}
+              {/* </DropdownButton> */}
+
+              {/* <button onClick={clickHandler}>Reply</button> */}
+            </Media.Body>
+          </Media>
+        </Card.Body>
+      </Card>
     </div>
   );
 }

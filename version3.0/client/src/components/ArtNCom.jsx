@@ -6,6 +6,7 @@ import Comments from './Comments';
 import axios from 'axios';
 import '../styles/carousel.css';
 import Addcomment from './Addcomment';
+import { UserConsumer, ArticleIdProvider } from './Context';
 
 export class ArtNCom extends Component {
   constructor(props) {
@@ -89,13 +90,21 @@ export class ArtNCom extends Component {
                           })
                           .map((comment) => (
                             <div key={comment.id}>
-                              <Comments
-                                thread={comment.thread}
-                                time={comment.time}
-                              />
+                              <ArticleIdProvider value = {comment.id}>
+                                  <Comments
+                                  thread={comment.thread}
+                                  time={comment.time}
+                                />
+                              </ArticleIdProvider>
+                              
                             </div>
                           ))}
-                        <Addcomment />
+                          <UserConsumer>
+                            {username => {
+                              return <Addcomment articleId={article.id} userName={username}/>
+                            }}
+                          </UserConsumer>
+                        
                       </Col>
                     </Row>
                   </Col>
