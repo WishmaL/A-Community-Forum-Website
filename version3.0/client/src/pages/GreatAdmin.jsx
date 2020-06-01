@@ -37,6 +37,7 @@ export class GreatAdmin extends Component {
             title="The Great Admin page"
             subtitle="This will be the description"
           ></Banner>
+          {/* Following is only for great Admins */}
           <AllowedUsers />
           {/* <Carousel /> */}
           {/* <AllowedUsers /> */}

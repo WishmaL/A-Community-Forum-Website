@@ -6,23 +6,41 @@ import Banner from '../components/Banner';
 // import  Carousel  from "../components/Carousel";
 import TheCarousel from '../components/TheCarousel';
 import ArtNCom from '../components/ArtNCom';
+import { UserProvider } from '../components/Context';
 
 export class Member extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      userName: '',
+    };
+  }
+
+  componentDidMount() {
+    // console.log("user Name is ",this.props.match.params.userName)
+    this.setState({
+      userName: this.props.match.params.userName,
+    });
+  }
+
   render() {
     return (
       <div>
-        <CurrentUser currentUser={this.props.match.params.userName}/>
-        <Banner
-          title="The Member page"
-          subtitle="This will be the description"
-        ></Banner>
+        <UserProvider value={this.state.userName}>
+          <CurrentUser currentUser={this.props.match.params.userName} />
+          <Banner
+            title="The Member page"
+            subtitle="This will be the description"
+          ></Banner>
 
-        {/* <Carousel /> */}
-        <TheCarousel />
-        <Graph />
-        
-        {/* <Article_N_comment /> */}
-        <ArtNCom />
+          {/* <Carousel /> */}
+          <TheCarousel />
+          <Graph />
+
+          {/* <Article_N_comment /> */}
+          <ArtNCom />
+        </UserProvider>
       </div>
     );
   }
