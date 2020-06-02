@@ -10,6 +10,7 @@ import GreatAdmin from './pages/GreatAdmin';
 import Login from './pages/Login';
 import Error from './pages/Error';
 import Navbar from './components/Navbar';
+import AddArticle from './pages/AddArticle';
 // import Delthis from './components/Delthis';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
       <Route exact path="/Member/:userName" component={Member} />
       <Route exact path="/Admin/:userName" component={Admin} />
       <Route exact path="/GreatAdmin/:userName" component={GreatAdmin} />
+      <Route exact path="/AddArticle/:userName" component={AddArticle} />
       <Route component={Error} />
 
       {/* setting up the route parameter */}

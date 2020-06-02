@@ -1,6 +1,6 @@
-import { Media, Card, FormControl, Button } from 'react-bootstrap';
-import InputGroup from 'react-bootstrap/InputGroup';
-import React, { useState } from 'react';
+import { Media, Card } from 'react-bootstrap';
+// import InputGroup from 'react-bootstrap/InputGroup';
+import React from 'react';
 import AddReply from './AddReply';
 import { UserConsumer, ArticleIdConsumer } from '../components/Context';
 import ShowReplies from './ShowReplies';

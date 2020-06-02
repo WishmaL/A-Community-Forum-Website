@@ -21,7 +21,6 @@ export class GreatAdmin extends Component {
   
 
   componentDidMount(){
-    // console.log("user Name is ",this.props.match.params.userName)
     this.setState({
       userName: this.props.match.params.userName
     }) 

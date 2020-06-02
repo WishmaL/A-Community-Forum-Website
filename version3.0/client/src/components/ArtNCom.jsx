@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import { Row, Col, Card } from 'react-bootstrap';
+import { Row, Col, Card, Button } from 'react-bootstrap';
 import Comments from './Comments';
 import axios from 'axios';
 import '../styles/carousel.css';
@@ -16,6 +16,8 @@ export class ArtNCom extends Component {
       articles: [],
       comments: [],
     };
+
+    // this.clickHandler = this.clickHandler.bind()
   }
 
   componentDidMount() {
@@ -39,6 +41,14 @@ export class ArtNCom extends Component {
         console.log(err);
       });
   }
+
+
+  clickHandler(userName){
+    // alert("hello there")
+    window.location = `/AddArticle/${userName}`;
+  }
+
+
   render() {
     const articleList = this.state.articles;
     const commentList = this.state.comments;
@@ -48,6 +58,20 @@ export class ArtNCom extends Component {
       <div>
         <div className="alert alert-primary" role="alert">
           <h1>Article section</h1>
+
+          {/* set the addArticle component */}
+
+          <UserConsumer>
+            {userName => {
+              return <Button onClick={() => this.clickHandler(userName)}>Add article</Button>
+            }}
+          
+          </UserConsumer>
+          {/* <Button onClick={this.clickHandler}>Add article</Button> */}
+
+
+
+
         </div>
         <div className="container">
           <Tabs
