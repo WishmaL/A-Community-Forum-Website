@@ -31,8 +31,9 @@ router.get('/getArticle', (req, res) => {
 router.post('/newArticle', (req, res) => {
   const newArticle = [
     // req.body.id,
-    uuid.v4(),
-    req.body.userId,
+    // uuid.v4(),
+    'default',
+    req.body.userName,
     req.body.title,
     req.body.body,
     // req.body.time,
@@ -43,7 +44,7 @@ router.post('/newArticle', (req, res) => {
     req.body.viewer_r,
   ];
 
-  let sql = `SET @id = ?; SET @userId = ?; SET @title = ?; SET @body = ?; SET @admin_r = ?; SET @admin_w = ?; SET @member_r = ?; SET @member_w = ?; SET @viewer_r = ?;CALL addArticleProcedure(@id, @userId, @title, @body, @admin_r, @admin_w, @member_r, @member_w, @viewer_r)`;
+  let sql = `SET @id = ?; SET @userName = ?; SET @title = ?; SET @body = ?; SET @admin_r = ?; SET @admin_w = ?; SET @member_r = ?; SET @member_w = ?; SET @viewer_r = ?;CALL addArticleProcedure(@id, @userName, @title, @body, @admin_r, @admin_w, @member_r, @member_w, @viewer_r)`;
   let query = db.query(
     sql,
     [
@@ -83,7 +84,7 @@ router.post('/newArticle', (req, res) => {
 router.put('/updateArticle', (req, res, next) => {
   const updated_article = [
     // req.body.id,
-    req.body.userId,
+    req.body.userName,
     req.body.title,
     req.body.body,
     // req.body.time,
@@ -95,7 +96,7 @@ router.put('/updateArticle', (req, res, next) => {
     req.body.id,
   ];
 
-  let sql = `UPDATE articles SET userId = ?, title = ?, body =?, admin_r = ?, admin_w = ?, member_r =?, member_w = ?, viewer_r = ? WHERE id = ?`;
+  let sql = `UPDATE articles SET userName = ?, title = ?, body =?, admin_r = ?, admin_w = ?, member_r =?, member_w = ?, viewer_r = ? WHERE id = ?`;
 
   let query = db.query(sql, updated_article, (err, rows) => {
     if (err) throw err;
