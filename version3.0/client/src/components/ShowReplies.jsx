@@ -35,7 +35,10 @@ function ShowReplies({ commentId }) {
             .map((reply) => {
               return (
                 <div key={reply.id}>
-                  <p>{reply.reply}</p>
+                  
+                    <span><p>{reply.reply}<b>   replied by:</b>{reply.userName}</p>
+                  <br/> </span>
+               
                 </div>
               );
             })}
