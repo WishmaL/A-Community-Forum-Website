@@ -27,6 +27,9 @@ app.use('/comments',Comments)
 var Replies = require('./routes/Replies.js')
 app.use('/replies',Replies)
 
+var Timeline = require('./routes/Timeline.js')
+app.use('/timeline',Timeline)
+
 app.listen(port, () => {
   console.log('Server is running on port', port);
 });
