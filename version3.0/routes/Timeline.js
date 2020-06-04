@@ -18,13 +18,13 @@ router.get('/getTimeEvents', (req, res) => {
 // ///////////////////////////////////////////
 //   fetch specific user
 router.get('/getTimeEvent', (req, res) => {
-    let sql = `SELECT * FROM timeline WHERE id = ${req.body.id}`;
-    let query = db.query(sql, (err, rows) => {
-      if (err) throw err;
-      console.log(rows);
-      res.send(rows);
-    });
+  let sql = `SELECT * FROM timeline WHERE id = ${req.body.id}`;
+  let query = db.query(sql, (err, rows) => {
+    if (err) throw err;
+    console.log(rows);
+    res.send(rows);
   });
+});
 
 // ///////////////////////////////////////////
 // insert a user
@@ -35,10 +35,10 @@ router.post('/newTimeEvent', (req, res) => {
     'default',
     req.body.topic,
     req.body.description,
-    req.body.date
+    req.body.date,
   ];
 
-  let sql = `SET @id = ?; SET @topic = ?; SET @description = ?; SET @date = ?; CALL timelineProcedure(@id, @topic, @description, @date)`;
+  let sql = `SET @id = ?; SET @topic = ?; SET @description = ?; SET @date = ?; CALL addTimelineProcedure(@id, @topic, @description, @date)`;
   let query = db.query(
     sql,
     [newUser[0], newUser[1], newUser[2], newUser[3]],
@@ -66,7 +66,7 @@ router.put('/updateTimeEvent', (req, res, next) => {
     req.body.id,
   ];
 
-  let sql = `UPDATE users SET topic = ?, description = ?, date =? WHERE id = ?`;
+  let sql = `UPDATE timeline SET topic = ?, description = ?, date =? WHERE id = ?`;
 
   let query = db.query(sql, update_user, (err, results) => {
     if (err) throw err;
@@ -80,7 +80,7 @@ router.put('/updateTimeEvent', (req, res, next) => {
 router.delete('/deleteTimeEvent', (req, res) => {
   const deleteUser = [req.body.id];
 
-  let sql = `DELETE FROM users WHERE id = ?`;
+  let sql = `DELETE FROM timeline WHERE id = ?`;
   let query = db.query(sql, deleteUser[0], (err, results) => {
     if (err) throw err;
     console.log('deleted');

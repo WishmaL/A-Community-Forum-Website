@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Media from 'react-bootstrap/Media';
 import { Container } from 'react-bootstrap';
 import axios from 'axios';
+import AddTimeline from './AddTimeline';
 
 export const Timeline = () => {
   const [timeEvents, setTimeEvents] = useState([]);
@@ -9,7 +10,6 @@ export const Timeline = () => {
     axios
       .get('/timeline/getTimeEvents')
       .then((res) => {
-        console.log(res.data);
         setTimeEvents(res.data);
       })
       .catch((err) => {
@@ -19,12 +19,11 @@ export const Timeline = () => {
 
   return (
     <div>
-      {console.log('time events are :', timeEvents)}
       <Container>
         <div className="alert alert-primary" role="alert">
           <h1>The Timeline</h1>
         </div>
-
+        <AddTimeline />
         {timeEvents.map((timeEvent) => {
           return (
             <Media key={timeEvent.id}>
