@@ -31,7 +31,8 @@ router.get('/getNotice', (req, res) => {
 router.post('/newNotice', (req, res) => {
   const newNotice = [
     // req.body.id,
-    uuid.v4(),
+    // uuid.v4(),
+    'default',
     req.body.userId,
     req.body.title,
     req.body.body,

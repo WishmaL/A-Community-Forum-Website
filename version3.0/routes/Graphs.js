@@ -31,19 +31,18 @@ router.get('/getGraph', (req, res) => {
 router.post('/newGraph', (req, res) => {
   const newArticle = [
     // req.body.id,
-    uuid.v4(),
-    req.body.userId,
+    // uuid.v4(),
+    'default',
+    req.body.userName,
     req.body.title,
     req.body.iframe,
-    // req.body.time,
+    req.body.description,
     req.body.admin_r,
-    
     req.body.member_r,
-    
     req.body.viewer_r,
   ];
 
-  let sql = `SET @id = ?; SET @userId = ?; SET @title = ?; SET @iframe = ?; SET @admin_r = ?;  SET @member_r = ?; SET @viewer_r = ?;CALL addGraphProcedure(@id, @userId, @title, @iframe, @admin_r, @member_r, @viewer_r)`;
+  let sql = `SET @id = ?; SET @userName = ?; SET @title = ?; SET @iframe = ?; SET @description = ?; SET @admin_r = ?;  SET @member_r = ?; SET @viewer_r = ?;CALL addGraphProcedure(@id, @userName, @title, @iframe, @description, @admin_r, @member_r, @viewer_r)`;
   let query = db.query(
     sql,
     [
@@ -53,7 +52,8 @@ router.post('/newGraph', (req, res) => {
       newArticle[3],
       newArticle[4],
       newArticle[5],
-      newArticle[6]
+      newArticle[6],
+      newArticle[7]
     ],
     (err, rows) => {
       
@@ -81,10 +81,10 @@ router.post('/newGraph', (req, res) => {
 router.put('/updateGraph', (req, res, next) => {
   const updated_graph = [
     // req.body.id,
-    req.body.userId,
+    req.body.userName,
     req.body.title,
     req.body.iframe,
-    // req.body.time,
+    req.body.description,
     req.body.admin_r,
     
     req.body.member_r,
@@ -93,7 +93,7 @@ router.put('/updateGraph', (req, res, next) => {
     req.body.id,
   ];
 
-  let sql = `UPDATE graphs SET userId = ?, title = ?, iframe =?, admin_r = ?, member_r =?, viewer_r = ? WHERE id = ?`;
+  let sql = `UPDATE graphs SET userName = ?, title = ?, iframe =?, description =?, admin_r = ?, member_r =?, viewer_r = ? WHERE id = ?`;
 
   let query = db.query(sql, updated_graph, (err, rows) => {
     if (err) throw err;

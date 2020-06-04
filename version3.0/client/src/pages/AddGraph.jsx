@@ -4,18 +4,19 @@ import axios from 'axios';
 import CurrentUser from '../components/CurrentUser';
 
 export const AddGraph = (props) => {
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState(props.match.params.userName);
   const [title, setTitle] = useState('');
   const [iframe, setIframe] = useState('');
+  const [description, setDescription] = useState('');
   const [admin_r, setAdmin_r] = useState(0);
   // const [admin_w, setAdmin_w] = useState(0)
   const [member_r, setMember_r] = useState(0);
   // const [member_w, setMember_w] = useState(0)
   const [viewer_r, setViewer_r] = useState(0);
 
-  useEffect(() => {
-    setUserName(props.match.params.userName);
-  }, []);
+  // useEffect(() => {
+  //   setUserName();
+  // }, []);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -23,6 +24,7 @@ export const AddGraph = (props) => {
       userName: userName,
       title: title,
       iframe: iframe,
+      description: description,
       admin_r: admin_r,
       member_r: member_r,
       viewer_r: viewer_r,
@@ -84,6 +86,11 @@ export const AddGraph = (props) => {
               onChange={(e) => setIframe(e.target.value)}
             />
           </Form.Group>
+          <Form.Group controlId="exampleForm.ControlTextarea1">
+            <Form.Label>Description (Optional)</Form.Label>
+            <Form.Control as="textarea" rows="3" value={description}
+              onChange={(e) => setDescription(e.target.value)}/>
+          </Form.Group>
 
           <Form.Group id="formGridCheckbox">
             {/* <h3>Who can Edit</h3>
@@ -108,7 +115,7 @@ export const AddGraph = (props) => {
               onClick={() => setViewer_r(1)}
             />
           </Form.Group>
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" className="btn btn-primary">
             Submit
           </button>
         </Form>
@@ -118,3 +125,24 @@ export const AddGraph = (props) => {
 };
 
 export default AddGraph;
+{/*
+              TESTING GRAPH 1
+            
+            <iframe
+              width="100%"
+              height="800"
+              src="https://datastudio.google.com/embed/reporting/a6bbbf99-de99-414e-842e-7fb21552d6bd/page/nWoKB"
+              frameborder="0"
+              // style="border: 0;"
+              allowfullscreen
+            ></iframe>
+
+         TESTING GRAPH 2
+            <iframe
+              width="100%"
+              height="800"
+              src="https://datastudio.google.com/embed/reporting/1adef32e-6c48-4326-b5d8-2b044f4e5e1d/page/faBKB"
+              frameborder="0"
+              // style="border: 0;"
+              allowfullscreen
+            ></iframe> */}

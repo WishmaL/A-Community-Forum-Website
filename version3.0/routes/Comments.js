@@ -31,7 +31,8 @@ router.get('/getcomment', (req, res) => {
 router.post('/newComment', (req, res) => {
   const newComment = [
     // req.body.id,
-    uuid.v4(),
+    // uuid.v4(),
+    'default',
     // req.body.userId,
     req.body.articleId,
     req.body.thread,

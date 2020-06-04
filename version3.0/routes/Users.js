@@ -50,7 +50,8 @@ router.post('/getUser', (req, res) => {
 router.post('/newUser', (req, res) => {
   const newUser = [
     // req.body.id,
-    uuid.v4(),
+    // uuid.v4(),
+    'default',
     req.body.name,
     req.body.email,
     req.body.password,

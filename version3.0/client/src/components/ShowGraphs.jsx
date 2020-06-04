@@ -60,34 +60,15 @@ export const ShowGraphs = () => {
         >
           {graphs.map((graph) => {
             return (
-              <Tab Key={graph.id} eventKey={graph.id} title={graph.title}>
+              <Tab key={graph.id} eventKey={graph.id} title={graph.title}>
                 <div dangerouslySetInnerHTML={{ __html: graph.iframe }} />
+
+                <h2 className="text-center">{graph.title}</h2>
+                <p>{graph.description}</p>
               </Tab>
             );
           })}
         </Tabs>
-
-        {/*
-              TESTING GRAPH 1
-            
-            <iframe
-              width="100%"
-              height="800"
-              src="https://datastudio.google.com/embed/reporting/a6bbbf99-de99-414e-842e-7fb21552d6bd/page/nWoKB"
-              frameborder="0"
-              // style="border: 0;"
-              allowfullscreen
-            ></iframe>
-
-         TESTING GRAPH 2
-            <iframe
-              width="100%"
-              height="800"
-              src="https://datastudio.google.com/embed/reporting/1adef32e-6c48-4326-b5d8-2b044f4e5e1d/page/faBKB"
-              frameborder="0"
-              // style="border: 0;"
-              allowfullscreen
-            ></iframe> */}
       </div>
     </div>
   );
