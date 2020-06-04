@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import CurrentUser from '../components/CurrentUser';
-import Graph from '../components/Graphs';
 // import Article_N_comment from "../components/Articles_n_Comments";
 import Banner from '../components/Banner';
 // import  Carousel  from "../components/Carousel";
 import TheCarousel from '../components/TheCarousel';
 import ArtNCom from '../components/ArtNCom';
 import { UserProvider } from '../components/Context';
+import ShowGraphs from '../components/ShowGraphs';
 
 export class Member extends Component {
   constructor(props) {
@@ -36,7 +36,7 @@ export class Member extends Component {
 
           {/* <Carousel /> */}
           <TheCarousel />
-          <Graph />
+          <ShowGraphs />
 
           {/* <Article_N_comment /> */}
           <ArtNCom />

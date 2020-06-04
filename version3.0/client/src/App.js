@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import Error from './pages/Error';
 import Navbar from './components/Navbar';
 import AddArticle from './pages/AddArticle';
+import AddGraph from './pages/AddGraph';
 // import Delthis from './components/Delthis';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
       <Route exact path="/Admin/:userName" component={Admin} />
       <Route exact path="/GreatAdmin/:userName" component={GreatAdmin} />
       <Route exact path="/AddArticle/:userName" component={AddArticle} />
+      <Route exact path="/AddGraph/:userName" component={AddGraph} />
       <Route component={Error} />
 
       {/* setting up the route parameter */}

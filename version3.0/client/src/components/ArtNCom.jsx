@@ -24,7 +24,6 @@ export class ArtNCom extends Component {
     axios
       .get('/articles/getArticles')
       .then((res) => {
-        
         this.setState({ articles: res.data });
       })
       .catch((err) => {
@@ -42,12 +41,9 @@ export class ArtNCom extends Component {
       });
   }
 
-
-  clickHandler(userName){
-    // alert("hello there")
+  clickHandler(userName) {
     window.location = `/AddArticle/${userName}`;
   }
-
 
   render() {
     const articleList = this.state.articles;
@@ -62,16 +58,15 @@ export class ArtNCom extends Component {
           {/* set the addArticle component */}
 
           <UserConsumer>
-            {userName => {
-              return <Button onClick={() => this.clickHandler(userName)}>Add article</Button>
+            {(userName) => {
+              return (
+                <Button onClick={() => this.clickHandler(userName)}>
+                  Add article
+                </Button>
+              );
             }}
-          
           </UserConsumer>
           {/* <Button onClick={this.clickHandler}>Add article</Button> */}
-
-
-
-
         </div>
         <div className="container">
           <Tabs
@@ -83,7 +78,11 @@ export class ArtNCom extends Component {
             {articleList.map((article) => {
               return (
                 //  <div key={article.id}>
-                <Tab key={article.id} eventKey={article.id} title={article.title}>
+                <Tab
+                  key={article.id}
+                  eventKey={article.id}
+                  title={article.title}
+                >
                   <Col>
                     <h3>Article</h3>
                     <Row>
@@ -114,26 +113,28 @@ export class ArtNCom extends Component {
                           })
                           .map((comment) => (
                             <div key={comment.id}>
-                              <ArticleIdProvider value = {comment.id}>
-                                  <Comments
+                              <ArticleIdProvider value={comment.id}>
+                                <Comments
                                   thread={comment.thread}
                                   time={comment.time}
                                 />
                               </ArticleIdProvider>
-                              
                             </div>
                           ))}
-                          <UserConsumer>
-                            {username => {
-                              return <Addcomment articleId={article.id} userName={username}/>
-                            }}
-                          </UserConsumer>
-                        
+                        <UserConsumer>
+                          {(username) => {
+                            return (
+                              <Addcomment
+                                articleId={article.id}
+                                userName={username}
+                              />
+                            );
+                          }}
+                        </UserConsumer>
                       </Col>
                     </Row>
                   </Col>
                 </Tab>
-               
               );
             })}
           </Tabs>
