@@ -27,29 +27,29 @@ function Comments({ thread, time }) {
               <p>{time}</p>
 
               {/* Displaying the replies so far posted */}
+
+              {/* 
               <ArticleIdConsumer>
                 {(articleId) => {
                   return <ShowReplies commentId={articleId} />;
                 }}
-              </ArticleIdConsumer>
+              </ArticleIdConsumer> */}
 
               {/* Displaying the replies so far posted */}
 
               {/* look for the media component in bootstrap for better reply style*/}
 
-              <UserConsumer>
+              {/* <UserConsumer>
                 {(username) => {
-                  return (
-                    <ArticleIdConsumer>
-                      {(commentId) => {
-                        return (
-                          <AddReply userName={username} commentId={commentId} />
-                        );
-                      }}
-                    </ArticleIdConsumer>
-                  );
+                  return ( */}
+              <ArticleIdConsumer>
+                {(commentId) => {
+                  return <ShowReplies commentId={commentId} />;
                 }}
-              </UserConsumer>
+              </ArticleIdConsumer>
+              {/* //     );
+              //   }}
+              // </UserConsumer> */}
 
               {/* <AddReply /> */}
 

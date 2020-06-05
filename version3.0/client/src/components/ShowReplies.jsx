@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Media } from 'react-bootstrap';
 import Axios from 'axios';
+import AddReply from './AddReply';
+import { UserConsumer } from './Context';
 
 function ShowReplies({ commentId }) {
   const [replies, setReplies] = useState([]);
@@ -51,6 +53,18 @@ function ShowReplies({ commentId }) {
             })}
         </Media.Body>
       </Media>
+
+      <UserConsumer>
+        {(username) => {
+          return (
+            <AddReply
+              updateReplies={updateReplies}
+              userName={username}
+              commentId={commentId}
+            />
+          );
+        }}
+      </UserConsumer>
     </div>
   );
 }
