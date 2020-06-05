@@ -6,7 +6,8 @@ import AddTimeline from './AddTimeline';
 
 export const Timeline = () => {
   const [timeEvents, setTimeEvents] = useState([]);
-  useEffect(() => {
+
+  const updateEvents = () => {
     axios
       .get('/timeline/getTimeEvents')
       .then((res) => {
@@ -15,6 +16,10 @@ export const Timeline = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  useEffect(() => {
+    updateEvents();
   }, []);
 
   return (
@@ -23,7 +28,7 @@ export const Timeline = () => {
         <div className="alert alert-primary" role="alert">
           <h1>The Timeline</h1>
         </div>
-        <AddTimeline />
+        <AddTimeline set_timeEvents={updateEvents} />
         {timeEvents.map((timeEvent) => {
           return (
             <Media key={timeEvent.id}>
