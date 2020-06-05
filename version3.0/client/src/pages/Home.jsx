@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 // import Article_N_comment from '../components/Articles_n_Comments';
 import ShowTimeline from '../components/ShowTimeline';
 import Axios from 'axios';
-// import ArtNCom from '../components/ArtNCom';
+import ArtNCom from '../components/ArtNCom';
 // import Delthis from '../components/Delthis';
 // import Login from './Login';
 import { Link } from 'react-router-dom';
@@ -48,14 +48,10 @@ function Home() {
 
       <TheCarousel />
 
-      {/* <ArtNCom /> */}
+      <ArtNCom />
       {/* <Delthis /> */}
       {/* <Article_N_comment /> */}
       <ShowTimeline />
-
-      {/* <Brands /> */}
-      {/* Services = Brands */}
-      {/* <FeaturedRooms /> */}
     </div>
   );
 }

@@ -11,6 +11,15 @@ function Comments({ thread, time }) {
 
   return (
     <div>
+      {/* <style type="text/css">
+        {`
+                  .my_class {
+                    height:500px;
+                    overflow:scroll
+                  }
+                  `}
+      </style>
+      <div className="my_class"> */}
       <Card>
         <Card.Body>
           <Media>
@@ -26,41 +35,16 @@ function Comments({ thread, time }) {
               <h5>{thread}</h5>
               <p>{time}</p>
 
-              {/* Displaying the replies so far posted */}
-
-              {/* 
-              <ArticleIdConsumer>
-                {(articleId) => {
-                  return <ShowReplies commentId={articleId} />;
-                }}
-              </ArticleIdConsumer> */}
-
-              {/* Displaying the replies so far posted */}
-
-              {/* look for the media component in bootstrap for better reply style*/}
-
-              {/* <UserConsumer>
-                {(username) => {
-                  return ( */}
               <ArticleIdConsumer>
                 {(commentId) => {
                   return <ShowReplies commentId={commentId} />;
                 }}
               </ArticleIdConsumer>
-              {/* //     );
-              //   }}
-              // </UserConsumer> */}
-
-              {/* <AddReply /> */}
-
-              {/* </Dropdown.Item> */}
-              {/* </DropdownButton> */}
-
-              {/* <button onClick={clickHandler}>Reply</button> */}
             </Media.Body>
           </Media>
         </Card.Body>
       </Card>
+      {/* </div> */}
     </div>
   );
 }

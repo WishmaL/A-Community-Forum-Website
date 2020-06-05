@@ -16,8 +16,6 @@ export class ArtNCom extends Component {
       articles: [],
       comments: [],
     };
-
-    // this.clickHandler = this.clickHandler.bind()
   }
 
   componentDidMount() {
@@ -107,20 +105,32 @@ export class ArtNCom extends Component {
                         {/* remove the arrow icons here */}
                         <h3>Comments</h3>
 
-                        {commentList
-                          .filter((comment) => {
-                            return comment.articleId === article.id;
-                          })
-                          .map((comment) => (
-                            <div key={comment.id}>
-                              <ArticleIdProvider value={comment.id}>
-                                <Comments
-                                  thread={comment.thread}
-                                  time={comment.time}
-                                />
-                              </ArticleIdProvider>
-                            </div>
-                          ))}
+                        <style type="text/css">
+                          {`
+                            .my_class {
+                              height:500px;
+                              overflow-y:scroll
+                            }
+                          `}
+                        </style>
+
+                        <div className="my_class">
+                          {commentList
+                            .filter((comment) => {
+                              return comment.articleId === article.id;
+                            })
+                            .map((comment) => (
+                              <div key={comment.id}>
+                                <ArticleIdProvider value={comment.id}>
+                                  <Comments
+                                    thread={comment.thread}
+                                    time={comment.time}
+                                  />
+                                </ArticleIdProvider>
+                              </div>
+                            ))}
+                        </div>
+
                         <UserConsumer>
                           {(username) => {
                             return (
