@@ -7,11 +7,7 @@ import ShowReplies from './ShowReplies';
 // REPLY FUNCTION HAS TO BE BUILT UP
 
 function Comments({ thread, time }) {
-
-// get the all replies here for particular comment
-
-
-
+  // get the all replies here for particular comment
 
   return (
     <div>
@@ -26,21 +22,18 @@ function Comments({ thread, time }) {
               alt="Generic placeholder"
             />
 
-
-
-            
             <Media.Body>
               <h5>{thread}</h5>
               <p>{time}</p>
 
-            {/* Displaying the replies so far posted */}
-            <ArticleIdConsumer>
-              {(articleId) => {
-                return <ShowReplies commentId={articleId}/>
-              }}
-            </ArticleIdConsumer>
-              
-            {/* Displaying the replies so far posted */}  
+              {/* Displaying the replies so far posted */}
+              <ArticleIdConsumer>
+                {(articleId) => {
+                  return <ShowReplies commentId={articleId} />;
+                }}
+              </ArticleIdConsumer>
+
+              {/* Displaying the replies so far posted */}
 
               {/* look for the media component in bootstrap for better reply style*/}
 

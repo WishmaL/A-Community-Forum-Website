@@ -5,8 +5,7 @@ import Axios from 'axios';
 function ShowReplies({ commentId }) {
   const [replies, setReplies] = useState([]);
 
-  // let replies;
-  useEffect(() => {
+  const updateReplies = () => {
     Axios.get('/replies/getReplies')
       .then((res) => {
         setReplies(res.data);
@@ -14,6 +13,10 @@ function ShowReplies({ commentId }) {
       .catch((err) => {
         console.log('An error occured: ', err);
       });
+  };
+
+  useEffect(() => {
+    updateReplies();
   }, []);
 
   return (
@@ -35,10 +38,14 @@ function ShowReplies({ commentId }) {
             .map((reply) => {
               return (
                 <div key={reply.id}>
-                  
-                    <span><p>{reply.reply}<b>   replied by:</b>{reply.userName}</p>
-                  <br/> </span>
-               
+                  <span>
+                    <p>
+                      {reply.reply}
+                      <b> replied by:</b>
+                      {reply.userName}
+                    </p>
+                    <br />{' '}
+                  </span>
                 </div>
               );
             })}

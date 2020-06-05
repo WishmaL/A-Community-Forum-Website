@@ -4,7 +4,7 @@ import CurrentUser from '../components/CurrentUser';
 import Banner from '../components/Banner';
 // import Carousel from '../components/Carousel';
 // import AllowedUsers from '../components/AllowedUsers';
-import Timeline from '../components/Timeline';
+import ShowTimeline from '../components/ShowTimeline';
 import ArtNCom from '../components/ArtNCom';
 import { UserProvider } from '../components/Context';
 import ShowGraphs from '../components/ShowGraphs';
@@ -42,7 +42,7 @@ export class GreatAdmin extends Component {
           {/* <AllowedUsers /> */}
           {/* <Article_N_comment /> */}
           <ArtNCom />
-          <Timeline />
+          <ShowTimeline />
         </UserProvider>
       </div>
     );

@@ -4,7 +4,7 @@ import TheCarousel from '../components/TheCarousel';
 import Button from 'react-bootstrap/Button';
 // import Container from 'react-bootstrap/Container';
 // import Article_N_comment from '../components/Articles_n_Comments';
-import Timeline from '../components/Timeline';
+import ShowTimeline from '../components/ShowTimeline';
 import Axios from 'axios';
 // import ArtNCom from '../components/ArtNCom';
 // import Delthis from '../components/Delthis';
@@ -39,19 +39,19 @@ function Home() {
         title="The Learn Home page"
         subtitle="This will be the description"
       ></Banner>
-    
+
       <div className="text-center">
         <Button variant="outline-primary">
-        {<Link to="/Login">Login</Link>}
+          {<Link to="/Login">Login</Link>}
         </Button>
       </div>
-     
+
       <TheCarousel />
 
       {/* <ArtNCom /> */}
       {/* <Delthis /> */}
       {/* <Article_N_comment /> */}
-      <Timeline />
+      <ShowTimeline />
 
       {/* <Brands /> */}
       {/* Services = Brands */}

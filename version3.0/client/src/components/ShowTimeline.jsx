@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap';
 import axios from 'axios';
 import AddTimeline from './AddTimeline';
 
-export const Timeline = () => {
+export const ShowTimeline = () => {
   const [timeEvents, setTimeEvents] = useState([]);
 
   const updateEvents = () => {
@@ -51,4 +51,4 @@ export const Timeline = () => {
     </div>
   );
 };
-export default Timeline;
+export default ShowTimeline;
