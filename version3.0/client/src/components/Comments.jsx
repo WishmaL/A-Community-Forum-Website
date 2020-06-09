@@ -4,9 +4,10 @@ import React from 'react';
 import AddReply from './AddReply';
 import { UserConsumer, ArticleIdConsumer } from '../components/Context';
 import ShowReplies from './ShowReplies';
+import DelComment from './DelComment';
 // REPLY FUNCTION HAS TO BE BUILT UP
 
-function Comments({ thread, time }) {
+function Comments({ thread, time, id }) {
   // get the all replies here for particular comment
 
   return (
@@ -34,7 +35,7 @@ function Comments({ thread, time }) {
             <Media.Body>
               <h5>{thread}</h5>
               <p>{time}</p>
-
+              {/* <DelComment id={id} /> */}
               <ArticleIdConsumer>
                 {(commentId) => {
                   return <ShowReplies commentId={commentId} />;

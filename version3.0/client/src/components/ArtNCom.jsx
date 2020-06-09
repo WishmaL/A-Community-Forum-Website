@@ -16,9 +16,10 @@ export class ArtNCom extends Component {
       articles: [],
       comments: [],
     };
+    this.updateComments = this.updateComments.bind(this);
   }
 
-  componentDidMount() {
+  updateArticles() {
     axios
       .get('/articles/getArticles')
       .then((res) => {
@@ -27,7 +28,9 @@ export class ArtNCom extends Component {
       .catch((err) => {
         console.log(err);
       });
+  }
 
+  updateComments() {
     axios
       .get('/comments/getComments')
       .then((res) => {
@@ -37,6 +40,28 @@ export class ArtNCom extends Component {
       .catch((err) => {
         console.log(err);
       });
+  }
+  componentDidMount() {
+    // axios
+    //   .get('/articles/getArticles')
+    //   .then((res) => {
+    //     this.setState({ articles: res.data });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    this.updateArticles();
+
+    // axios
+    //   .get('/comments/getComments')
+    //   .then((res) => {
+    //     // console.log(res);
+    //     this.setState({ comments: res.data });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    this.updateComments();
   }
 
   clickHandler(userName) {
@@ -125,6 +150,8 @@ export class ArtNCom extends Component {
                                   <Comments
                                     thread={comment.thread}
                                     time={comment.time}
+                                    id={comment.id}
+                                    // updateComments={updateComments()}
                                   />
                                 </ArticleIdProvider>
                               </div>
@@ -137,6 +164,7 @@ export class ArtNCom extends Component {
                               <Addcomment
                                 articleId={article.id}
                                 userName={username}
+                                updateComments={this.updateComments}
                               />
                             );
                           }}

@@ -1,23 +1,20 @@
-// This will delete a timeEvent
-
 import React, { useState } from 'react';
 import { Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
-// import trash from '../../public/Assets/trash_fill.svg';
 
-export const DelTimeEvent = ({ id, set_timeEvents }) => {
+export const DelComment = ({ id }) => {
   const [show, setShow] = useState(false);
 
   const clickHandler = (e) => {
     e.preventDefault();
 
-    console.log('/timeline/deleteTimeEvent/'+id);
+    // console.log('/timeline/deleteComment/'+id);
     axios
-      .delete('timeline/deleteTimeEvent/'+id)
+      .delete('comments/deleteComment/' + id)
       .then((res) => {
-        alert('The event is deleted!!');
+        alert('The comment is deleted!!');
 
-        set_timeEvents()
+        // set_timeEvents();
       })
       .catch((err) => {
         console.log(err);
@@ -58,4 +55,4 @@ export const DelTimeEvent = ({ id, set_timeEvents }) => {
   );
 };
 
-export default DelTimeEvent;
+export default DelComment;

@@ -4,7 +4,7 @@ import { Button, Row, Col, Alert } from 'react-bootstrap';
 import axios from 'axios';
 import { UserContext } from './Context';
 
-function Addcomment({ articleId, userName }) {
+function Addcomment({ articleId, userName, updateComments }) {
   // add the following params from useContext
   // userId, userName,
 
@@ -29,11 +29,12 @@ function Addcomment({ articleId, userName }) {
       .catch(function (error) {
         console.log('Error occured! ', error);
       });
+
+    updateComments();
   };
 
   return (
     <div>
-      
       <Form onSubmit={handleSubmit}>
         {/* <Form.Group as={Row} controlId="formHorizontalEmail">
           <Form.Label column sm={2}>
