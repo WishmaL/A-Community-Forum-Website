@@ -3,6 +3,7 @@ import Media from 'react-bootstrap/Media';
 import { Container } from 'react-bootstrap';
 import axios from 'axios';
 import AddTimeline from './AddTimeline';
+import DelTimeEvent from './DelTimeEvent';
 
 export const ShowTimeline = () => {
   const [timeEvents, setTimeEvents] = useState([]);
@@ -55,6 +56,7 @@ export const ShowTimeline = () => {
                   <h5>{timeEvent.topic}</h5>
                   <p>{timeEvent.description}</p>
                   <p>{timeEvent.date}</p>
+                  <DelTimeEvent id={timeEvent.id} set_timeEvents={updateEvents}/>
                 </Media.Body>
               </Media>
               // {/* </div> */}

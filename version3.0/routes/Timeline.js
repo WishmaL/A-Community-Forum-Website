@@ -77,13 +77,13 @@ router.put('/updateTimeEvent', (req, res, next) => {
 
 // ///////////////////////////////////////////
 // Delete a user
-router.delete('/deleteTimeEvent', (req, res) => {
-  const deleteUser = [req.body.id];
-
-  let sql = `DELETE FROM timeline WHERE id = ?`;
+router.delete('/deleteTimeEvent/:id', (req, res) => {
+  const deleteUser = [req.params.id];
+  // console.log('delete user id is ', deleteUser);
+  let sql = `DELETE FROM timeline WHERE id = ${deleteUser}`;
   let query = db.query(sql, deleteUser[0], (err, results) => {
     if (err) throw err;
-    console.log('deleted');
+    // console.log('deleted');
     res.send('successfully deleted!');
   });
 });
