@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
-// import trash from '../../public/Assets/trash_fill.svg';
 
 export const DelTimeEvent = ({ id, set_timeEvents }) => {
   const [show, setShow] = useState(false);
@@ -11,7 +10,6 @@ export const DelTimeEvent = ({ id, set_timeEvents }) => {
   const clickHandler = (e) => {
     e.preventDefault();
 
-    // console.log('/timeline/deleteTimeEvent/'+id);
     axios
       .delete('/timeline/deleteTimeEvent/' + id)
       .then((res) => {

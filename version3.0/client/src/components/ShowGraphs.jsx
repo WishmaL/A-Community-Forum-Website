@@ -1,16 +1,11 @@
 import React, { Component, useState, useEffect } from 'react';
-// import Carousel from 'react-bootstrap/Carousel';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import { Button, Card, Accordion, Form, ListGroup } from 'react-bootstrap';
 import { UserConsumer } from './Context';
 import Axios from 'axios';
 
-// ////////////////////////////////////////////////////////
-// import React from 'react';
-
 export const ShowGraphs = () => {
-  // const [userName, setUserName] = useState('');
   const [graphs, setGraphs] = useState([]);
 
   useEffect(() => {
@@ -21,9 +16,6 @@ export const ShowGraphs = () => {
       .catch((err) => {
         console.log(err);
       });
-    // return () => {
-    //   cleanup
-    // }
   }, []);
 
   // Sending userNamne to 'addgraph' page
@@ -39,7 +31,6 @@ export const ShowGraphs = () => {
         {(userName) => {
           return (
             <div>
-              {/* <CurrentUser currentUser={userName} /> */}
               <div className="alert alert-primary" role="alert">
                 <h1>Graph section</h1>
 
@@ -53,11 +44,7 @@ export const ShowGraphs = () => {
       </UserConsumer>
 
       <div className="container">
-        <Tabs
-          // defaultActiveKey={graphs[0].id}
-          transition={false}
-          id="noanim-tab-example"
-        >
+        <Tabs transition={false} id="noanim-tab-example">
           {graphs.map((graph) => {
             return (
               <Tab key={graph.id} eventKey={graph.id} title={graph.title}>

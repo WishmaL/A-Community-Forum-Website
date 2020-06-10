@@ -1,5 +1,5 @@
 /**
- * THIS ONE BUILT WITH HORIZONTAL GALARRY NPM LIBRARAY 
+ * THIS ONE BUILT WITH HORIZONTAL GALARRY NPM LIBRARAY
  * NOT USING
  */
 
@@ -8,8 +8,6 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import Comments from './Comments';
 import axios from 'axios';
 import HorizontalGallery from 'react-dynamic-carousel';
-
-// import Delthis from './Delthis';
 
 class Articles_n_Comments extends Component {
   constructor(props) {
@@ -25,7 +23,6 @@ class Articles_n_Comments extends Component {
     axios
       .get('/articles/getArticles')
       .then((res) => {
-        // console.log(res)
         this.setState({ articles: res.data });
       })
       .catch((err) => {
@@ -35,7 +32,6 @@ class Articles_n_Comments extends Component {
     axios
       .get('/comments/getComments')
       .then((res) => {
-        // console.log(res);
         this.setState({ comments: res.data });
       })
       .catch((err) => {
@@ -57,10 +53,9 @@ class Articles_n_Comments extends Component {
           <HorizontalGallery
             tiles={articleList.map((article) => (
               <div key={article.id}>
-               
                 <Col>
-                <h3>Article</h3>
-                  <Row > 
+                  <h3>Article</h3>
+                  <Row>
                     <Card>
                       <Card.Body>
                         <Card.Title>{article.title}</Card.Title>
@@ -80,7 +75,7 @@ class Articles_n_Comments extends Component {
 
                   {/* Under this comments must be added */}
 
-                  <Col >
+                  <Col>
                     <h3>Comments</h3>
 
                     {commentList
@@ -102,8 +97,8 @@ class Articles_n_Comments extends Component {
             elementWidth={1000}
             fadeDistance={100}
             minPadding={30}
-            onReachEnd ={(galleryPosition)=>{
-              return 1000
+            onReachEnd={(galleryPosition) => {
+              return 1000;
             }}
           />
         </Container>

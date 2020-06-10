@@ -5,7 +5,6 @@ import axios from 'axios';
 import AddTimeline from './AddTimeline';
 import DelTimeEvent from './DelTimeEvent';
 import EditTimeline from './EditTimeline';
-// import Delthis from './Delthis';
 
 export const ShowTimeline = () => {
   const [timeEvents, setTimeEvents] = useState([]);
@@ -43,9 +42,6 @@ export const ShowTimeline = () => {
         <div className="my_class">
           {timeEvents.map((timeEvent) => {
             return (
-              // <div>
-
-              // <div className="my_class">
               <Media key={timeEvent.id}>
                 <img
                   width={64}
@@ -66,11 +62,8 @@ export const ShowTimeline = () => {
                     id={timeEvent.id}
                     set_timeEvents={updateEvents}
                   />
-                  {/* <Delthis /> */}
                 </Media.Body>
               </Media>
-              // {/* </div> */}
-              // </div>
             );
           })}
         </div>

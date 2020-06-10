@@ -9,14 +9,8 @@ export const AddGraph = (props) => {
   const [iframe, setIframe] = useState('');
   const [description, setDescription] = useState('');
   const [admin_r, setAdmin_r] = useState(0);
-  // const [admin_w, setAdmin_w] = useState(0)
   const [member_r, setMember_r] = useState(0);
-  // const [member_w, setMember_w] = useState(0)
   const [viewer_r, setViewer_r] = useState(0);
-
-  // useEffect(() => {
-  //   setUserName();
-  // }, []);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -33,7 +27,6 @@ export const AddGraph = (props) => {
       .post('/graphs/newGraph', data_)
       .then((res) => {
         console.log(res);
-        // this.setState({ articles: res.data });
         alert('New graph is added!!!');
       })
       .catch((err) => {
@@ -56,26 +49,7 @@ export const AddGraph = (props) => {
               onChange={(e) => setTitle(e.target.value)}
             />
           </Form.Group>
-          {/* <Form.Group controlId="exampleForm.ControlSelect1">
-              <Form.Label>Example select</Form.Label>
-              <Form.Control as="select">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </Form.Control>
-            </Form.Group> */}
-          {/* <Form.Group controlId="exampleForm.ControlSelect2">
-              <Form.Label>Example multiple select</Form.Label>
-              <Form.Control as="select" multiple>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </Form.Control>
-            </Form.Group> */}
+
           <Form.Group controlId="exampleForm.ControlTextarea1">
             <Form.Label>Enter the iframe here</Form.Label>
             <Form.Control
@@ -88,17 +62,16 @@ export const AddGraph = (props) => {
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlTextarea1">
             <Form.Label>Description (Optional)</Form.Label>
-            <Form.Control as="textarea" rows="3" value={description}
-              onChange={(e) => setDescription(e.target.value)}/>
+            <Form.Control
+              as="textarea"
+              rows="3"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
           </Form.Group>
 
           <Form.Group id="formGridCheckbox">
-            {/* <h3>Who can Edit</h3>
-            <Form.Check type="checkbox" label="Great Admin" onClick={ setBody(1)}/>
-            <Form.Check type="checkbox" label="Admin" onClick={() => setAdmin_w(1)}/>
-            <Form.Check type="checkbox" label="Member" onClick={() => setMember_w(1)}/> */}
             <h3>Who can Read</h3>
-            {/* <Form.Check type="checkbox" label="Great Admin" /> */}
             <Form.Check
               type="checkbox"
               label="Admin"
@@ -125,7 +98,8 @@ export const AddGraph = (props) => {
 };
 
 export default AddGraph;
-{/*
+{
+  /*
               TESTING GRAPH 1
             
             <iframe
@@ -145,4 +119,5 @@ export default AddGraph;
               frameborder="0"
               // style="border: 0;"
               allowfullscreen
-            ></iframe> */}
+            ></iframe> */
+}

@@ -56,25 +56,6 @@ router.post('/newTimeEvent', (req, res) => {
   );
 });
 
-// ////////////////////////////////////////////
-// update a user
-// router.put('/updateTimeEvent', (req, res, next) => {
-//   const update_user = [
-//     req.body.topic,
-//     req.body.description,
-//     req.body.date,
-//     req.body.id,
-//   ];
-
-//   let sql = `UPDATE timeline SET topic = ?, description = ?, date =? WHERE id = ?`;
-
-//   let query = db.query(sql, update_user, (err, results) => {
-//     if (err) throw err;
-//     console.log(results);
-//     res.json(results);
-//   });
-// });
-
 router.put('/updateTimeEvent/:id', (req, res, next) => {
   const update_user = [
     req.body.topic,

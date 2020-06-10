@@ -15,7 +15,6 @@ function EditTimeline({ id, set_timeEvents }) {
 
   const openEdit = () => {
     setShow(true);
-    // console.log('/timeline/getTimeEvent/' + id);
     axios
       .get('/timeline/getTimeEvent/' + id)
       .then((res) => {
@@ -65,7 +64,6 @@ function EditTimeline({ id, set_timeEvents }) {
         <p>This Item will be updated</p>
         <hr />
         <div className="d-flex justify-content-end">
-          {/* <form id="event_form"> */}
           <Container>
             <Form onSubmit={submitHandler}>
               <Form.Group controlId="formBasicEmail">
@@ -91,15 +89,17 @@ function EditTimeline({ id, set_timeEvents }) {
               </Form.Group>
 
               <Form.Group controlId="formBasicCheckbox">
-              <Form.Label>Date: {moment(timeEvents.date).utc().format('YYYY-MM-DD')}</Form.Label>
+                <Form.Label>
+                  Date: {moment(timeEvents.date).utc().format('YYYY-MM-DD')}
+                </Form.Label>
                 <Form.Control
                   type="date"
-                  // placeholder={moment(timeEvents.date).utc().format('YYYY-MM-DD')}
-                  // onfocus={type='date'}
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
                 />
-                {console.log(moment(timeEvents.date).utc().format('YYYY-MM-DD'))}
+                {console.log(
+                  moment(timeEvents.date).utc().format('YYYY-MM-DD')
+                )}
               </Form.Group>
 
               <Button variant="warning" type="submit">
@@ -113,7 +113,6 @@ function EditTimeline({ id, set_timeEvents }) {
 
       {!show && (
         <Button variant="outline-warning" onClick={openEdit}>
-          {/* <Button variant="outline-warning" onClick={() => setShow(true)}> */}
           <svg
             class="bi bi-pencil-square"
             width="1em"

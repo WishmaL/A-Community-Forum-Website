@@ -10,13 +10,10 @@ export const DelComment = ({ id, comments }) => {
   const clickHandler = (e) => {
     e.preventDefault();
 
-    // console.log('/timeline/deleteComment/'+id);
     axios
       .delete('/comments/deleteComment/' + id)
       .then((res) => {
         alert('The comment is deleted!!');
-
-        // set_timeEvents();
       })
       .catch((err) => {
         console.log(err);

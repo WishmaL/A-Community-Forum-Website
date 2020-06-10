@@ -36,17 +36,12 @@ function AddNotice(props) {
       .post('/notices/newNotice', data_)
       .then((res) => {
         console.log(res);
-        // this.setState({ articles: res.data });
         alert('New Notice is added!!!');
       })
       .catch((err) => {
         console.log(err);
       });
   };
-
-  //   const clickHandler = (userName) => {
-  //     window.location = `/AddNotice/${userName}`;
-  //   };
 
   return (
     <div>
@@ -87,7 +82,6 @@ function AddNotice(props) {
 
           <Form.Group id="formGridCheckbox">
             <h3>Who can Edit</h3>
-            {/* <Form.Check type="checkbox" label="Great Admin" onClick={ setBody(1)}/> */}
             <Form.Check
               type="checkbox"
               label="Admin"
@@ -99,7 +93,6 @@ function AddNotice(props) {
               onClick={() => setAdmin_w(1)}
             />
             <h3>Who can Read</h3>
-            {/* <Form.Check type="checkbox" label="Great Admin" /> */}
             <Form.Check
               type="checkbox"
               label="Admin"

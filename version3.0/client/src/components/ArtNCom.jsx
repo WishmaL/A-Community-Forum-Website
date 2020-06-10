@@ -54,7 +54,6 @@ export class ArtNCom extends Component {
   render() {
     const articleList = this.state.articles;
     const commentList = this.state.comments;
-    // console.log(Object.keys(articleList)[0])
 
     return (
       <div>
@@ -72,7 +71,6 @@ export class ArtNCom extends Component {
               );
             }}
           </UserConsumer>
-          {/* <Button onClick={this.clickHandler}>Add article</Button> */}
         </div>
         <div className="container">
           <Tabs
@@ -80,10 +78,8 @@ export class ArtNCom extends Component {
             transition={false}
             id="noanim-tab-example"
           >
-            {/* <Carousel interval={null}> */}
             {articleList.map((article) => {
               return (
-                //  <div key={article.id}>
                 <Tab
                   key={article.id}
                   eventKey={article.id}
@@ -135,7 +131,6 @@ export class ArtNCom extends Component {
                                       thread={comment.thread}
                                       time={comment.time}
                                       id={comment.id}
-                                      // updateComments={updateComments()}
                                     />
                                   </CommentIdProvider>
                                 </CommentsProvider>

@@ -37,54 +37,37 @@ router.post('/newReply', (req, res) => {
     req.body.reply,
   ];
 
-//   let sql = `SET @id = ?; SET @articleId = ?; SET @thread = ?; SET @userName = ?;CALL addCommentProcedure(@id, @articleId, @thread, @userName)`;
+  //   let sql = `SET @id = ?; SET @articleId = ?; SET @thread = ?; SET @userName = ?;CALL addCommentProcedure(@id, @articleId, @thread, @userName)`;
   let sql = `SET @id = ?; SET @userName = ?; SET @commentId = ?; SET @reply = ?; CALL addReplyProcedure(@id, @userName, @commentId, @reply)`;
   let query = db.query(
     sql,
-    [
-      newReply[0],
-      newReply[1],
-      newReply[2],
-      newReply[3]
-    ],
+    [newReply[0], newReply[1], newReply[2], newReply[3]],
     (err, rows) => {
-      
-      if(err){    
-        if (err.errno == 1452) res.send('The user or the article is not available!');
+      if (err) {
+        if (err.errno == 1452)
+          res.send('The user or the article is not available!');
         else console.log(err);
-      }
-      else {
+      } else {
         rows.forEach((element) => {
           if (element.constructor == Array) {
             var msg = element[0].reply;
             res.send('Inserted reply is : ' + msg);
-            // console.log("reply is ",element[0]); 
-          } 
-        }); 
-      } 
+            // console.log("reply is ",element[0]);
+          }
+        });
+      }
     }
   );
 });
-
-
 
 // ////////////////////////////////////////////
 // update a notice
 router.put('/updateReply', (req, res, next) => {
   const updated_reply = [
-     // req.body.id,
-    //  req.body.userId,
-     req.body.articleId,
-     req.body.userName, 
-     req.body.reply,
-     // req.body.body,
-     // req.body.time,
-    //  req.body.admin_r,
-    //  req.body.admin_w,
-    //  req.body.member_r,
-    //  req.body.member_w,
-    //  req.body.viewer_r,
-     req.body.id
+    req.body.articleId,
+    req.body.userName,
+    req.body.reply,
+    req.body.id,
   ];
 
   let sql = `UPDATE replies SET articleId = ?, userName = ?, reply =? WHERE id = ?`;
@@ -107,6 +90,6 @@ router.delete('/deleteReply', (req, res) => {
     console.log('deleted');
     res.send('Reply successfully deleted!');
   });
-});   
+});
 
-module.exports = router;    
+module.exports = router;

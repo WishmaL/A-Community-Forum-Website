@@ -30,7 +30,6 @@ router.get('/getGraph', (req, res) => {
 // insert a graph
 router.post('/newGraph', (req, res) => {
   const newArticle = [
-    // req.body.id,
     // uuid.v4(),
     'default',
     req.body.userName,
@@ -53,15 +52,13 @@ router.post('/newGraph', (req, res) => {
       newArticle[4],
       newArticle[5],
       newArticle[6],
-      newArticle[7]
+      newArticle[7],
     ],
     (err, rows) => {
-      
-      if(err){    
+      if (err) {
         if (err.errno == 1452) res.send('The user is not available!');
         else console.log(err);
-      }
-      else {
+      } else {
         rows.forEach((element) => {
           if (element.constructor == Array) {
             var msg = element[0].id;
@@ -74,8 +71,6 @@ router.post('/newGraph', (req, res) => {
   );
 });
 
-
-
 // ////////////////////////////////////////////
 // update a graph
 router.put('/updateGraph', (req, res, next) => {
@@ -86,9 +81,9 @@ router.put('/updateGraph', (req, res, next) => {
     req.body.iframe,
     req.body.description,
     req.body.admin_r,
-    
+
     req.body.member_r,
-    
+
     req.body.viewer_r,
     req.body.id,
   ];
@@ -103,7 +98,7 @@ router.put('/updateGraph', (req, res, next) => {
 });
 
 // ///////////////////////////////////////////
-// Delete a graph 
+// Delete a graph
 router.delete('/deleteGraph', (req, res) => {
   const deleteNotice = [req.body.id];
 
@@ -113,6 +108,6 @@ router.delete('/deleteGraph', (req, res) => {
     console.log('deleted');
     res.send('successfully deleted!');
   });
-});   
+});
 
-module.exports = router;    
+module.exports = router;

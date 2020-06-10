@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import CurrentUser from '../components/CurrentUser';
-// import Article_N_comment from "../components/Articles_n_Comments";
 import Banner from '../components/Banner';
 import Carousel from '../components/Carousel';
 import ArtNCom from '../components/ArtNCom';
@@ -17,7 +16,6 @@ export class Admin extends Component {
   }
 
   componentDidMount() {
-    // console.log("user Name is ",this.props.match.params.userName)
     this.setState({
       userName: this.props.match.params.userName,
     });

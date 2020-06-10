@@ -1,5 +1,4 @@
 import { Media, Card } from 'react-bootstrap';
-// import InputGroup from 'react-bootstrap/InputGroup';
 import React from 'react';
 import AddReply from './AddReply';
 import {
@@ -16,15 +15,6 @@ function Comments({ thread, time, id }) {
 
   return (
     <div>
-      {/* <style type="text/css">
-        {`
-                  .my_class {
-                    height:500px;
-                    overflow:scroll
-                  }
-                  `}
-      </style>
-      <div className="my_class"> */}
       <Card>
         <Card.Body>
           <Media>
@@ -39,7 +29,6 @@ function Comments({ thread, time, id }) {
             <Media.Body>
               <h5>{thread}</h5>
               <p>{time}</p>
-              {/* <DelComment id={id} /> */}
               <CommentIdConsumer>
                 {(commentId) => {
                   return <ShowReplies commentId={commentId} />;
@@ -55,7 +44,6 @@ function Comments({ thread, time, id }) {
           </Media>
         </Card.Body>
       </Card>
-      {/* </div> */}
     </div>
   );
 }

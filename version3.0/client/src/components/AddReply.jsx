@@ -5,10 +5,8 @@ import axios from 'axios';
 
 function AddReply({ updateReplies, userName, commentId }) {
   const [reply, setReply] = useState('');
-  //   const [replier_name, setReplier_name] = useState('');
 
   const clickHandler = (event) => {
-    // setReplier_name({userName})
     console.log({ userName });
     console.log({ commentId });
     event.preventDefault();

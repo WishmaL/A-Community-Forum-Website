@@ -10,14 +10,10 @@ export class CurrentUser extends Component {
     return (
       <div>
         <Navbar className="justify-content-end">
-          {/* <Navbar.Brand href="#home">Navbar with text</Navbar.Brand> */}
-          {/* <Navbar.Toggle />
-          <Navbar.Collapse className="justify-content-end"> */}
-            <Navbar.Text>
-              Signed in as: <a href="#login">{this.props.currentUser}</a>
-            </Navbar.Text>
-          {/* </Navbar.Collapse>*/}
-        </Navbar> 
+          <Navbar.Text>
+            Signed in as: <a href="#login">{this.props.currentUser}</a>
+          </Navbar.Text>
+        </Navbar>
       </div>
     );
   }

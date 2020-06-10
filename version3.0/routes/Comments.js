@@ -30,36 +30,17 @@ router.get('/getcomment', (req, res) => {
 // insert a comment
 router.post('/newComment', (req, res) => {
   const newComment = [
-    // req.body.id,
     // uuid.v4(),
     'default',
-    // req.body.userId,
     req.body.articleId,
     req.body.thread,
     req.body.userName,
-    // // req.body.body,
-    // // req.body.time,
-    // req.body.admin_r,
-    // req.body.admin_w,
-    // req.body.member_r,
-    // req.body.member_w,
-    // req.body.viewer_r,
   ];
 
   let sql = `SET @id = ?; SET @articleId = ?; SET @thread = ?; SET @userName = ?;CALL addCommentProcedure(@id, @articleId, @thread, @userName)`;
   let query = db.query(
     sql,
-    [
-      newComment[0],
-      newComment[1],
-      newComment[2],
-      newComment[3],
-      // newComment[4],
-      // newComment[5],
-      // newComment[6],
-      // newComment[7],
-      // newComment[8],
-    ],
+    [newComment[0], newComment[1], newComment[2], newComment[3]],
     (err, rows) => {
       if (err) {
         if (err.errno == 1452)
@@ -82,18 +63,9 @@ router.post('/newComment', (req, res) => {
 // update a notice
 router.put('/updateComment', (req, res, next) => {
   const updated_comment = [
-    // req.body.id,
-    //  req.body.userId,
     req.body.articleId,
     req.body.thread,
     req.body.userName,
-    // req.body.body,
-    // req.body.time,
-    //  req.body.admin_r,
-    //  req.body.admin_w,
-    //  req.body.member_r,
-    //  req.body.member_w,
-    //  req.body.viewer_r,
     req.body.id,
   ];
 

@@ -32,7 +32,6 @@ function ShowReplies({ commentId }) {
           alt="Generic placeholder"
         />
         <Media.Body>
-          {/* {console.log(replies)} */}
           {replies
             .filter((element) => {
               return element.commentId === commentId;

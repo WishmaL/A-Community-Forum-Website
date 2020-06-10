@@ -4,11 +4,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { Carousel, Container, Button } from 'react-bootstrap';
-// import {  } from 'react-bootstrap';
 import Axios from 'axios';
 import { UserConsumer } from './Context';
-
-// import { Container } from 'react-bootstrap';
 
 function TheCarousel() {
   const [notices, setNotices] = useState([]);
@@ -16,7 +13,6 @@ function TheCarousel() {
   useEffect(() => {
     Axios.get('/notices/getNotices')
       .then((res) => {
-        // console.log(res)
         setNotices(res.data);
       })
       .catch((err) => {
@@ -31,12 +27,9 @@ function TheCarousel() {
   return (
     <div>
       <UserConsumer>
-        {/* set the addArticle component */}
-
         {(userName) => {
           return (
             <div>
-              {/* <CurrentUser currentUser={userName} /> */}
               <div className="alert alert-primary" role="alert">
                 <h1>Notice section</h1>
 

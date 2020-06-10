@@ -1,5 +1,5 @@
 import React from 'react';
-import {Accordion, Card, Button, ListGroup} from 'react-bootstrap'
+import { Accordion, Card, Button, ListGroup } from 'react-bootstrap';
 
 export default function AllowedUsers() {
   return (
@@ -11,22 +11,14 @@ export default function AllowedUsers() {
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="0">
             <Card.Body>
-                <ListGroup className="list-group-flush">
-                    <Button className="primary">Admin</Button>
-                    <Button variant="primary">Member</Button>
-                    <Button variant="primary">Viewer</Button>
-                </ListGroup>
+              <ListGroup className="list-group-flush">
+                <Button className="primary">Admin</Button>
+                <Button variant="primary">Member</Button>
+                <Button variant="primary">Viewer</Button>
+              </ListGroup>
             </Card.Body>
           </Accordion.Collapse>
         </Card>
-        {/* <Card>
-          <Accordion.Toggle as={Card.Header} eventKey="1">
-            Click me!
-          </Accordion.Toggle>
-          <Accordion.Collapse eventKey="1">
-            <Card.Body>Hello! I'm another body</Card.Body>
-          </Accordion.Collapse>
-        </Card> */}
       </Accordion>
     </div>
   );

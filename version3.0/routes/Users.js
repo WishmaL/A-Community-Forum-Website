@@ -27,7 +27,7 @@ router.get('/getUsers', (req, res) => {
 //   fetch specific user
 router.post('/getUser', (req, res) => {
   let sql = `SELECT * FROM users WHERE email = ? AND password = ?`;
-  let param = [req.body.email, req.body.password]
+  let param = [req.body.email, req.body.password];
   let query = db.query(sql, param, (err, results) => {
     if (err) console.log('The error is ....>>', err);
     console.log(results);
@@ -35,18 +35,6 @@ router.post('/getUser', (req, res) => {
   });
 });
 
-//   fetch specific user
-// router.get('/getUser', (req, res) => {
-//   let sql = `SELECT * FROM users WHERE id = ${req.body.id}`;
-//   let query = db.query(sql, (err, results) => {
-//     if (err) throw err;
-//     console.log(results);
-//     res.send(results);
-//   });
-// });
-
-// ///////////////////////////////////////////
-// insert a user
 router.post('/newUser', (req, res) => {
   const newUser = [
     // req.body.id,
@@ -89,19 +77,7 @@ router.put('/updateUser', (req, res, next) => {
     req.body.id,
   ];
 
-  //   const update_user = {
-
-  //     name: req.body.name,
-  //     email: req.body.email,
-  //     password: req.body.password,
-  //     contact: req.body.contact,
-  //     roll: req.body.roll,
-  //     id : req.body.id,
-  //   };
-  //   console.log(update_user)
   let sql = `UPDATE users SET name = ?, email = ?, password =?, contact = ?, roll = ? WHERE id = ?`;
-
-  //   let sql = `UPDATE users SET name = ${update_user.name}, email = ${update_user.email}, password =${update_user.password}, contact = ${update_user.contact}, roll =${update_user.roll} WHERE id = ${update_user.id}`;
 
   let query = db.query(sql, update_user, (err, results) => {
     if (err) throw err;

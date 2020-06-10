@@ -92,7 +92,6 @@ function Login() {
           </Form.Group>
 
           <div className="text-center">
-            {/* <Button type="submit" onClick={(e) => submitHandler}>Login</Button> */}
             <Button
               block
               bsSize="large"

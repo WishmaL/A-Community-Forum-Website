@@ -2,18 +2,10 @@ import React, { useEffect, useState } from 'react';
 import Banner from '../components/Banner';
 import TheCarousel from '../components/TheCarousel';
 import Button from 'react-bootstrap/Button';
-// import Container from 'react-bootstrap/Container';
-// import Article_N_comment from '../components/Articles_n_Comments';
 import ShowTimeline from '../components/ShowTimeline';
 import Axios from 'axios';
 import ArtNCom from '../components/ArtNCom';
-// import Delthis from '../components/Delthis';
-// import Login from './Login';
 import { Link } from 'react-router-dom';
-// import Delthis from '../components/Delthis';
-
-// import Brands from '../components/Brands';
-// import FeaturedRooms from '../components/FeaturedRoom';
 
 function Home() {
   const [notices, setNotices] = useState([]);
@@ -21,17 +13,12 @@ function Home() {
   useEffect(() => {
     Axios.get('/notices/getNotices')
       .then((res) => {
-        // console.log(res)
         setNotices(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-
-  // const clickHandler = () => {
-  //   <Link to="/Member">Member</Link>
-  // }
 
   return (
     <div>
@@ -49,8 +36,6 @@ function Home() {
       <TheCarousel />
 
       <ArtNCom />
-      {/* <Delthis /> */}
-      {/* <Article_N_comment /> */}
       <ShowTimeline />
     </div>
   );
