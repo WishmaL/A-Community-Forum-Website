@@ -2,7 +2,11 @@ import { Media, Card } from 'react-bootstrap';
 // import InputGroup from 'react-bootstrap/InputGroup';
 import React from 'react';
 import AddReply from './AddReply';
-import { UserConsumer, ArticleIdConsumer } from '../components/Context';
+import {
+  UserConsumer,
+  CommentIdConsumer,
+  CommentsConsumer,
+} from '../components/Context';
 import ShowReplies from './ShowReplies';
 import DelComment from './DelComment';
 // REPLY FUNCTION HAS TO BE BUILT UP
@@ -36,11 +40,17 @@ function Comments({ thread, time, id }) {
               <h5>{thread}</h5>
               <p>{time}</p>
               {/* <DelComment id={id} /> */}
-              <ArticleIdConsumer>
+              <CommentIdConsumer>
                 {(commentId) => {
                   return <ShowReplies commentId={commentId} />;
                 }}
-              </ArticleIdConsumer>
+              </CommentIdConsumer>
+
+              <CommentsConsumer>
+                {(comments) => {
+                  return <DelComment id={id} comments={comments} />;
+                }}
+              </CommentsConsumer>
             </Media.Body>
           </Media>
         </Card.Body>

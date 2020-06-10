@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
 
-export const DelComment = ({ id }) => {
+export const DelComment = ({ id, comments }) => {
   const [show, setShow] = useState(false);
 
   const clickHandler = (e) => {
@@ -12,7 +12,7 @@ export const DelComment = ({ id }) => {
 
     // console.log('/timeline/deleteComment/'+id);
     axios
-      .delete('comments/deleteComment/' + id)
+      .delete('/comments/deleteComment/' + id)
       .then((res) => {
         alert('The comment is deleted!!');
 
@@ -21,6 +21,7 @@ export const DelComment = ({ id }) => {
       .catch((err) => {
         console.log(err);
       });
+    comments();
   };
 
   return (

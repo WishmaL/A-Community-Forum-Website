@@ -3,6 +3,7 @@ import { Container, Col, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import CurrentUser from '../components/CurrentUser';
 import moment from 'moment';
+import AddNoticePics from '../components/AddNoticePics';
 
 function AddNotice(props) {
   const [userName, setUserName] = useState(props.match.params.userName);
@@ -30,7 +31,7 @@ function AddNotice(props) {
       member_w: member_w,
       viewer_r: viewer_r,
     };
-    console.log(data_)
+    console.log(data_);
     axios
       .post('/notices/newNotice', data_)
       .then((res) => {
@@ -41,11 +42,12 @@ function AddNotice(props) {
       .catch((err) => {
         console.log(err);
       });
-
-
-
-      
   };
+
+  //   const clickHandler = (userName) => {
+  //     window.location = `/AddNotice/${userName}`;
+  //   };
+
   return (
     <div>
       <Container>
@@ -64,11 +66,6 @@ function AddNotice(props) {
                 onChange={(e) => setTitle(e.target.value)}
               />
             </Form.Group>
-
-            {/* <Form.Group as={Col} controlId="formGridPassword">
-              <Form.Label>Article category</Form.Label>
-              <Form.Control type="password" placeholder="Optional" />
-            </Form.Group> */}
           </Form.Row>
 
           <Form.Group controlId="formGridAddress1">
@@ -83,6 +80,10 @@ function AddNotice(props) {
           </Form.Group>
 
           {/* File upload has to be done */}
+
+          <AddNoticePics />
+
+          {/* pic upload */}
 
           <Form.Group id="formGridCheckbox">
             <h3>Who can Edit</h3>

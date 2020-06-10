@@ -1,14 +1,25 @@
-import React from 'react'
+import React from 'react';
 
-const UserContext = React.createContext()
-const ArticleIdContext = React.createContext()
+const UserContext = React.createContext();
+const CommentIdContext = React.createContext();
+const ListingComContext = React.createContext();
 
-const UserProvider = UserContext.Provider
-const UserConsumer = UserContext.Consumer
+const UserProvider = UserContext.Provider;
+const UserConsumer = UserContext.Consumer;
 
-const ArticleIdProvider = ArticleIdContext.Provider
-const ArticleIdConsumer = ArticleIdContext.Consumer
+const CommentIdProvider = CommentIdContext.Provider;
+const CommentIdConsumer = CommentIdContext.Consumer;
 
-export {UserConsumer, UserProvider, ArticleIdProvider, ArticleIdConsumer}
+const CommentsProvider = ListingComContext.Provider;
+const CommentsConsumer = ListingComContext.Consumer;
 
-export default UserContext
+export {
+  UserConsumer,
+  UserProvider,
+  CommentIdProvider,
+  CommentIdConsumer,
+  CommentsProvider,
+  CommentsConsumer,
+};
+
+export default UserContext;

@@ -40,7 +40,7 @@ router.post('/newNoticesPic', (req, res) => {
   ];
 
   // ///////////////////////////////
-  // req.files.file ,,'file' will define in react
+  // req.files.file ,'file' will define in react
   const file = req.files.file;
   //   noticePic is the name of the file
   var img_name = file.name;

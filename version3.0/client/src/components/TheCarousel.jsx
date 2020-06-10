@@ -56,7 +56,7 @@ function TheCarousel() {
               <Carousel.Item>
                 <img
                   className="d-block w-100"
-                  src="http://lorempics.com/550x250/CCC444/969696"
+                  src="http://lorempics.com/550x250/6666ff/6666ff"
                   alt="First slide"
                 />
                 <Carousel.Caption>

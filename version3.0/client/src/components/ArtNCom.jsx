@@ -6,7 +6,7 @@ import Comments from './Comments';
 import axios from 'axios';
 import '../styles/carousel.css';
 import Addcomment from './Addcomment';
-import { UserConsumer, ArticleIdProvider } from './Context';
+import { UserConsumer, CommentIdProvider, CommentsProvider } from './Context';
 
 export class ArtNCom extends Component {
   constructor(props) {
@@ -42,25 +42,8 @@ export class ArtNCom extends Component {
       });
   }
   componentDidMount() {
-    // axios
-    //   .get('/articles/getArticles')
-    //   .then((res) => {
-    //     this.setState({ articles: res.data });
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
     this.updateArticles();
 
-    // axios
-    //   .get('/comments/getComments')
-    //   .then((res) => {
-    //     // console.log(res);
-    //     this.setState({ comments: res.data });
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
     this.updateComments();
   }
 
@@ -146,14 +129,16 @@ export class ArtNCom extends Component {
                             })
                             .map((comment) => (
                               <div key={comment.id}>
-                                <ArticleIdProvider value={comment.id}>
-                                  <Comments
-                                    thread={comment.thread}
-                                    time={comment.time}
-                                    id={comment.id}
-                                    // updateComments={updateComments()}
-                                  />
-                                </ArticleIdProvider>
+                                <CommentsProvider value={this.updateComments}>
+                                  <CommentIdProvider value={comment.id}>
+                                    <Comments
+                                      thread={comment.thread}
+                                      time={comment.time}
+                                      id={comment.id}
+                                      // updateComments={updateComments()}
+                                    />
+                                  </CommentIdProvider>
+                                </CommentsProvider>
                               </div>
                             ))}
                         </div>

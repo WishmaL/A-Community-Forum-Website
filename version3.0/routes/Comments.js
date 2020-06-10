@@ -36,7 +36,7 @@ router.post('/newComment', (req, res) => {
     // req.body.userId,
     req.body.articleId,
     req.body.thread,
-    req.body.userName
+    req.body.userName,
     // // req.body.body,
     // // req.body.time,
     // req.body.admin_r,
@@ -61,43 +61,40 @@ router.post('/newComment', (req, res) => {
       // newComment[8],
     ],
     (err, rows) => {
-      
-      if(err){    
-        if (err.errno == 1452) res.send('The user or the article is not available!');
+      if (err) {
+        if (err.errno == 1452)
+          res.send('The user or the article is not available!');
         else console.log(err);
-      }
-      else {
+      } else {
         rows.forEach((element) => {
           if (element.constructor == Array) {
             var msg = element[0].id;
             res.send('Inserted Comment id : ' + msg);
-            // console.log("sent item is ",element[0]); 
-          } 
-        }); 
-      } 
+            // console.log("sent item is ",element[0]);
+          }
+        });
+      }
     }
   );
 });
-
-
 
 // ////////////////////////////////////////////
 // update a notice
 router.put('/updateComment', (req, res, next) => {
   const updated_comment = [
-     // req.body.id,
+    // req.body.id,
     //  req.body.userId,
-     req.body.articleId,
-     req.body.thread,
-     req.body.userName,
-     // req.body.body,
-     // req.body.time,
+    req.body.articleId,
+    req.body.thread,
+    req.body.userName,
+    // req.body.body,
+    // req.body.time,
     //  req.body.admin_r,
     //  req.body.admin_w,
     //  req.body.member_r,
     //  req.body.member_w,
     //  req.body.viewer_r,
-     req.body.id
+    req.body.id,
   ];
 
   let sql = `UPDATE comments SET articleId = ?, thread =?, userName = ? WHERE id = ?`;
@@ -111,15 +108,15 @@ router.put('/updateComment', (req, res, next) => {
 
 // ///////////////////////////////////////////
 // Delete a user
-router.delete('/deleteComment', (req, res) => {
-  const deleteComment = [req.body.id];
+router.delete('/deleteComment/:id', (req, res) => {
+  const deleteComment = [req.params.id];
 
-  let sql = `DELETE FROM comments WHERE id = ?`;
+  let sql = `DELETE FROM comments WHERE id = ${deleteComment[0]}`;
   let query = db.query(sql, deleteComment[0], (err, rows) => {
     if (err) throw err;
     console.log('deleted');
     res.send('successfully deleted!');
   });
-});   
+});
 
-module.exports = router;    
+module.exports = router;
