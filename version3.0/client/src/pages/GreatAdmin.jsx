@@ -8,6 +8,8 @@ import ShowTimeline from '../components/ShowTimeline';
 import ArtNCom from '../components/ArtNCom';
 import { UserProvider } from '../components/Context';
 import ShowGraphs from '../components/ShowGraphs';
+import TheCarousel from '../components/TheCarousel';
+// import AddNotice from './AddNotice';
 
 export class GreatAdmin extends Component {
   constructor(props) {
@@ -33,6 +35,9 @@ export class GreatAdmin extends Component {
             title="The Great Admin page"
             subtitle="This will be the description"
           ></Banner>
+
+          <TheCarousel />
+          {/* <AddNotice /> */}
           {/* Following is only for great Admins */}
           {/* <AllowedUsers /> */}
           {/* <Carousel /> */}

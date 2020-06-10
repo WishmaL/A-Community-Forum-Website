@@ -1,6 +1,14 @@
+// this reagards notices
+
+// this must be re-named as ShowNotices
+
 import React, { useEffect, useState } from 'react';
-import Carousel from 'react-bootstrap/Carousel';
+import { Carousel, Container, Button } from 'react-bootstrap';
+// import {  } from 'react-bootstrap';
 import Axios from 'axios';
+import { UserConsumer } from './Context';
+
+// import { Container } from 'react-bootstrap';
 
 function TheCarousel() {
   const [notices, setNotices] = useState([]);
@@ -16,25 +24,50 @@ function TheCarousel() {
       });
   }, []);
 
+  const clickHandler = (userName) => {
+    window.location = `/AddNotice/${userName}`;
+  };
+
   return (
     <div>
-      <Carousel>
-        {notices.map((notice) => {
+      <UserConsumer>
+        {/* set the addArticle component */}
+
+        {(userName) => {
           return (
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src="http://lorempics.com/550x250/CCC444/969696"
-                alt="First slide"
-              />
-              <Carousel.Caption>
-                <h3>{notice.title}</h3>
-                <p>{notice.body}</p>
-              </Carousel.Caption>
-            </Carousel.Item>
+            <div>
+              {/* <CurrentUser currentUser={userName} /> */}
+              <div className="alert alert-primary" role="alert">
+                <h1>Notice section</h1>
+
+                <Button onClick={() => clickHandler(userName)}>
+                  Add Notice
+                </Button>
+              </div>
+            </div>
           );
-        })}
-      </Carousel>
+        }}
+      </UserConsumer>
+
+      <Container>
+        <Carousel>
+          {notices.map((notice) => {
+            return (
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src="http://lorempics.com/550x250/CCC444/969696"
+                  alt="First slide"
+                />
+                <Carousel.Caption>
+                  <h3>{notice.title}</h3>
+                  <p>{notice.body}</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            );
+          })}
+        </Carousel>
+      </Container>
     </div>
   );
 }

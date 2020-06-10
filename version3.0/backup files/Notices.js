@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var db = require('../database/db');
 const uuid = require('uuid');
-// fileUpload = require('express-fileupload')
 
 // IMPORTANT ADD CONNECTION SCAPE TO IGNORE SQL INJECTIONS
 
@@ -34,10 +33,10 @@ router.post('/newNotice', (req, res) => {
     // req.body.id,
     // uuid.v4(),
     'default',
-    req.body.userName,
+    req.body.userId,
     req.body.title,
     req.body.body,
-    req.body.time,
+    // req.body.time,
     req.body.admin_r,
     req.body.admin_w,
     req.body.member_r,
@@ -45,7 +44,7 @@ router.post('/newNotice', (req, res) => {
     req.body.viewer_r,
   ];
 
-  let sql = `SET @id = ?; SET @userName = ?; SET @title = ?; SET @body = ?; SET @time = ?;SET @admin_r = ?; SET @admin_w = ?; SET @member_r = ?; SET @member_w = ?; SET @viewer_r = ?;CALL addNoticeProcedure(@id, @userName, @title, @body, @admin_r, @admin_w, @member_r, @member_w, @viewer_r)`;
+  let sql = `SET @id = ?; SET @userId = ?; SET @title = ?; SET @body = ?; SET @admin_r = ?; SET @admin_w = ?; SET @member_r = ?; SET @member_w = ?; SET @viewer_r = ?;CALL addNoticeProcedure(@id, @userId, @title, @body, @admin_r, @admin_w, @member_r, @member_w, @viewer_r)`;
   let query = db.query(
     sql,
     [
@@ -58,13 +57,14 @@ router.post('/newNotice', (req, res) => {
       newNotice[6],
       newNotice[7],
       newNotice[8],
-      newNotice[9],
     ],
     (err, rows) => {
-      if (err) {
+      
+      if(err){    
         if (err.errno == 1452) res.send('The user is not available!');
         else console.log(err);
-      } else {
+      }
+      else {
         rows.forEach((element) => {
           if (element.constructor == Array) {
             var msg = element[0].id;
@@ -77,15 +77,17 @@ router.post('/newNotice', (req, res) => {
   );
 });
 
+
+
 // ////////////////////////////////////////////
 // update a notice
 router.put('/updateNotice', (req, res, next) => {
   const updated_notice = [
     // req.body.id,
-    req.body.userName,
+    req.body.userId,
     req.body.title,
     req.body.body,
-    req.body.time,
+    // req.body.time,
     req.body.admin_r,
     req.body.admin_w,
     req.body.member_r,
@@ -94,7 +96,7 @@ router.put('/updateNotice', (req, res, next) => {
     req.body.id,
   ];
 
-  let sql = `UPDATE notices SET userName = ?, title = ?, body =?,time =?, admin_r = ?, admin_w = ?, member_r =?, member_w = ?, viewer_r = ? WHERE id = ?`;
+  let sql = `UPDATE notices SET userId = ?, title = ?, body =?, admin_r = ?, admin_w = ?, member_r =?, member_w = ?, viewer_r = ? WHERE id = ?`;
 
   let query = db.query(sql, updated_notice, (err, rows) => {
     if (err) throw err;
@@ -114,6 +116,6 @@ router.delete('/deleteNotice', (req, res) => {
     console.log('deleted');
     res.send('successfully deleted!');
   });
-});
+});   
 
-module.exports = router;
+module.exports = router; 
