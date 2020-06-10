@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Alert, Form } from 'react-bootstrap';
+import { Container, Button, Alert, Form } from 'react-bootstrap';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -19,8 +19,8 @@ function EditTimeline({ id, set_timeEvents }) {
     axios
       .get('/timeline/getTimeEvent/' + id)
       .then((res) => {
-        // let datee = moment(res.data[0].date).utc().format('YYYY-MM-DD');
-        // console.log(datee);
+        let datee = moment(res.data[0].date).utc().format('YYYY-MM-DD');
+        console.log(datee);
         setTimeEvents(res.data[0]);
       })
       .catch((err) => {
@@ -61,47 +61,52 @@ function EditTimeline({ id, set_timeEvents }) {
         onClose={() => setShow(false)}
         dismissible
       >
-        <Alert.Heading>Warning!</Alert.Heading>
+        <Alert.Heading>Update the Event</Alert.Heading>
         <p>This Item will be updated</p>
         <hr />
         <div className="d-flex justify-content-end">
           {/* <form id="event_form"> */}
-          <Form onSubmit={submitHandler}>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Event Title</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder={timeEvents.topic}
-                //   set the fetch data
-                value={topic}
-                onChange={(e) => setTopic(e.target.value)}
-              />
-            </Form.Group>
+          <Container>
+            <Form onSubmit={submitHandler}>
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Event Title</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder={timeEvents.topic}
+                  //   set the fetch data
+                  value={topic}
+                  onChange={(e) => setTopic(e.target.value)}
+                />
+              </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>Description</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows="3"
-                placeholder={timeEvents.description}
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              />
-            </Form.Group>
+              <Form.Group controlId="formBasicPassword">
+                <Form.Label>Description</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows="3"
+                  placeholder={timeEvents.description}
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+              </Form.Group>
 
-            <Form.Group controlId="formBasicCheckbox">
-              <Form.Check
-                type="date"
-                label={moment(timeEvents.date).utc().format('YYYY-MM-DD')}
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-              />
-            </Form.Group>
+              <Form.Group controlId="formBasicCheckbox">
+              <Form.Label>Date: {moment(timeEvents.date).utc().format('YYYY-MM-DD')}</Form.Label>
+                <Form.Control
+                  type="date"
+                  // placeholder={moment(timeEvents.date).utc().format('YYYY-MM-DD')}
+                  // onfocus={type='date'}
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                />
+                {console.log(moment(timeEvents.date).utc().format('YYYY-MM-DD'))}
+              </Form.Group>
 
-            <Button variant="warning" type="submit">
-              Update
-            </Button>
-          </Form>
+              <Button variant="warning" type="submit">
+                Update
+              </Button>
+            </Form>
+          </Container>
           {/* </form> */}
         </div>
       </Alert>

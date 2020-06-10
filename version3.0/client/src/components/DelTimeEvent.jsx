@@ -13,7 +13,7 @@ export const DelTimeEvent = ({ id, set_timeEvents }) => {
 
     // console.log('/timeline/deleteTimeEvent/'+id);
     axios
-      .delete('timeline/deleteTimeEvent/' + id)
+      .delete('/timeline/deleteTimeEvent/' + id)
       .then((res) => {
         alert('The event is deleted!!');
 
