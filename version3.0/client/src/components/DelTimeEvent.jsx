@@ -11,13 +11,13 @@ export const DelTimeEvent = ({ id, set_timeEvents }) => {
   const clickHandler = (e) => {
     e.preventDefault();
 
-    console.log('/timeline/deleteTimeEvent/'+id);
+    // console.log('/timeline/deleteTimeEvent/'+id);
     axios
-      .delete('timeline/deleteTimeEvent/'+id)
+      .delete('timeline/deleteTimeEvent/' + id)
       .then((res) => {
         alert('The event is deleted!!');
 
-        set_timeEvents()
+        set_timeEvents();
       })
       .catch((err) => {
         console.log(err);
@@ -26,7 +26,12 @@ export const DelTimeEvent = ({ id, set_timeEvents }) => {
 
   return (
     <>
-      <Alert show={show} variant="danger">
+      <Alert
+        show={show}
+        variant="danger"
+        onClose={() => setShow(false)}
+        dismissible
+      >
         <Alert.Heading>Warning!</Alert.Heading>
         <p>This Item will be deleted</p>
         <hr />

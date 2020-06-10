@@ -17,11 +17,11 @@ router.get('/getTimeEvents', (req, res) => {
 
 // ///////////////////////////////////////////
 //   fetch specific user
-router.get('/getTimeEvent', (req, res) => {
-  let sql = `SELECT * FROM timeline WHERE id = ${req.body.id}`;
+router.get('/getTimeEvent/:id', (req, res) => {
+  let sql = `SELECT * FROM timeline WHERE id = ${req.params.id}`;
   let query = db.query(sql, (err, rows) => {
     if (err) throw err;
-    console.log(rows);
+    // console.log(rows);
     res.send(rows);
   });
 });
@@ -58,15 +58,32 @@ router.post('/newTimeEvent', (req, res) => {
 
 // ////////////////////////////////////////////
 // update a user
-router.put('/updateTimeEvent', (req, res, next) => {
+// router.put('/updateTimeEvent', (req, res, next) => {
+//   const update_user = [
+//     req.body.topic,
+//     req.body.description,
+//     req.body.date,
+//     req.body.id,
+//   ];
+
+//   let sql = `UPDATE timeline SET topic = ?, description = ?, date =? WHERE id = ?`;
+
+//   let query = db.query(sql, update_user, (err, results) => {
+//     if (err) throw err;
+//     console.log(results);
+//     res.json(results);
+//   });
+// });
+
+router.put('/updateTimeEvent/:id', (req, res, next) => {
   const update_user = [
     req.body.topic,
     req.body.description,
     req.body.date,
-    req.body.id,
+    // req.body.id,
   ];
 
-  let sql = `UPDATE timeline SET topic = ?, description = ?, date =? WHERE id = ?`;
+  let sql = `UPDATE timeline SET topic = ?, description = ?, date =? WHERE id = ${req.params.id}`;
 
   let query = db.query(sql, update_user, (err, results) => {
     if (err) throw err;
