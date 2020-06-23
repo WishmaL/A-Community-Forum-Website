@@ -38,8 +38,8 @@ router.post('/newArticle', (req, res) => {
     req.body.body,
     // req.body.time,
     req.body.admin_r,
-    req.body.admin_w,//says can comment
-    req.body.member_r,//says can read
+    req.body.admin_w, //says can comment
+    req.body.member_r, //says can read
     req.body.member_w,
     req.body.viewer_r,
   ];
@@ -59,12 +59,10 @@ router.post('/newArticle', (req, res) => {
       newArticle[8],
     ],
     (err, rows) => {
-      
-      if(err){    
+      if (err) {
         if (err.errno == 1452) res.send('The user is not available!');
         else console.log(err);
-      }
-      else {
+      } else {
         rows.forEach((element) => {
           if (element.constructor == Array) {
             var msg = element[0].id;
@@ -76,8 +74,6 @@ router.post('/newArticle', (req, res) => {
     }
   );
 });
-
-
 
 // ////////////////////////////////////////////
 // update a notice
@@ -107,15 +103,15 @@ router.put('/updateArticle', (req, res, next) => {
 
 // ///////////////////////////////////////////
 // Delete a user
-router.delete('/deleteArticle', (req, res) => {
-  const deleteNotice = [req.body.id];
+router.delete('/deleteArticle/:id', (req, res) => {
+  const deleteArticle = [req.params.id];
 
   let sql = `DELETE FROM articles WHERE id = ?`;
-  let query = db.query(sql, deleteNotice[0], (err, rows) => {
+  let query = db.query(sql, deleteArticle[0], (err, rows) => {
     if (err) throw err;
     console.log('deleted');
     res.send('successfully deleted!');
   });
-});   
+});
 
-module.exports = router;    
+module.exports = router;

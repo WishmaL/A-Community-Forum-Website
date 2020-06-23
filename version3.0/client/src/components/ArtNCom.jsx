@@ -7,6 +7,7 @@ import axios from 'axios';
 import '../styles/carousel.css';
 import Addcomment from './Addcomment';
 import { UserConsumer, CommentIdProvider, CommentsProvider } from './Context';
+import DelArticle from './DelArticle';
 
 export class ArtNCom extends Component {
   constructor(props) {
@@ -16,10 +17,11 @@ export class ArtNCom extends Component {
       articles: [],
       comments: [],
     };
-    this.updateComments = this.updateComments.bind(this);
+    this.fetchComments = this.fetchComments.bind(this);
+    this.fetchArticles = this.fetchArticles.bind(this);
   }
 
-  updateArticles() {
+  fetchArticles() {
     axios
       .get('/articles/getArticles')
       .then((res) => {
@@ -30,7 +32,7 @@ export class ArtNCom extends Component {
       });
   }
 
-  updateComments() {
+  fetchComments() {
     axios
       .get('/comments/getComments')
       .then((res) => {
@@ -42,9 +44,9 @@ export class ArtNCom extends Component {
       });
   }
   componentDidMount() {
-    this.updateArticles();
+    this.fetchArticles();
 
-    this.updateComments();
+    this.fetchComments();
   }
 
   clickHandler(userName) {
@@ -102,6 +104,15 @@ export class ArtNCom extends Component {
                           <Card.Link href="#">Card 1</Card.Link>
                           <Card.Link href="#">Link 2</Card.Link>
                         </Card.Body>
+
+                        {/* DELETE FEATURE OF THE ARTICLE */}
+                        <DelArticle
+                          id={article.id}
+                          fetchArticles={this.fetchArticles}
+                        />
+
+
+                         {/* DELETE FEATURE OF THE ARTICLE */}
                       </Card>
                     </Row>
                     <Row>
@@ -125,7 +136,7 @@ export class ArtNCom extends Component {
                             })
                             .map((comment) => (
                               <div key={comment.id}>
-                                <CommentsProvider value={this.updateComments}>
+                                <CommentsProvider value={this.fetchComments}>
                                   <CommentIdProvider value={comment.id}>
                                     <Comments
                                       thread={comment.thread}
@@ -144,7 +155,7 @@ export class ArtNCom extends Component {
                               <Addcomment
                                 articleId={article.id}
                                 userName={username}
-                                updateComments={this.updateComments}
+                                fetchComments={this.fetchComments}
                               />
                             );
                           }}
@@ -163,3 +174,5 @@ export class ArtNCom extends Component {
 }
 
 export default ArtNCom;
+
+// Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem mollitia ea explicabo aut maxime perspiciatis nam eligendi quod eius. Eligendi voluptates libero quaerat velit eaque nisi facilis hic consequatur suscipit ipsam reprehenderit sunt architecto, cum magnam harum labore ut numquam minima assumenda vero consectetur odit! Aspernatur officia ipsam sunt quos, dicta illo voluptatum quidem earum beatae, libero iste porro, consequatur error ea veniam numquam magnam ab voluptas. Facilis fugiat id quam, illum repudiandae laborum laboriosam sed harum error aliquam commodi, nostrum atque neque velit consequuntur, fugit exercitationem autem corporis molestiae. Vel eaque necessitatibus dolorem sequi ullam sunt consequuntur modi quod.

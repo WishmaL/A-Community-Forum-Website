@@ -20,7 +20,7 @@ function AddReply({ updateReplies, userName, commentId }) {
     axios
       .post('/replies/newReply', data_)
       .then(function (response) {
-        alert('Successfully replied!');
+        // alert('Successfully replied!');
         setReply('');
       })
       .catch(function (error) {

@@ -1,21 +1,19 @@
-// This will delete a timeEvent
-
 import React, { useState } from 'react';
 import { Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
 
-export const DelTimeEvent = ({ id, set_timeEvents }) => {
+const DelArticle = ({ id, fetchArticles }) => {
   const [show, setShow] = useState(false);
 
   const clickHandler = (e) => {
     e.preventDefault();
 
     axios
-      .delete('/timeline/deleteTimeEvent/' + id)
+      .delete('/articles/deleteArticle/' + id)
       .then((res) => {
-        // alert('The event is deleted!!');
+        alert('The article is deleted!!');
 
-        set_timeEvents();
+        fetchArticles();
       })
       .catch((err) => {
         console.log(err);
@@ -31,7 +29,7 @@ export const DelTimeEvent = ({ id, set_timeEvents }) => {
         dismissible
       >
         <Alert.Heading>Warning!</Alert.Heading>
-        <p>This Item will be deleted</p>
+        <p>This Article will be deleted</p>
         <hr />
         <div className="d-flex justify-content-end">
           <Button onClick={clickHandler} variant="outline-danger">
@@ -61,4 +59,4 @@ export const DelTimeEvent = ({ id, set_timeEvents }) => {
   );
 };
 
-export default DelTimeEvent;
+export default DelArticle;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Card, Accordion, Form, ListGroup } from 'react-bootstrap';
 import axios from 'axios';
+import moment from 'moment';
 
 const AddTimeline = ({ set_timeEvents }) => {
   const [topic, setTopic] = useState('');
@@ -17,7 +18,7 @@ const AddTimeline = ({ set_timeEvents }) => {
     axios
       .post('/timeline/newTimeEvent', data_)
       .then((res) => {
-        alert('New Event is added!!!');
+        // alert('New Event is added!!!');
         setTopic('');
         setDescription('');
         setDate('');
@@ -69,6 +70,9 @@ const AddTimeline = ({ set_timeEvents }) => {
                     type="date"
                     label=""
                     value={date}
+                    // value = {moment(date).format('DD/MM/YYYY')}
+                    // {moment(e.target.value).format('DD/MM/YYYY')}
+                    // onChange={(e) => setDate(moment(e.target.value).format('DD/MM/YYYY'))}
                     onChange={(e) => setDate(e.target.value)}
                   />
                 </Form.Group>

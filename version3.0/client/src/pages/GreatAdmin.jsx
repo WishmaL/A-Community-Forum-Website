@@ -31,9 +31,10 @@ export class GreatAdmin extends Component {
             title="The Great Admin page"
             subtitle="This will be the description"
           ></Banner>
-
-          <TheCarousel />
-          <ShowGraphs />
+          
+          {/* UNCOMMENT FOLLOWINGS */}
+          {/* <TheCarousel /> */}
+          {/* <ShowGraphs /> */}
           <ArtNCom />
           <ShowTimeline />
         </UserProvider>

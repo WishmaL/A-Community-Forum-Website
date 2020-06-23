@@ -5,6 +5,7 @@ import axios from 'axios';
 import AddTimeline from './AddTimeline';
 import DelTimeEvent from './DelTimeEvent';
 import EditTimeline from './EditTimeline';
+import moment from 'moment';
 
 export const ShowTimeline = () => {
   const [timeEvents, setTimeEvents] = useState([]);
@@ -14,6 +15,8 @@ export const ShowTimeline = () => {
       .get('/timeline/getTimeEvents')
       .then((res) => {
         setTimeEvents(res.data);
+        // console.log(moment(res.data[0].date).format('DD/MM/YYYY'))
+        
       })
       .catch((err) => {
         console.log(err);
@@ -53,7 +56,8 @@ export const ShowTimeline = () => {
                 <Media.Body>
                   <h5>{timeEvent.topic}</h5>
                   <p>{timeEvent.description}</p>
-                  <p>{timeEvent.date}</p>
+                  <p>{moment(timeEvent.date).format('YYYY-MM-DD')}</p>
+                 
                   <DelTimeEvent
                     id={timeEvent.id}
                     set_timeEvents={updateEvents}

@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import { Button, Row, Col, Alert } from 'react-bootstrap';
 import axios from 'axios';
 
-function Addcomment({ articleId, userName, updateComments }) {
+function Addcomment({ articleId, userName, fetchComments }) {
   // add the following params from useContext
   // userId, userName,
 
@@ -20,13 +20,14 @@ function Addcomment({ articleId, userName, updateComments }) {
     axios
       .post('/comments/newComment', data_)
       .then(function (response) {
-        alert('Successfully comment has been added!');
+        // alert('Successfully comment has been added!');
+        setThread('');
       })
       .catch(function (error) {
         console.log('Error occured! ', error);
       });
 
-    updateComments();
+    fetchComments();
   };
 
   return (
