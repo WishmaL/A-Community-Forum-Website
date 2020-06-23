@@ -41,43 +41,43 @@ const AddTimeline = ({ set_timeEvents }) => {
 
           <Accordion.Collapse eventKey="0">
             <Card.Body>
-              <form id="event_form">
-                <Form onSubmit={submitHandler}>
-                  <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Event Title</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder=""
-                      value={topic}
-                      onChange={(e) => setTopic(e.target.value)}
-                    />
-                  </Form.Group>
+              {/* <form id="event_form"> */}
+              <Form onSubmit={submitHandler}>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Label>Event Title</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder=""
+                    value={topic}
+                    onChange={(e) => setTopic(e.target.value)}
+                  />
+                </Form.Group>
 
-                  <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Description</Form.Label>
-                    <Form.Control
-                      as="textarea"
-                      rows="3"
-                      placeholder="Description"
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
-                    />
-                  </Form.Group>
+                <Form.Group controlId="formBasicPassword">
+                  <Form.Label>Description</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows="3"
+                    placeholder="Description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                </Form.Group>
 
-                  <Form.Group controlId="formBasicCheckbox">
-                    <Form.Check
-                      type="date"
-                      label=""
-                      value={date}
-                      onChange={(e) => setDate(e.target.value)}
-                    />
-                  </Form.Group>
+                <Form.Group controlId="formBasicCheckbox">
+                  <Form.Check
+                    type="date"
+                    label=""
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                  />
+                </Form.Group>
 
-                  <Button variant="primary" type="submit">
-                    Submit
-                  </Button>
-                </Form>
-              </form>
+                <Button variant="primary" type="submit">
+                  Submit
+                </Button>
+              </Form>
+              {/* </form> */}
             </Card.Body>
           </Accordion.Collapse>
         </Card>

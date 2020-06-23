@@ -46,7 +46,7 @@ function TheCarousel() {
         <Carousel>
           {notices.map((notice) => {
             return (
-              <Carousel.Item>
+              <Carousel.Item key={notice.id}>
                 <img
                   className="d-block w-100"
                   src="http://lorempics.com/550x250/6666ff/6666ff"
