@@ -33,7 +33,8 @@ function AddArticle(props) {
       .post('/articles/newArticle', data_)
       .then((res) => {
         console.log(res);
-        alert('New article is added!!!');
+        // following will bring back to the previous page
+        window.location.href='../';
       })
       .catch((err) => {
         console.log(err);

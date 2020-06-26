@@ -47,7 +47,7 @@ router.post('/newUser', (req, res) => {
     req.body.roll,
   ];
 
-  let sql = `SET @id = ?; SET @name = ?; SET @email = ?; SET @password = ?; SET @contact = ?; SET @roll = ?; CALL myprocedure(@id, @name, @email, @password, @contact, @roll)`;
+  let sql = `SET @id = ?; SET @name = ?; SET @email = ?; SET @password = ?; SET @contact = ?; SET @roll = ?; CALL addUserprocedure(@id, @name, @email, @password, @contact, @roll)`;
   let query = db.query(
     sql,
     [newUser[0], newUser[1], newUser[2], newUser[3], newUser[4], newUser[5]],

@@ -22,6 +22,7 @@ function Addcomment({ articleId, userName, fetchComments }) {
       .then(function (response) {
         // alert('Successfully comment has been added!');
         setThread('');
+        
       })
       .catch(function (error) {
         console.log('Error occured! ', error);

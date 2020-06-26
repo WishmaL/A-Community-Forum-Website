@@ -11,7 +11,7 @@ const DelArticle = ({ id, fetchArticles }) => {
     axios
       .delete('/articles/deleteArticle/' + id)
       .then((res) => {
-        alert('The article is deleted!!');
+        // alert('The article is deleted!!');
 
         fetchArticles();
       })

@@ -111,8 +111,7 @@ export class ArtNCom extends Component {
                           fetchArticles={this.fetchArticles}
                         />
 
-
-                         {/* DELETE FEATURE OF THE ARTICLE */}
+                        {/* DELETE FEATURE OF THE ARTICLE */}
                       </Card>
                     </Row>
                     <Row>
@@ -123,8 +122,8 @@ export class ArtNCom extends Component {
                         <style type="text/css">
                           {`
                             .my_class {
-                              height:500px;
-                              overflow-y:scroll
+                              // height:100px;
+                              // overflow-y:scroll
                             }
                           `}
                         </style>
