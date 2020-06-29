@@ -8,6 +8,8 @@ import '../styles/carousel.css';
 import Addcomment from './Addcomment';
 import { UserConsumer, CommentIdProvider, CommentsProvider } from './Context';
 import DelArticle from './DelArticle';
+// try to add link between addArticle and so on
+import { Link, useLocation } from 'react-router-dom';
 
 export class ArtNCom extends Component {
   constructor(props) {
@@ -16,6 +18,7 @@ export class ArtNCom extends Component {
     this.state = {
       articles: [],
       comments: [],
+      default_Key: [],
     };
     this.fetchComments = this.fetchComments.bind(this);
     this.fetchArticles = this.fetchArticles.bind(this);
@@ -25,7 +28,7 @@ export class ArtNCom extends Component {
     axios
       .get('/articles/getArticles')
       .then((res) => {
-        this.setState({ articles: res.data });
+        this.setState({ articles: res.data, default_Key: res.data[0] });
       })
       .catch((err) => {
         console.log(err);
@@ -48,10 +51,10 @@ export class ArtNCom extends Component {
     this.fetchComments();
   }
 
-  clickHandler(userName) {
-   
-    window.location = `/AddArticle/${userName}`;
-  }
+  // clickHandler(userName) {
+
+  //   window.location = `/AddArticle/${userName}`;
+  // }
 
   render() {
     const articleList = this.state.articles;
@@ -59,6 +62,8 @@ export class ArtNCom extends Component {
 
     return (
       <div>
+        {console.log(this.state.default_Key)}
+        {console.log(articleList[0])}
         <div className="alert alert-primary" role="alert">
           <h1>Article section</h1>
 
@@ -66,17 +71,27 @@ export class ArtNCom extends Component {
 
           <UserConsumer>
             {(userName) => {
+              // let link = `/AddArticle/${userName}`
               return (
-                <Button onClick={() => this.clickHandler(userName)}>
-                  Add article
-                </Button>
+                // <Button onClick={() => this.clickHandler(userName)}>
+
+                <Link
+                  to={(location) => ({
+                    ...location,
+                    pathname: `/AddArticle/${userName}`,
+                  })}
+                >
+                  <Button type="button">Add Article</Button>
+                </Link>
               );
             }}
           </UserConsumer>
         </div>
         <div className="container">
           <Tabs
-            defaultActiveKey={Object.keys(articleList)[0]}
+            // defaultActiveKey={Object.keys(articleList)[0]}
+            defaultActiveKey={articleList[0]}
+            // defaultActiveKey={this.state.articles[0]}
             transition={false}
             id="noanim-tab-example"
           >

@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Form, Col, Button, Container } from 'react-bootstrap';
 import axios from 'axios';
 import CurrentUser from '../components/CurrentUser';
+import { Redirect } from 'react-router';
 
 function AddArticle(props) {
 
@@ -16,9 +17,11 @@ function AddArticle(props) {
   const [member_r, setMember_r] = useState(0);
   const [member_w, setMember_w] = useState(0);
   const [viewer_r, setViewer_r] = useState(0);
+  const [redirect, setRedirect] = useState(false)
 
   useEffect(() => {
     setUserName(props.match.params.userName);
+    console.log(props.location.pathname)
   }, []);
 
   const submitHandler = (e) => {
@@ -40,7 +43,13 @@ function AddArticle(props) {
         // following will bring back to the previous page
         // window.location.href='../';
 
+        // the following is working
         history.goBack()
+
+        // Try the new following thing
+        setRedirect(true)
+
+
         // <Redirect to={{ pathname: "../" }}/>
         // history.go(-1);
         // document.location.reload(true);
@@ -50,6 +59,10 @@ function AddArticle(props) {
         console.log(err);
       });
   };
+
+  if(redirect){
+    return <Redirect push to={props.location.pathname} />;
+  }
 
   return (
     <div>
