@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
 const UserContext = React.createContext();
 const CommentIdContext = React.createContext();
 const ListingComContext = React.createContext();
+// export const AuthContext = React.createContext();
 
 const UserProvider = UserContext.Provider;
 const UserConsumer = UserContext.Consumer;
@@ -21,5 +22,8 @@ export {
   CommentsProvider,
   CommentsConsumer,
 };
+// export function useAuth() {
+//   return useContext(AuthContext);
+// }
 
 export default UserContext;

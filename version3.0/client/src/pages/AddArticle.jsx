@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Form, Col, Button, Container } from 'react-bootstrap';
 import axios from 'axios';
 import CurrentUser from '../components/CurrentUser';
 
 function AddArticle(props) {
+
+  let history = useHistory();
+
   const [userName, setUserName] = useState('');
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
@@ -34,7 +38,13 @@ function AddArticle(props) {
       .then((res) => {
         console.log(res);
         // following will bring back to the previous page
-        window.location.href='../';
+        // window.location.href='../';
+
+        history.goBack()
+        // <Redirect to={{ pathname: "../" }}/>
+        // history.go(-1);
+        // document.location.reload(true);
+        // return false;
       })
       .catch((err) => {
         console.log(err);

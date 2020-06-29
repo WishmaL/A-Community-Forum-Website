@@ -45,11 +45,11 @@ export class ArtNCom extends Component {
   }
   componentDidMount() {
     this.fetchArticles();
-
     this.fetchComments();
   }
 
   clickHandler(userName) {
+   
     window.location = `/AddArticle/${userName}`;
   }
 

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db = require('../database/db');
 const uuid = require('uuid');
+const jwt = require('jsonwebtoken');
 
 db.connect((err) => {
   if (err) {
@@ -25,15 +26,50 @@ router.get('/getUsers', (req, res) => {
 
 // ///////////////////////////////////////////
 //   fetch specific user
+// router.post('/getUser', (req, res) => {
+//   let sql = `SELECT * FROM users WHERE email = ? AND password = ?`;
+//   let param = [req.body.email, req.body.password];
+//   let query = db.query(sql, param, (err, results) => {
+//     if (err) console.log('The error is ....>>', err);
+//     console.log(results);
+//     res.send(results);
+//   });
+// });
+
 router.post('/getUser', (req, res) => {
   let sql = `SELECT * FROM users WHERE email = ? AND password = ?`;
-  let param = [req.body.email, req.body.password];
-  let query = db.query(sql, param, (err, results) => {
+  let user = [req.body.email, req.body.password];
+  let query = db.query(sql, user, (err, results) => {
     if (err) console.log('The error is ....>>', err);
-    console.log(results);
-    res.send(results);
+    if (!results.length) {
+      res.sendStatus(403);
+      // res.json({
+      //   results,
+      //   token:'',
+      // });
+    } else {
+      
+      // console.log(results.length);
+          jwt.sign({ user }, 'secretkey', (err, token) => {
+            res.json({
+              results,
+              token,
+            });
+          });
+    }
   });
 });
+
+
+
+
+
+
+
+
+
+
+
 
 router.post('/newUser', (req, res) => {
   const newUser = [

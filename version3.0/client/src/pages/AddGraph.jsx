@@ -28,6 +28,7 @@ export const AddGraph = (props) => {
       .then((res) => {
         console.log(res);
         alert('New graph is added!!!');
+        
       })
       .catch((err) => {
         console.log(err);
