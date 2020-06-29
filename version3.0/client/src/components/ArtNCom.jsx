@@ -51,6 +51,8 @@ export class ArtNCom extends Component {
     this.fetchComments();
   }
 
+  // TAKE THIS TO THE NOTE
+  // ////////////////////////////////////////////////////////////////
   // clickHandler(userName) {
 
   //   window.location = `/AddArticle/${userName}`;
@@ -62,8 +64,8 @@ export class ArtNCom extends Component {
 
     return (
       <div>
-        {console.log(this.state.default_Key)}
-        {console.log(articleList[0])}
+        {/* {console.log(this.state.default_Key)}
+        {console.log(articleList[0])} */}
         <div className="alert alert-primary" role="alert">
           <h1>Article section</h1>
 
@@ -75,6 +77,8 @@ export class ArtNCom extends Component {
               return (
                 // <Button onClick={() => this.clickHandler(userName)}>
 
+
+                // following will send the current location as prop to AddArticle component
                 <Link
                   to={(location) => ({
                     ...location,

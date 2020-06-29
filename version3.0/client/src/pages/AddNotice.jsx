@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Container, Col, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import CurrentUser from '../components/CurrentUser';
 import moment from 'moment';
 import AddNoticePics from '../components/AddNoticePics';
+import { Redirect } from 'react-router';
 
 function AddNotice(props) {
+  let history = useHistory();
+
   const [userName, setUserName] = useState(props.match.params.userName);
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
@@ -15,6 +19,7 @@ function AddNotice(props) {
   const [member_r, setMember_r] = useState(0);
   const [member_w, setMember_w] = useState(0);
   const [viewer_r, setViewer_r] = useState(0);
+  // const [redirect, setRedirect] = useState(false)
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -36,7 +41,10 @@ function AddNotice(props) {
       .post('/notices/newNotice', data_)
       .then((res) => {
         console.log(res);
-        alert('New Notice is added!!!');
+        // alert('New Notice is added!!!');
+
+        history.goBack();
+        
       })
       .catch((err) => {
         console.log(err);

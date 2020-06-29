@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Container, Form } from 'react-bootstrap';
 import axios from 'axios';
 import CurrentUser from '../components/CurrentUser';
 
 export const AddGraph = (props) => {
+
+  let history = useHistory();
+
+
   const [userName, setUserName] = useState(props.match.params.userName);
   const [title, setTitle] = useState('');
   const [iframe, setIframe] = useState('');
@@ -26,8 +31,10 @@ export const AddGraph = (props) => {
     axios
       .post('/graphs/newGraph', data_)
       .then((res) => {
-        console.log(res);
-        alert('New graph is added!!!');
+        // console.log(res);
+        // alert('New graph is added!!!');
+
+        history.goBack()
         
       })
       .catch((err) => {

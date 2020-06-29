@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { Carousel, Container, Button } from 'react-bootstrap';
 import Axios from 'axios';
 import { UserConsumer } from './Context';
+import { Link, useLocation } from 'react-router-dom';
 
 function TheCarousel() {
   const [notices, setNotices] = useState([]);
@@ -20,9 +21,11 @@ function TheCarousel() {
       });
   }, []);
 
-  const clickHandler = (userName) => {
-    window.location = `/AddNotice/${userName}`;
-  };
+  // TAKE THIS TO THE NOTE
+  // ////////////////////////////////////////////////////////////////
+  // const clickHandler = (userName) => {
+  //   window.location = `/AddNotice/${userName}`;
+  // };
 
   return (
     <div>
@@ -33,9 +36,14 @@ function TheCarousel() {
               <div className="alert alert-primary" role="alert">
                 <h1>Notice section</h1>
 
-                <Button onClick={() => clickHandler(userName)}>
-                  Add Notice
-                </Button>
+                <Link
+                  to={(location) => ({
+                    ...location,
+                    pathname: `/AddNotice/${userName}`,
+                  })}
+                >
+                  <Button type="button">Add Notice</Button>
+                </Link>
               </div>
             </div>
           );

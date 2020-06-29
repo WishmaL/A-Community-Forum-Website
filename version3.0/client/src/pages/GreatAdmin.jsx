@@ -33,7 +33,8 @@ export class GreatAdmin extends Component {
           ></Banner>
           
           {/* UNCOMMENT FOLLOWINGS */}
-          {/* <TheCarousel /> */}
+          
+          <TheCarousel />
           {/* <ShowGraphs /> */}
           <ArtNCom />
           <ShowTimeline />

@@ -17,7 +17,7 @@ function AddArticle(props) {
   const [member_r, setMember_r] = useState(0);
   const [member_w, setMember_w] = useState(0);
   const [viewer_r, setViewer_r] = useState(0);
-  const [redirect, setRedirect] = useState(false)
+  // const [redirect, setRedirect] = useState(false)
 
   useEffect(() => {
     setUserName(props.match.params.userName);
@@ -47,7 +47,7 @@ function AddArticle(props) {
         history.goBack()
 
         // Try the new following thing
-        setRedirect(true)
+        // setRedirect(true)
 
 
         // <Redirect to={{ pathname: "../" }}/>
@@ -60,9 +60,9 @@ function AddArticle(props) {
       });
   };
 
-  if(redirect){
-    return <Redirect push to={props.location.pathname} />;
-  }
+  // if(redirect){
+  //   return <Redirect push to={props.location.pathname} />;
+  // }
 
   return (
     <div>
