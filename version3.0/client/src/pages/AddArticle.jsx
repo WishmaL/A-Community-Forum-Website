@@ -5,8 +5,10 @@ import axios from 'axios';
 import CurrentUser from '../components/CurrentUser';
 import { Redirect } from 'react-router';
 
-function AddArticle(props) {
+import CKEditor from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
+function AddArticle(props) {
   let history = useHistory();
 
   const [userName, setUserName] = useState('');
@@ -19,9 +21,11 @@ function AddArticle(props) {
   const [viewer_r, setViewer_r] = useState(0);
   // const [redirect, setRedirect] = useState(false)
 
+  // const [value, setValue] = useState('');
+
   useEffect(() => {
     setUserName(props.match.params.userName);
-    console.log(props.location.pathname)
+    console.log(props.location.pathname);
   }, []);
 
   const submitHandler = (e) => {
@@ -44,11 +48,10 @@ function AddArticle(props) {
         // window.location.href='../';
 
         // the following is working
-        history.goBack()
+        history.goBack();
 
         // Try the new following thing
         // setRedirect(true)
-
 
         // <Redirect to={{ pathname: "../" }}/>
         // history.go(-1);
@@ -58,6 +61,12 @@ function AddArticle(props) {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  // Used for the text in the article
+  const onchangeHandler = (e, editor) => {
+    const data = editor.getData();
+    setBody(data);
   };
 
   // if(redirect){
@@ -82,14 +91,15 @@ function AddArticle(props) {
           </Form.Row>
 
           <Form.Group controlId="formGridAddress1">
-            <Form.Label>Article body</Form.Label>
+            {/* <Form.Label>Article body</Form.Label>
             <Form.Control
               as="textarea"
               rows="10"
               placeholder=""
               value={body}
               onChange={(e) => setBody(e.target.value)}
-            />
+            /> */}
+            <CKEditor editor={ClassicEditor} onChange={onchangeHandler} />
           </Form.Group>
 
           {/* File upload has to be done */}

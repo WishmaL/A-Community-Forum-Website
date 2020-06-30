@@ -10,6 +10,7 @@ import { UserConsumer, CommentIdProvider, CommentsProvider } from './Context';
 import DelArticle from './DelArticle';
 // try to add link between addArticle and so on
 import { Link, useLocation } from 'react-router-dom';
+import ReactHtmlParser from 'react-html-parser';
 
 export class ArtNCom extends Component {
   constructor(props) {
@@ -77,7 +78,6 @@ export class ArtNCom extends Component {
               return (
                 // <Button onClick={() => this.clickHandler(userName)}>
 
-
                 // following will send the current location as prop to AddArticle component
                 <Link
                   to={(location) => ({
@@ -112,14 +112,14 @@ export class ArtNCom extends Component {
                       <Card>
                         <Card.Body>
                           <Card.Title>{article.title}</Card.Title>
-                          <Card.Subtitle className="mb-2 text-muted">
+                          {/* <Card.Subtitle className="mb-2 text-muted">
                             Card Subtitle*****optional*******
-                          </Card.Subtitle>
-                          <img
+                          </Card.Subtitle> */}
+                          {/* <img
                             src="http://lorempics.com/300x200/142850/f7f7f7"
                             alt="the pic"
-                          />
-                          <Card.Text>{article.body}</Card.Text>
+                          /> */}
+                          <Card.Text>{ReactHtmlParser(article.body)}</Card.Text>
                           <Card.Link href="#">Card 1</Card.Link>
                           <Card.Link href="#">Link 2</Card.Link>
                         </Card.Body>

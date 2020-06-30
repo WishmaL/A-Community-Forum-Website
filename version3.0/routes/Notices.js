@@ -105,8 +105,8 @@ router.put('/updateNotice', (req, res, next) => {
 
 // ///////////////////////////////////////////
 // Delete a user
-router.delete('/deleteNotice', (req, res) => {
-  const deleteNotice = [req.body.id];
+router.delete('/deleteNotice/:id', (req, res) => {
+  const deleteNotice = [req.params.id];
 
   let sql = `DELETE FROM notices WHERE id = ?`;
   let query = db.query(sql, deleteNotice[0], (err, rows) => {
