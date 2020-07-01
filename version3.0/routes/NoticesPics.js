@@ -22,49 +22,66 @@ router.get('/getNoticesPic', (req, res) => {
   let sql = `SELECT * FROM notices_pics WHERE id = ${req.body.id}`;
   let query = db.query(sql, (err, rows) => {
     if (err) throw err;
-    console.log(rows);
-    res.send(rows);
+
+    const file = req.files.file;
+
+    res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
+    // console.log(rows);
+    // res.send(rows);
   });
 });
 
-// ///////////////////////////////////////////
-// insert a notice_pic
-router.post('/newNoticesPic', (req, res) => {
+
+
+
+
+router.post('/upload', (req, res) => {
   if (req.files === null) {
     return res.status(400).json({ msg: 'No file uploaded' });
   }
-  const newNoticePic = [
-    'default',
-    req.body.noticeId,
-    // req.body.noticePic
-  ];
 
-  // ///////////////////////////////
-  // req.files.file ,'file' will define in react
   const file = req.files.file;
-  //   noticePic is the name of the file
-  var img_name = file.name;
 
-  file.mv(`../client/public/uploads/${file.name}`, (err) => {
+  file.mv(`client/public/uploads/${file.name}`, (err) => {
     if (err) {
-      console.error(err);
+      console.error('the error is --->',err);
       return res.status(500).send(err);
-    }
+    } 
 
     res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
   });
+});
 
-  // //////////////////////////////////
+
+
+
+
+
+
+
+
+
+// ///////////////////////////////////////////
+// insert a notice_pic data
+router.post('/newNoticesPic', (req, res) => {
+ 
+  const newNoticePic = [
+    'default',
+    req.body.noticeId,
+    req.body.noticePic 
+  ];
+ 
 
   let sql = `SET @id = ?; SET @noticeId = ?; SET @noticePic = ?; CALL addNoticePicProcedure(@id, @noticeId, @noticePic)`;
   let query = db.query(
     sql,
-    [newNoticePic[0], newNoticePic[1], img_name],
+    [newNoticePic[0], newNoticePic[1], newNoticePic[2]],
     (err, rows) => {
-      if (err) {
-        if (err.errno == 1452) res.send('The user is not available!');
-        else console.log(err);
-      } else {
+      // if (err) {
+      //   if (err.errno == 1452) res.send('The user is not available!');
+      //   else console.log(err);
+      // } else {
+        if (err) throw err;
         rows.forEach((element) => {
           if (element.constructor == Array) {
             var msg = element[0].id;
@@ -72,7 +89,7 @@ router.post('/newNoticesPic', (req, res) => {
             console.log(element[0]);
           }
         });
-      }
+      // }
     }
   );
 });

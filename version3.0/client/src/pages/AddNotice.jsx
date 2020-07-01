@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Container, Col, Button, Form } from 'react-bootstrap';
+import { Container, Col, Button, Form, Card, Alert } from 'react-bootstrap';
 import axios from 'axios';
 import CurrentUser from '../components/CurrentUser';
 import moment from 'moment';
-import AddNoticePics from '../components/AddNoticePics';
-import { Redirect } from 'react-router';
+// import AddNoticePics from '../components/AddNoticePics';
+// import { Redirect } from 'react-router';
+// import Message from './Message';
 
 function AddNotice(props) {
   let history = useHistory();
@@ -20,9 +21,27 @@ function AddNotice(props) {
   const [member_w, setMember_w] = useState(0);
   const [viewer_r, setViewer_r] = useState(0);
   // const [redirect, setRedirect] = useState(false)
+  const [noticeId, setNoticeId] = useState(0);
 
+  const [file, setFile] = useState('');
+  const [filename, setFilename] = useState('Choose File');
+  const [uploadedFile, setUploadedFile] = useState({});
+  const [message, setMessage] = useState('');
+  const [isSubmitInfo, setIsSubmitInfo] = useState(false);
+
+  // following will keep the pic submmit button disabled until submit the notice
+  function validateForm(props) {
+    return isSubmitInfo;
+  }
+  // ////////////////////////////////////////
+  const onChange = (e) => {
+    setFile(e.target.files[0]);
+    setFilename(e.target.files[0].name);
+  };
+  // ///////////////////////////////////////
   const submitHandler = (e) => {
     e.preventDefault();
+
     // set the current time here
     setTime(moment().format());
     let data_ = {
@@ -37,14 +56,65 @@ function AddNotice(props) {
       viewer_r: viewer_r,
     };
     console.log(data_);
+
     axios
       .post('/notices/newNotice', data_)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         // alert('New Notice is added!!!');
+        // checking following
+        console.log(res.data);
+        setNoticeId(res.data);
+        setIsSubmitInfo(true);
+        // history.goBack();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // /////////////////////////////////////////////
+
+  const submitHandler2 = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('file', file);
+
+    axios
+      .post('/noticesPics/upload', formData)
+      .then((res) => {
+        const { fileName, filePath } = res.data;
+
+        setUploadedFile({ fileName, filePath });
+
+        setMessage('File Uploaded');
+        console.log(res.data);
+      })
+
+      .catch((err) => {
+        if (err.response.status === 500) {
+          setMessage('There was a problem with the server');
+          console.log(err);
+        } else {
+          setMessage(err.response.data.msg);
+          console.log(err);
+        }
+      });
+    // ////////////////////////////
+    // FOLLOWING IS FOR NOTICEPICS TABLE
+    const data1_ = {
+      noticeId: noticeId,
+      noticePic: filename,
+    };
+    console.log('data of noticesPic ', data1_);
+    // FOLLOWING IS FOR UPDATE THE NOTICESPIC TABLE
+    axios
+      .post('/noticesPics/newNoticesPic', data1_)
+      .then((res) => {
+        console.log('NOTICES: ', res);
+        alert('New Notice is added!!!');
 
         history.goBack();
-        
       })
       .catch((err) => {
         console.log(err);
@@ -84,9 +154,10 @@ function AddNotice(props) {
 
           {/* File upload has to be done */}
 
-          <AddNoticePics />
+          {/* <AddNoticePics /> */}
+          {/* ////////////////////////////////////////////////////////////////// */}
 
-          {/* pic upload */}
+          {/* ////////////////////////////////////////////////////////////////// */}
 
           <Form.Group id="formGridCheckbox">
             <h3>Who can Edit</h3>
@@ -98,7 +169,7 @@ function AddNotice(props) {
             <Form.Check
               type="checkbox"
               label="Member"
-              onClick={() => setAdmin_w(1)}
+              onClick={() => setMember_w(1)}
             />
             <h3>Who can Read</h3>
             <Form.Check
@@ -122,6 +193,50 @@ function AddNotice(props) {
             Add new notice
           </Button>
         </Form>
+
+
+        {/* WHEN HOVER THE UPLOAD PIC AREA, ALERT SHOULD BE DISPLAYED */}
+        <Alert variant={'info'}>hello</Alert>
+        <Card>
+          <Card.Header>Add Notice Pic</Card.Header>
+
+          <Card.Body>
+            <form onSubmit={submitHandler2}>
+              <div className="custom-file mb-4">
+                <input
+                  type="file"
+                  className="custom-file-input"
+                  id="customFile"
+                  disabled={!validateForm()}
+                  onChange={onChange}
+                />
+                <label className="custom-file-label" htmlFor="customFile">
+                  {filename}
+                </label>
+              </div>
+              <Button
+                block
+                bssize="large"
+                disabled={!validateForm()}
+                type="submit"
+              >
+                Upload the pic
+              </Button>
+            </form>
+            {/* {uploadedFile ? (
+              <div className="row mt-5">
+                <div className="col-md-6 m-auto">
+                  <h3 className="text-center">{uploadedFile.fileName}</h3>
+                  <img
+                    style={{ width: '100%' }}
+                    src={uploadedFile.filePath}
+                    alt=""
+                  />
+                </div>
+              </div>
+            ) : null} */}
+          </Card.Body>
+        </Card>
       </Container>
     </div>
   );

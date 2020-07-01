@@ -17,7 +17,7 @@ router.get('/getNotices', (req, res) => {
 });
 
 // ///////////////////////////////////////////
-//   fetch specific user
+//   fetch specific notice
 router.get('/getNotice', (req, res) => {
   let sql = `SELECT * FROM notices WHERE id = ${req.body.id}`;
   let query = db.query(sql, (err, rows) => {
@@ -68,7 +68,9 @@ router.post('/newNotice', (req, res) => {
         rows.forEach((element) => {
           if (element.constructor == Array) {
             var msg = element[0].id;
-            res.send('Inserted notice id : ' + msg);
+            // following msg has the notice id
+            res.json(msg);
+
             console.log(element[0]);
           }
         });

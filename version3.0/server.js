@@ -32,10 +32,10 @@ var Timeline = require('./routes/Timeline.js');
 app.use('/timeline', Timeline);
 
 var NoticesPics = require('./routes/NoticesPics.js');
-app.use('/timeline', NoticesPics);
+app.use('/noticesPics', NoticesPics);
 
 app.listen(port, () => {
   console.log('Server is running on port', port);
 });
 
-module.exports = app;
+module.exports = app; 

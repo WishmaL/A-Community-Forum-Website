@@ -79,13 +79,13 @@ function AddNoticePics() {
                   </label>
                 </div>
 
-                <Progress percentage={uploadPercentage} />
+                {/* <Progress percentage={uploadPercentage} /> */}
 
-                <input
+                {/* <input
                   type="submit"
                   value="Upload"
                   className="btn btn-primary btn-block mt-4"
-                />
+                /> */}
               </form>
               {uploadedFile ? (
                 <div className="row mt-5">
