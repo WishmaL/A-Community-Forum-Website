@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import { Row, Col, Card, Button } from 'react-bootstrap';
+import { Row, Col, Card, Button, Image } from 'react-bootstrap';
 import Comments from './Comments';
 import axios from 'axios';
 import '../styles/carousel.css';
@@ -19,10 +19,12 @@ export class ArtNCom extends Component {
     this.state = {
       articles: [],
       comments: [],
+      articlePics: [],
       default_Key: [],
     };
     this.fetchComments = this.fetchComments.bind(this);
     this.fetchArticles = this.fetchArticles.bind(this);
+    this.fetchArticlePics = this.fetchArticlePics.bind(this);
   }
 
   fetchArticles() {
@@ -47,8 +49,22 @@ export class ArtNCom extends Component {
         console.log(err);
       });
   }
+
+  fetchArticlePics() {
+    axios
+      .get('/articlePics/getArticlesPics')
+      .then((res) => {
+        this.setState({ articlePics: res.data });
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   componentDidMount() {
     this.fetchArticles();
+    this.fetchArticlePics();
     this.fetchComments();
   }
 
@@ -62,6 +78,7 @@ export class ArtNCom extends Component {
   render() {
     const articleList = this.state.articles;
     const commentList = this.state.comments;
+    const articlePics = this.state.articlePics;
 
     return (
       <div>
@@ -93,8 +110,8 @@ export class ArtNCom extends Component {
         </div>
         <div className="container">
           <Tabs
-            // defaultActiveKey={Object.keys(articleList)[0]}
-            defaultActiveKey={articleList[0]}
+            defaultActiveKey={Object.keys(articleList)[0]}
+            // defaultActiveKey={articleList[0]}
             // defaultActiveKey={this.state.articles[0]}
             transition={false}
             id="noanim-tab-example"
@@ -111,7 +128,35 @@ export class ArtNCom extends Component {
                     <Row>
                       <Card>
                         <Card.Body>
-                          <Card.Title>{article.title}</Card.Title>
+                          <Card.Title>
+                            <h1 className="text-center">{article.title}</h1>
+                          </Card.Title>
+
+                          {/* /////////////////////////////////// */}
+
+                          {
+                            articlePics
+                              .filter((picInfo) => {
+                                return picInfo.articleId === article.id;
+                              })
+                              .map((picInfo) => {
+                                return (
+                                  <div key={picInfo.id}>
+                                    <Image
+                                      className="d-block w-100"
+                                      src={picInfo.articlePicPath}
+                                      alt="forrid"
+                                      fluid
+                                    />
+                                  </div>
+                                );
+                              })
+
+                            // console.log(picInfo);
+                          }
+
+                          {/* //////////////////////////////////// */}
+
                           {/* <Card.Subtitle className="mb-2 text-muted">
                             Card Subtitle*****optional*******
                           </Card.Subtitle> */}

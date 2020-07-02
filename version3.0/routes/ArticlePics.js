@@ -1,33 +1,90 @@
-// var express = require('express');
-// var router = express.Router();
-// var db = require('../database/db');
-// const uuid = require('uuid');
+var express = require('express');
+var router = express.Router();
+var db = require('../database/db');
+const uuid = require('uuid');
 
-// // IMPORTANT ADD CONNECTION SCAPE TO IGNORE SQL INJECTIONS
+// IMPORTANT ADD CONNECTION SCAPE TO IGNORE SQL INJECTIONS
 
-// //   fetch data
-// router.get('/getArticles', (req, res) => {
-//   let sql = 'SELECT * FROM articles';
-//   let query = db.query(sql, (err, rows) => {
-//     if (err) throw err;
-//     console.log(rows);
-//     res.send(rows);
-//   });
-// });
+//   fetch data
+router.get('/getArticlesPics', (req, res) => {
+  let sql = 'SELECT * FROM article_pics';
+  let query = db.query(sql, (err, rows) => {
+    if (err) throw err;
+    console.log(rows);
+    res.send(rows);
+  });
+});
 
-// // ///////////////////////////////////////////
-// //   fetch specific article
-// router.get('/getArticle', (req, res) => {
-//   let sql = `SELECT * FROM articles WHERE id = ${req.body.id}`;
-//   let query = db.query(sql, (err, rows) => {
-//     if (err) throw err;
-//     console.log(rows);
-//     res.send(rows);
-//   });
-// });
+// ///////////////////////////////////////////
+//   fetch specific article
 
-// // ///////////////////////////////////////////
-// // insert a notice
+router.get('/getArticlePic', (req, res) => {
+  let sql = `SELECT * FROM articles WHERE id = ${req.body.id}`;
+  let query = db.query(sql, (err, rows) => {
+    if (err) throw err;
+    const file = req.files.file;
+
+    res.json({
+      fileName: file.name,
+      filePath: `/uploads/article_pics/${file.name}`,
+    });
+  });
+});
+
+router.post('/upload', (req, res) => {
+  if (req.files === null) {
+    return res.status(400).json({ msg: 'No file uploaded' });
+  }
+
+  const file = req.files.file;
+
+  file.mv(`client/public/uploads/article_pics/${file.name}`, (err) => {
+    if (err) {
+      console.error('the error is --->', err);
+      return res.status(500).send(err);
+    }
+
+    res.json({
+      fileName: file.name,
+      filePath: `/uploads/article_pics/${file.name}`,
+    });
+  });
+});
+
+// insert Article data into article_pics table
+router.post('/newArticlesPic', (req, res) => {
+  const newArticlePic = [
+    'default',
+    req.body.articleId,
+    req.body.articlePic,
+    req.body.articlePicPath,
+  ];
+
+  let sql = `SET @id = ?; SET @articleId = ?; SET @articlePic = ?; SET @articlePicPath = ?; CALL addArticlePicProcedure(@id, @articleId, @articlePic, @articlePicPath)`;
+  let query = db.query(
+    sql,
+    [newArticlePic[0], newArticlePic[1], newArticlePic[2], newArticlePic[3]],
+    (err, rows) => {
+      // if (err) {
+      //   if (err.errno == 1452) res.send('The user is not available!');
+      //   else console.log(err);
+      // } else {
+      if (err) throw err;
+      rows.forEach((element) => {
+        if (element.constructor == Array) {
+          var msg = element[0].id;
+          // res.send('Inserted notice pic id : ' + msg);
+          res.json(msg);
+          console.log(element[0]);
+        }
+      });
+      // }
+    }
+  );
+});
+
+// ///////////////////////////////////////////
+// insert a notice
 // router.post('/newArticle', (req, res) => {
 //   const newArticle = [
 //     // req.body.id,
@@ -58,8 +115,8 @@
 //       newArticle[8],
 //     ],
 //     (err, rows) => {
-      
-//       if(err){    
+
+//       if(err){
 //         if (err.errno == 1452) res.send('The user is not available!');
 //         else console.log(err);
 //       }
@@ -75,8 +132,6 @@
 //     }
 //   );
 // });
-
-
 
 // // ////////////////////////////////////////////
 // // update a notice
@@ -115,6 +170,6 @@
 //     console.log('deleted');
 //     res.send('successfully deleted!');
 //   });
-// });   
+// });
 
-// module.exports = router;    
+module.exports = router;

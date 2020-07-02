@@ -24,7 +24,7 @@ function AddNotice(props) {
   const [noticeId, setNoticeId] = useState(0);
 
   const [file, setFile] = useState('');
-  const [filename, setFilename] = useState('Choose File');
+  const [filename, setFilename] = useState('Default File');
   const [filePath, setFilePath] = useState('');
   // const [uploadedFile, setUploadedFile] = useState({});
   // const [message, setMessage] = useState('');
@@ -84,11 +84,11 @@ function AddNotice(props) {
     axios
       .post('/noticesPics/upload', formData)
       .then((res) => {
-        const { fileName, filePath } = res.data;
+        // const { fileName, filePath } = res.data;
 
         // setUploadedFile({ fileName, filePath });
         // setFilename(fileName)
-        setFilePath(filePath);
+        // setFilePath(filePath);
 
         // setMessage('File Uploaded');
         console.log(res.data);
@@ -108,17 +108,22 @@ function AddNotice(props) {
     const data1_ = {
       noticeId: noticeId,
       noticePic: filename,
-      noticePicPath: filePath,
+      noticePicPath: `/uploads/banners/${filename}`,
     };
     console.log('data of noticesPic ', data1_);
     // FOLLOWING IS FOR UPDATE THE NOTICESPIC TABLE
     axios
       .post('/noticesPics/newNoticesPic', data1_)
       .then((res) => {
-        console.log('NOTICES: ', res);
-        alert('New Notice is added!!!');
+        // console.log('NOTICES: ', res);
+
+        // //////////////////
+        // DON'T ADD THE ALERT IT WON'T goBack()
+        // alert('New Notice is added!!!');
 
         history.goBack();
+        // console.log(props.location);
+        // history.push(props.location);
       })
       .catch((err) => {
         console.log(err);

@@ -25,7 +25,10 @@ router.get('/getNoticesPic', (req, res) => {
 
     const file = req.files.file;
 
-    res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
+    res.json({
+      fileName: file.name,
+      filePath: `/uploads/banners/${file.name}`,
+    });
     // console.log(rows);
     // res.send(rows);
   });
@@ -38,13 +41,16 @@ router.post('/upload', (req, res) => {
 
   const file = req.files.file;
 
-  file.mv(`client/public/uploads/${file.name}`, (err) => {
+  file.mv(`client/public/uploads/banners/${file.name}`, (err) => {
     if (err) {
       console.error('the error is --->', err);
       return res.status(500).send(err);
     }
 
-    res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
+    res.json({
+      fileName: file.name,
+      filePath: `/uploads/banners/${file.name}`,
+    });
   });
 });
 

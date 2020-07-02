@@ -66,7 +66,7 @@ router.post('/newArticle', (req, res) => {
         rows.forEach((element) => {
           if (element.constructor == Array) {
             var msg = element[0].id;
-            res.send('Inserted Article id : ' + msg);
+            res.json(msg);
             console.log(element[0]);
           }
         });

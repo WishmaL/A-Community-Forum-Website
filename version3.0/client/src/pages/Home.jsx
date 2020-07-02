@@ -37,7 +37,7 @@ function Home() {
 
       {/* <TheCarousel /> */}
       {/* <Delthis /> */}
-      <ShowNotices />
+      {/* <ShowNotices /> */}
 
       <ArtNCom />
       <ShowTimeline />
