@@ -25,7 +25,7 @@ function AddArticle(props) {
 
   useEffect(() => {
     setUserName(props.match.params.userName);
-    console.log(props.location.pathname);
+    // console.log(props.location.pathname);
   }, []);
 
   const submitHandler = (e) => {

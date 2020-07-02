@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Container, Col, Button, Form, Card, Alert } from 'react-bootstrap';
+import { Container, Col, Button, Form, Card } from 'react-bootstrap';
 import axios from 'axios';
 import CurrentUser from '../components/CurrentUser';
 import moment from 'moment';

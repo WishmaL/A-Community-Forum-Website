@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import { Button, Row, Col, Alert } from 'react-bootstrap';
+import { Button, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 
 function Addcomment({ articleId, userName, fetchComments }) {

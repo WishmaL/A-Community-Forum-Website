@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container, Button, Alert, Form } from 'react-bootstrap';
 import axios from 'axios';
 import moment from 'moment';
@@ -18,7 +18,7 @@ function EditTimeline({ id, set_timeEvents }) {
     axios
       .get('/timeline/getTimeEvent/' + id)
       .then((res) => {
-        let datee = moment(res.data[0].date).utc().format('YYYY-MM-DD');
+        // let datee = moment(res.data[0].date).utc().format('YYYY-MM-DD');
         // console.log(datee);
         setTimeEvents(res.data[0]);
       })

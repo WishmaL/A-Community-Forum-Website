@@ -1,5 +1,5 @@
 import React from 'react';
-import { Accordion, Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 function Carousel_desc({ title, body }) {
   return (

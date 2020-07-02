@@ -10,9 +10,9 @@ export class Navbar_ extends Component {
   }
 
   render() {
-    const member = 'member';
-    const admin = 'admin';
-    const greatAdmin = 'greatAdmin';
+    // const member = 'member';
+    // const admin = 'admin';
+    // const greatAdmin = 'greatAdmin';
     return (
       <Navbar bg="light" expand="lg">
         <Navbar.Brand href="#home">LEARN Platform</Navbar.Brand>

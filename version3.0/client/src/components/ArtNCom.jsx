@@ -9,7 +9,7 @@ import Addcomment from './Addcomment';
 import { UserConsumer, CommentIdProvider, CommentsProvider } from './Context';
 import DelArticle from './DelArticle';
 // try to add link between addArticle and so on
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
 
 export class ArtNCom extends Component {
@@ -119,7 +119,7 @@ export class ArtNCom extends Component {
                             src="http://lorempics.com/300x200/142850/f7f7f7"
                             alt="the pic"
                           /> */}
-                          <Card.Text>{ReactHtmlParser(article.body)}</Card.Text>
+                          {ReactHtmlParser(article.body)}
                           <Card.Link href="#">Card 1</Card.Link>
                           <Card.Link href="#">Link 2</Card.Link>
                         </Card.Body>

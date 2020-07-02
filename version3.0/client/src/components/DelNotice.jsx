@@ -42,7 +42,7 @@ export const DelNotice = ({ id, fetchNotices }) => {
         <Button variant="outline-danger" onClick={() => setShow(true)}>
           <svg
             className="bi bi-trash-fill"
-            width="Auto"
+            width="100%"
             height="1em"
             viewBox="0 0 16 16"
             fill="currentColor"
