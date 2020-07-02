@@ -11,6 +11,7 @@ import DelArticle from './DelArticle';
 // try to add link between addArticle and so on
 import { Link } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
+import moment from 'moment';
 
 export class ArtNCom extends Component {
   constructor(props) {
@@ -155,6 +156,8 @@ export class ArtNCom extends Component {
                             // console.log(picInfo);
                           }
 
+
+
                           {/* //////////////////////////////////// */}
 
                           {/* <Card.Subtitle className="mb-2 text-muted">
@@ -167,6 +170,8 @@ export class ArtNCom extends Component {
                           {ReactHtmlParser(article.body)}
                           <Card.Link href="#">Card 1</Card.Link>
                           <Card.Link href="#">Link 2</Card.Link>
+                          <br/>
+                          {moment(article.time).format('dddd, MMMM Do YYYY, h:mm:ss a')}
                         </Card.Body>
 
                         {/* DELETE FEATURE OF THE ARTICLE */}
@@ -186,13 +191,13 @@ export class ArtNCom extends Component {
                         <style type="text/css">
                           {`
                             .my_class {
-                              // height:100px;
-                              // overflow-y:scroll
+                              height:10px;
+                              overflow-y:scroll
                             }
                           `}
                         </style>
-
-                        <div className="my_class">
+                        
+                        <div >
                           {commentList
                             .filter((comment) => {
                               return comment.articleId === article.id;
@@ -203,7 +208,7 @@ export class ArtNCom extends Component {
                                   <CommentIdProvider value={comment.id}>
                                     <Comments
                                       thread={comment.thread}
-                                      time={comment.time}
+                                      time={moment(comment.time).format('dddd, MMMM Do YYYY, h:mm:ss a')}
                                       id={comment.id}
                                     />
                                   </CommentIdProvider>
