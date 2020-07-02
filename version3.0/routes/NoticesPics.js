@@ -31,10 +31,6 @@ router.get('/getNoticesPic', (req, res) => {
   });
 });
 
-
-
-
-
 router.post('/upload', (req, res) => {
   if (req.files === null) {
     return res.status(400).json({ msg: 'No file uploaded' });
@@ -44,51 +40,41 @@ router.post('/upload', (req, res) => {
 
   file.mv(`client/public/uploads/${file.name}`, (err) => {
     if (err) {
-      console.error('the error is --->',err);
+      console.error('the error is --->', err);
       return res.status(500).send(err);
-    } 
+    }
 
     res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
   });
 });
 
-
-
-
-
-
-
-
-
-
 // ///////////////////////////////////////////
 // insert a notice_pic data
 router.post('/newNoticesPic', (req, res) => {
- 
   const newNoticePic = [
     'default',
     req.body.noticeId,
-    req.body.noticePic 
+    req.body.noticePic,
+    req.body.noticePicPath,
   ];
- 
 
-  let sql = `SET @id = ?; SET @noticeId = ?; SET @noticePic = ?; CALL addNoticePicProcedure(@id, @noticeId, @noticePic)`;
+  let sql = `SET @id = ?; SET @noticeId = ?; SET @noticePic = ?; SET @noticePicPath = ?; CALL addNoticePicProcedure(@id, @noticeId, @noticePic, @noticePicPath)`;
   let query = db.query(
     sql,
-    [newNoticePic[0], newNoticePic[1], newNoticePic[2]],
+    [newNoticePic[0], newNoticePic[1], newNoticePic[2], newNoticePic[3]],
     (err, rows) => {
       // if (err) {
       //   if (err.errno == 1452) res.send('The user is not available!');
       //   else console.log(err);
       // } else {
-        if (err) throw err;
-        rows.forEach((element) => {
-          if (element.constructor == Array) {
-            var msg = element[0].id;
-            res.send('Inserted notice pic id : ' + msg);
-            console.log(element[0]);
-          }
-        });
+      if (err) throw err;
+      rows.forEach((element) => {
+        if (element.constructor == Array) {
+          var msg = element[0].id;
+          res.send('Inserted notice pic id : ' + msg);
+          console.log(element[0]);
+        }
+      });
       // }
     }
   );

@@ -5,7 +5,8 @@ import ShowTimeline from '../components/ShowTimeline';
 import ArtNCom from '../components/ArtNCom';
 import { UserProvider } from '../components/Context';
 import ShowGraphs from '../components/ShowGraphs';
-import TheCarousel from '../components/TheCarousel';
+import ShowNotices from '../components/ShowNotices';
+// import TheCarousel from '../components/TheCarousel';
 
 export class GreatAdmin extends Component {
   constructor(props) {
@@ -31,10 +32,10 @@ export class GreatAdmin extends Component {
             title="The Great Admin page"
             subtitle="This will be the description"
           ></Banner>
-          
+
           {/* UNCOMMENT FOLLOWINGS */}
-          
-          <TheCarousel />
+
+          <ShowNotices />
           {/* <ShowGraphs /> */}
           <ArtNCom />
           <ShowTimeline />

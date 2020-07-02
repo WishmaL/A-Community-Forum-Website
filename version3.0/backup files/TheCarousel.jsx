@@ -1,17 +1,21 @@
 // this reagards notices
 
-// this must be re-named as ShowNotices
+// this must be re-named as ShowNotices AND IT IS NAMED AS SEPERATE FILE
+
+// THIS IS NOT NEEDED ANYMORE
 
 import React, { useEffect, useState } from 'react';
 import { Carousel, Container, Button, Col, Row, Image } from 'react-bootstrap';
 import Axios from 'axios';
-import { UserConsumer } from './Context';
+import { UserConsumer } from '../client/src/components/Context';
 import { Link, useLocation } from 'react-router-dom';
-import Carousel_desc from './Carousel_desc';
-import DelNotice from './DelNotice';
+import Carousel_desc from '../client/src/components/Carousel_desc';
+import DelNotice from '../client/src/components/DelNotice';
 
 function TheCarousel() {
   const [notices, setNotices] = useState([]);
+  const [noticePics, setNoticePics] = useState([]);
+  const [picName, setPicName] = useState('');
 
   const fetchNotices = () => {
     Axios.get('/notices/getNotices')
@@ -23,8 +27,21 @@ function TheCarousel() {
       });
   };
 
+  // FOLLOWING IS USED FOR GET THE LIST OF NOTICE/BANNER PICS
+  const fetchNoticePics = () => {
+    Axios.get('/noticesPics/getNoticesPics')
+      .then((res) => {
+        setNoticePics(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     fetchNotices();
+    fetchNoticePics();
   }, []);
 
   // TAKE THIS TO THE NOTE
@@ -35,6 +52,7 @@ function TheCarousel() {
 
   return (
     <div>
+      {/* {console.log(noticePics)} */}
       <UserConsumer>
         {(userName) => {
           return (
@@ -63,12 +81,27 @@ function TheCarousel() {
               <Carousel.Item key={notice.id}>
                 <Row>
                   <Col md={8}>
-                    <Image
-                      className="d-block w-100"
-                      src="http://lorempics.com/550x250/03fcb6/03fcb6"
-                      alt="First slide"
-                      fluid
-                    />
+                    {/* followcs arraying is for finding the maatching notice Id from the noticePi */}
+                    {
+                      noticePics
+                        .filter((picInfo) => {
+                          return picInfo.noticeId === notice.id;
+                        })
+                        .map((picInfo) => {
+                          return (
+                            <div key={picInfo.id}>
+                              <Image
+                                className="d-block w-100"
+                                src={picInfo.noticePicPath}
+                                alt="forrid"
+                                fluid
+                              />
+                            </div>
+                          );
+                        })
+
+                      // console.log(picInfo);
+                    }
                   </Col>
                   <Col md={4}>
                     <Carousel_desc title={notice.title} body={notice.body} />

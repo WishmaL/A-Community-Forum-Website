@@ -25,8 +25,9 @@ function AddNotice(props) {
 
   const [file, setFile] = useState('');
   const [filename, setFilename] = useState('Choose File');
-  const [uploadedFile, setUploadedFile] = useState({});
-  const [message, setMessage] = useState('');
+  const [filePath, setFilePath] = useState('');
+  // const [uploadedFile, setUploadedFile] = useState({});
+  // const [message, setMessage] = useState('');
   const [isSubmitInfo, setIsSubmitInfo] = useState(false);
 
   // following will keep the pic submmit button disabled until submit the notice
@@ -85,18 +86,20 @@ function AddNotice(props) {
       .then((res) => {
         const { fileName, filePath } = res.data;
 
-        setUploadedFile({ fileName, filePath });
+        // setUploadedFile({ fileName, filePath });
+        // setFilename(fileName)
+        setFilePath(filePath);
 
-        setMessage('File Uploaded');
+        // setMessage('File Uploaded');
         console.log(res.data);
       })
 
       .catch((err) => {
         if (err.response.status === 500) {
-          setMessage('There was a problem with the server');
+          // setMessage('There was a problem with the server');
           console.log(err);
         } else {
-          setMessage(err.response.data.msg);
+          // setMessage(err.response.data.msg);
           console.log(err);
         }
       });
@@ -105,6 +108,7 @@ function AddNotice(props) {
     const data1_ = {
       noticeId: noticeId,
       noticePic: filename,
+      noticePicPath: filePath,
     };
     console.log('data of noticesPic ', data1_);
     // FOLLOWING IS FOR UPDATE THE NOTICESPIC TABLE
@@ -194,9 +198,8 @@ function AddNotice(props) {
           </Button>
         </Form>
 
-
         {/* WHEN HOVER THE UPLOAD PIC AREA, ALERT SHOULD BE DISPLAYED */}
-        <Alert variant={'info'}>hello</Alert>
+
         <Card>
           <Card.Header>Add Notice Pic</Card.Header>
 
@@ -209,6 +212,7 @@ function AddNotice(props) {
                   id="customFile"
                   disabled={!validateForm()}
                   onChange={onChange}
+                  // onMouseOver={<Alert variant={'info'}>hello</Alert>}
                 />
                 <label className="custom-file-label" htmlFor="customFile">
                   {filename}
