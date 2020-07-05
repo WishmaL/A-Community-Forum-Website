@@ -56,7 +56,7 @@ export class ArtNCom extends Component {
       .get('/articlePics/getArticlesPics')
       .then((res) => {
         this.setState({ articlePics: res.data });
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => {
         console.log(err);

@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { Carousel, Container, Button, Col, Row, Image } from 'react-bootstrap';
 import Axios from 'axios';
 import { UserConsumer } from './Context';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Carousel_desc from './Carousel_desc';
 import DelNotice from './DelNotice';
 
@@ -14,6 +14,8 @@ function ShowNotices() {
   const [notices, setNotices] = useState([]);
   const [noticePics, setNoticePics] = useState([]);
   const [picName, setPicName] = useState('');
+
+  const [redirect, setRedirect] = useState(false);
 
   const fetchNotices = () => {
     Axios.get('/notices/getNotices')
@@ -42,11 +44,21 @@ function ShowNotices() {
     fetchNoticePics();
   }, []);
 
+  const clickHandler = () => {
+    setRedirect(true);
+  };
+
   // TAKE THIS TO THE NOTE
   // ////////////////////////////////////////////////////////////////
   // const clickHandler = (userName) => {
   //   window.location = `/AddNotice/${userName}`;
   // };
+  // if(redirect){
+  //   return <Redirect to={{
+  //     pathname:  `/AddNotice/${userName}`,
+  //     state: { noticeId: this.state.data }
+  //   }} />
+  // }
 
   return (
     <div>
@@ -111,6 +123,53 @@ function ShowNotices() {
 
                 {/* </Carousel.Caption> */}
                 <DelNotice id={notice.id} fetchNotices={fetchNotices} />
+
+                <UserConsumer>
+                  {(userName) => {
+                    return (
+                      <Link
+                        to={(location) => ({
+                          ...location,
+                          pathname: `/EditNotice/${userName}`,
+                          theProps: { noticeId: notice.id
+                                   }
+                        })}
+                      >
+                        <Button type="button">Edit Notice</Button>
+                      </Link>
+                    );
+                  }}
+                </UserConsumer>
+
+                {/* <UserConsumer>
+                  {(userName) => {
+                    return (
+                      <div>
+                        {(redirect)?
+                        <Redirect
+                          to={{
+                            pathname: `/EditNotice/${userName}`,
+                            state: { noticeId: notice.id },
+                          }}
+                        />
+                        : null}
+                        <Button type="button">Edit Notice</Button>
+                      </div>
+                    );
+                  }}
+                </UserConsumer> */}
+
+
+                {/* ___THERE IS SOMETHING TO LERN FROM BELOW___ */}
+{/* 
+                {redirect ? (
+                  <Redirect
+                    to={{
+                      pathname: `/EditNotice/${userName}`,
+                      state: { noticeId: notice.id },
+                    }}
+                  />
+                ) : null} */}
               </Carousel.Item>
               //
             );

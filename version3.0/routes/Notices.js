@@ -18,14 +18,14 @@ router.get('/getNotices', (req, res) => {
 
 // ///////////////////////////////////////////
 //   fetch specific notice
-router.get('/getNotice', (req, res) => {
-  let sql = `SELECT * FROM notices WHERE id = ${req.body.id}`;
+router.get('/getNotice/:id', (req, res) => {
+  let sql = `SELECT * FROM notices WHERE id = ${req.params.id}`;
   let query = db.query(sql, (err, rows) => {
     if (err) throw err;
     console.log(rows);
     res.send(rows);
   });
-});
+}); 
 
 // ///////////////////////////////////////////
 // insert a notice
@@ -81,7 +81,7 @@ router.post('/newNotice', (req, res) => {
 
 // ////////////////////////////////////////////
 // update a notice
-router.put('/updateNotice', (req, res, next) => {
+router.put('/updateNotice/:id', (req, res, next) => {   
   const updated_notice = [
     // req.body.id,
     req.body.userName,
@@ -89,14 +89,14 @@ router.put('/updateNotice', (req, res, next) => {
     req.body.body,
     req.body.time,
     req.body.admin_r,
-    req.body.admin_w,
+    req.body.admin_w, 
     req.body.member_r,
     req.body.member_w,
     req.body.viewer_r,
     req.body.id,
   ];
 
-  let sql = `UPDATE notices SET userName = ?, title = ?, body =?,time =?, admin_r = ?, admin_w = ?, member_r =?, member_w = ?, viewer_r = ? WHERE id = ?`;
+  let sql = `UPDATE notices SET userName = ?, title = ?, body =?,time =?, admin_r = ?, admin_w = ?, member_r =?, member_w = ?, viewer_r = ? WHERE id = ${req.params.id}`;
 
   let query = db.query(sql, updated_notice, (err, rows) => {
     if (err) throw err;
@@ -110,7 +110,7 @@ router.put('/updateNotice', (req, res, next) => {
 router.delete('/deleteNotice/:id', (req, res) => {
   const deleteNotice = [req.params.id];
 
-  let sql = `DELETE FROM notices WHERE id = ?`;
+  let sql = `DELETE FROM notices WHERE id = ${deleteNotice[0]}`;
   let query = db.query(sql, deleteNotice[0], (err, rows) => {
     if (err) throw err;
     console.log('deleted');

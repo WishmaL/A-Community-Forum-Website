@@ -70,7 +70,7 @@ router.put('/updateTimeEvent/:id', (req, res, next) => {
     if (err) throw err;
     console.log(results);
     res.json(results);
-  });
+  }); 
 });
 
 // ///////////////////////////////////////////

@@ -1,4 +1,5 @@
 var express = require('express');
+var fs = require('fs');
 var router = express.Router();
 var db = require('../database/db');
 const uuid = require('uuid');
@@ -16,11 +17,29 @@ router.get('/getNoticesPics', (req, res) => {
   });
 });
 
-// ///////////////////////////////////////////
-//   fetch specific user
-router.get('/getNoticesPic', (req, res) => {
-  let sql = `SELECT * FROM notices_pics WHERE id = ${req.body.id}`;
+//   fetch specific data from notices_pics
+router.get('/getNoticePic/:noticeId', (req, res) => {
+  let sql = `SELECT * FROM notices_pics WHERE noticeId = ${req.params.noticeId}`;
   let query = db.query(sql, (err, rows) => {
+    if (err) throw err;
+    // console.log(rows);
+    res.send(rows);
+  });
+});
+
+
+
+
+
+
+
+
+
+// ///////////////////////////////////////////
+//   fetch specific noticePic for fetching pics
+router.get('/getNoticesPic', (req, res) => {
+  // let sql = `SELECT * FROM notices_pics WHERE id = ${req.body.id}`;
+  // let query = db.query(sql, (err, rows) => {
     if (err) throw err;
 
     const file = req.files.file;
@@ -31,8 +50,14 @@ router.get('/getNoticesPic', (req, res) => {
     });
     // console.log(rows);
     // res.send(rows);
-  });
-});
+  // }
+  // );
+}
+);
+
+
+
+
 
 router.post('/upload', (req, res) => {
   if (req.files === null) {
@@ -89,40 +114,55 @@ router.post('/newNoticesPic', (req, res) => {
 // ////////////////////////////////////////////
 // update a notice
 router.put('/updateNoticesPics', (req, res, next) => {
-  const updated_notice = [
+  const updated_noticepic = [
     // req.body.id,
-    req.body.userId,
-    req.body.title,
-    req.body.body,
-    // req.body.time,
-    req.body.admin_r,
-    req.body.admin_w,
-    req.body.member_r,
-    req.body.member_w,
-    req.body.viewer_r,
+    req.body.noticeId,
+    req.body.noticePic,
+    req.body.noticePicPath,
     req.body.id,
   ];
 
-  let sql = `UPDATE notices_pics SET userId = ?, title = ?, body =?, admin_r = ?, admin_w = ?, member_r =?, member_w = ?, viewer_r = ? WHERE id = ?`;
+  let sql = `UPDATE notices_pics SET noticeId = ?, noticePic = ?, noticePicPath =? WHERE id = ?`;
 
-  let query = db.query(sql, updated_notice, (err, rows) => {
+  let query = db.query(sql, updated_noticepic, (err, rows) => {
     if (err) throw err;
     console.log(rows);
     res.json(rows);
-  });
+  }); 
 });
-
+  
 // ///////////////////////////////////////////
 // Delete a user
-router.delete('/deleteNoticesPics', (req, res) => {
-  const deleteNotice = [req.body.id];
+// router.delete('/deleteNoticesPics/:data_', (req, res) => {
+//   const deleteNoticePic = [req.params.id];
+//   const filePath = [req.params.noticePicPath]
+router.delete('/deleteNoticesPics/:id', (req, res) => {
+  // [id, filePath] = req.data;
+  const picInfo = [req.params.id];
 
-  let sql = `DELETE FROM notices_pics WHERE id = ?`;
-  let query = db.query(sql, deleteNotice[0], (err, rows) => {
+  // console.log('id',id, 'filepath',filepath)
+
+  let sql = `DELETE FROM notices_pics WHERE id = ${picInfo[0]}`;
+  let query = db.query(sql, deleteNoticePic[0], (err, rows) => {
     if (err) throw err;
     console.log('deleted');
-    res.send('successfully deleted!');
+    res.send('picInfo successfully deleted!');
   });
+
 });
+
+router.delete('/deletePic/:filePath', (req, res) => {
+  // [id, filePath] = req.data;
+  const filePic = [req.params.filePic];
+  console.log(filePic)
+  let delPic = `G:/Projects/LEARN LMS Analysis System/version3.0/client/public/uploads/banners/${filePic}`
+
+// following eill delete the pic 
+  fs.unlink(delPic, function (err) {
+    if (err) throw err;
+    console.log('File deleted!'); 
+  });
+  res.send('File is deleted!');
+}); 
 
 module.exports = router;

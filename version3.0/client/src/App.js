@@ -12,6 +12,7 @@ import Navbar from './components/Navbar';
 import AddArticle from './pages/AddArticle';
 import AddGraph from './pages/AddGraph';
 import AddNotice from './pages/AddNotice';
+import EditNotice from './pages/EditNotice';
 import { AuthContext } from './context/Auth';
 import PrivateRoute from './PrivateRoute';
 
@@ -41,6 +42,7 @@ function App(props) {
             <Route exact path="/AddArticle/:userName" component={AddArticle} />
             <Route exact path="/AddGraph/:userName" component={AddGraph} />
             <Route exact path="/AddNotice/:userName" component={AddNotice} />
+            <Route exact path="/EditNotice/:userName" component={EditNotice} />
             <Route component={Error} />
 
             {/* setting up the route parameter */}

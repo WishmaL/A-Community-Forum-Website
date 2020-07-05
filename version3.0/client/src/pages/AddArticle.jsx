@@ -92,13 +92,7 @@ function AddArticle(props) {
     axios
       .post('/articlePics/upload', formData)
       .then((res) => {
-        // const { fileName, filePath } = res.data;
-
-        // setUploadedFile({ fileName, filePath });
-        // setFilename(fileName)
-        // setFilePath(filePath);
-
-        // setMessage('File Uploaded');
+        
         console.log(res.data);
       })
 
@@ -152,7 +146,7 @@ function AddArticle(props) {
     <div>
       <Container>
         <CurrentUser currentUser={userName} />
-        <Form onSubmit={submitHandler}>
+        <Form>
           <Form.Row>
             <Form.Group as={Col} controlId="formGridEmail">
               <Form.Label>Article title</Form.Label>
@@ -211,7 +205,7 @@ function AddArticle(props) {
             />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" onSubmit={submitHandler}>
             Submit
           </Button>
         </Form>
