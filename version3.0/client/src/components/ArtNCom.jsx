@@ -156,8 +156,6 @@ export class ArtNCom extends Component {
                             // console.log(picInfo);
                           }
 
-
-
                           {/* //////////////////////////////////// */}
 
                           {/* <Card.Subtitle className="mb-2 text-muted">
@@ -170,8 +168,15 @@ export class ArtNCom extends Component {
                           {ReactHtmlParser(article.body)}
                           <Card.Link href="#">Card 1</Card.Link>
                           <Card.Link href="#">Link 2</Card.Link>
-                          <br/>
-                          {moment(article.time).format('dddd, MMMM Do YYYY, h:mm:ss a')}
+                          <br />
+                          {moment(article.time).format(
+                            'dddd, MMMM Do YYYY, h:mm:ss a'
+                          )}
+
+                          <h5>Created by:{article.userName}</h5>
+                          {article.updatedBy === null ? null : (
+                            <h5>Updated by:{article.updatedBy}</h5>
+                          )}
                         </Card.Body>
 
                         {/* DELETE FEATURE OF THE ARTICLE */}
@@ -179,8 +184,33 @@ export class ArtNCom extends Component {
                           id={article.id}
                           fetchArticles={this.fetchArticles}
                         />
-
                         {/* DELETE FEATURE OF THE ARTICLE */}
+
+                        {/* EDIT THE ARTICLE */}
+                        <UserConsumer>
+                          {(userName) => {
+                            return (
+                              // <Link
+                              //   to={(location) => ({
+                              //     ...location,
+                              //     pathname: `/EditArticle/${userName}`,
+                              //     theProps: { articleId: article.id },
+                              //   })}
+                              // >
+                              //   <Button type="button">Edit Article</Button>
+                              // </Link>
+                              <Link
+                                to={{
+                                  pathname: `/EditArticle/${userName}`,
+                                  data: { articleId: article.id }, // your data array of objects
+                                }}
+                              >
+                                <Button type="button">Edit Article</Button>
+                              </Link>
+                            );
+                          }}
+                        </UserConsumer>
+                        {/* EDIT THE ARTICLE */}
                       </Card>
                     </Row>
                     <Row>
@@ -196,8 +226,8 @@ export class ArtNCom extends Component {
                             }
                           `}
                         </style>
-                        
-                        <div >
+
+                        <div>
                           {commentList
                             .filter((comment) => {
                               return comment.articleId === article.id;
@@ -208,7 +238,9 @@ export class ArtNCom extends Component {
                                   <CommentIdProvider value={comment.id}>
                                     <Comments
                                       thread={comment.thread}
-                                      time={moment(comment.time).format('dddd, MMMM Do YYYY, h:mm:ss a')}
+                                      time={moment(comment.time).format(
+                                        'dddd, MMMM Do YYYY, h:mm:ss a'
+                                      )}
                                       id={comment.id}
                                     />
                                   </CommentIdProvider>

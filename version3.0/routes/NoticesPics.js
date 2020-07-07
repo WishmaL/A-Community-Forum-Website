@@ -27,37 +27,24 @@ router.get('/getNoticePic/:noticeId', (req, res) => {
   });
 });
 
-
-
-
-
-
-
-
-
 // ///////////////////////////////////////////
 //   fetch specific noticePic for fetching pics
 router.get('/getNoticesPic', (req, res) => {
   // let sql = `SELECT * FROM notices_pics WHERE id = ${req.body.id}`;
   // let query = db.query(sql, (err, rows) => {
-    if (err) throw err;
+  if (err) throw err;
 
-    const file = req.files.file;
+  const file = req.files.file;
 
-    res.json({
-      fileName: file.name,
-      filePath: `/uploads/banners/${file.name}`,
-    });
-    // console.log(rows);
-    // res.send(rows);
+  res.json({
+    fileName: file.name,
+    filePath: `/uploads/banners/${file.name}`,
+  });
+  // console.log(rows);
+  // res.send(rows);
   // }
   // );
-}
-);
-
-
-
-
+});
 
 router.post('/upload', (req, res) => {
   if (req.files === null) {
@@ -128,9 +115,9 @@ router.put('/updateNoticesPics', (req, res, next) => {
     if (err) throw err;
     console.log(rows);
     res.json(rows);
-  }); 
+  });
 });
-  
+
 // ///////////////////////////////////////////
 // Delete a user
 // router.delete('/deleteNoticesPics/:data_', (req, res) => {
@@ -143,26 +130,25 @@ router.delete('/deleteNoticesPics/:id', (req, res) => {
   // console.log('id',id, 'filepath',filepath)
 
   let sql = `DELETE FROM notices_pics WHERE id = ${picInfo[0]}`;
-  let query = db.query(sql, deleteNoticePic[0], (err, rows) => {
+  let query = db.query(sql, (err, rows) => {
     if (err) throw err;
     console.log('deleted');
     res.send('picInfo successfully deleted!');
   });
-
 });
 
 router.delete('/deletePic/:filePath', (req, res) => {
   // [id, filePath] = req.data;
   const filePic = [req.params.filePic];
-  console.log(filePic)
-  let delPic = `G:/Projects/LEARN LMS Analysis System/version3.0/client/public/uploads/banners/${filePic}`
+  console.log(filePic);
+  let delPic = `G:/Projects/LEARN LMS Analysis System/version3.0/client/public/uploads/banners/${filePic}`;
 
-// following eill delete the pic 
+  // following eill delete the pic
   fs.unlink(delPic, function (err) {
     if (err) throw err;
-    console.log('File deleted!'); 
+    console.log('File deleted!');
   });
   res.send('File is deleted!');
-}); 
+});
 
 module.exports = router;

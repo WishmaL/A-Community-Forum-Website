@@ -17,8 +17,8 @@ router.get('/getArticles', (req, res) => {
 
 // ///////////////////////////////////////////
 //   fetch specific article
-router.get('/getArticle', (req, res) => {
-  let sql = `SELECT * FROM articles WHERE id = ${req.body.id}`;
+router.get('/getArticle/:id', (req, res) => {
+  let sql = `SELECT * FROM articles WHERE id = ${req.params.id}`;
   let query = db.query(sql, (err, rows) => {
     if (err) throw err;
     console.log(rows);
@@ -34,6 +34,7 @@ router.post('/newArticle', (req, res) => {
     // uuid.v4(),
     'default',
     req.body.userName,
+    req.body.updatedBy, 
     req.body.title,
     req.body.body,
     // req.body.time,
@@ -44,7 +45,7 @@ router.post('/newArticle', (req, res) => {
     req.body.viewer_r,
   ];
 
-  let sql = `SET @id = ?; SET @userName = ?; SET @title = ?; SET @body = ?; SET @admin_r = ?; SET @admin_w = ?; SET @member_r = ?; SET @member_w = ?; SET @viewer_r = ?;CALL addArticleProcedure(@id, @userName, @title, @body, @admin_r, @admin_w, @member_r, @member_w, @viewer_r)`;
+  let sql = `SET @id = ?; SET @userName = ?; SET @updatedBy = ?; SET @title = ?; SET @body = ?; SET @admin_r = ?; SET @admin_w = ?; SET @member_r = ?; SET @member_w = ?; SET @viewer_r = ?;CALL addArticleProcedure(@id, @userName, @updatedBy, @title, @body, @admin_r, @admin_w, @member_r, @member_w, @viewer_r)`;
   let query = db.query(
     sql,
     [
@@ -57,6 +58,7 @@ router.post('/newArticle', (req, res) => {
       newArticle[6],
       newArticle[7],
       newArticle[8],
+      newArticle[9],
     ],
     (err, rows) => {
       if (err) {
@@ -77,10 +79,11 @@ router.post('/newArticle', (req, res) => {
 
 // ////////////////////////////////////////////
 // update a notice
-router.put('/updateArticle', (req, res, next) => {
+router.put('/updateArticle/:id', (req, res, next) => {
   const updated_article = [
     // req.body.id,
     req.body.userName,
+    req.body.updatedBy,
     req.body.title,
     req.body.body,
     // req.body.time,
@@ -92,7 +95,7 @@ router.put('/updateArticle', (req, res, next) => {
     req.body.id,
   ];
 
-  let sql = `UPDATE articles SET userName = ?, title = ?, body =?, admin_r = ?, admin_w = ?, member_r =?, member_w = ?, viewer_r = ? WHERE id = ?`;
+  let sql = `UPDATE articles SET userName = ?, updatedBy = ?, title = ?, body =?, admin_r = ?, admin_w = ?, member_r =?, member_w = ?, viewer_r = ? WHERE id = ${req.params.id}`;
 
   let query = db.query(sql, updated_article, (err, rows) => {
     if (err) throw err;
@@ -106,7 +109,7 @@ router.put('/updateArticle', (req, res, next) => {
 router.delete('/deleteArticle/:id', (req, res) => {
   const deleteArticle = [req.params.id];
 
-  let sql = `DELETE FROM articles WHERE id = ?`;
+  let sql = `DELETE FROM articles WHERE id = ${deleteArticle[0]}`;
   let query = db.query(sql, deleteArticle[0], (err, rows) => {
     if (err) throw err;
     console.log('deleted');

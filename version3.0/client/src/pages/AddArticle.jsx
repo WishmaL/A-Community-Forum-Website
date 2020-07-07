@@ -47,6 +47,7 @@ function AddArticle(props) {
     e.preventDefault();
     let data_ = {
       userName: userName,
+      updatedBy: 'Not updated',
       title: title,
       body: body,
       admin_r: admin_r,

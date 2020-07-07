@@ -37,7 +37,7 @@ function EditNotice(props) {
       .then((res) => {
         // let datee = moment(res.data[0].date).utc().format('YYYY-MM-DD');
         // console.log(datee);
-        console.log(res);
+        // console.log(res);
         setNotice(res.data[0]);
       })
       .catch((err) => {

@@ -15,9 +15,9 @@ import AddNotice from './pages/AddNotice';
 import EditNotice from './pages/EditNotice';
 import { AuthContext } from './context/Auth';
 import PrivateRoute from './PrivateRoute';
+import EditArticle from './pages/EditArticle';
 
 function App(props) {
-  
   const existingTokens = JSON.parse(localStorage.getItem('tokens'));
   const [authTokens, setAuthTokens] = useState(existingTokens);
 
@@ -30,23 +30,24 @@ function App(props) {
     <div>
       <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
         {/* <Router> */}
-          <Navbar />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/Login" component={Login} />
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/Login" component={Login} />
 
-            {/* <Route exact path="/delthis/" component={Delthis} /> */}
-            <Route exact path="/Member/:userName" component={Member} />
-            <Route exact path="/Admin/:userName" component={Admin} />
-            <PrivateRoute path="/GreatAdmin/:userName" component={GreatAdmin} />
-            <Route exact path="/AddArticle/:userName" component={AddArticle} />
-            <Route exact path="/AddGraph/:userName" component={AddGraph} />
-            <Route exact path="/AddNotice/:userName" component={AddNotice} />
-            <Route exact path="/EditNotice/:userName" component={EditNotice} />
-            <Route component={Error} />
+          {/* <Route exact path="/delthis/" component={Delthis} /> */}
+          <Route exact path="/Member/:userName" component={Member} />
+          <Route exact path="/Admin/:userName" component={Admin} />
+          <PrivateRoute path="/GreatAdmin/:userName" component={GreatAdmin} />
+          <Route exact path="/AddArticle/:userName" component={AddArticle} />
+          <Route exact path="/AddGraph/:userName" component={AddGraph} />
+          <Route exact path="/AddNotice/:userName" component={AddNotice} />
+          <Route exact path="/EditNotice/:userName" component={EditNotice} />
+          <Route exact path="/EditArticle/:userName" component={EditArticle} />
+          <Route component={Error} />
 
-            {/* setting up the route parameter */}
-          </Switch>
+          {/* setting up the route parameter */}
+        </Switch>
         {/* </Router> */}
       </AuthContext.Provider>
     </div>

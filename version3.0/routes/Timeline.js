@@ -70,7 +70,7 @@ router.put('/updateTimeEvent/:id', (req, res, next) => {
     if (err) throw err;
     console.log(results);
     res.json(results);
-  }); 
+  });
 });
 
 // ///////////////////////////////////////////
@@ -79,7 +79,7 @@ router.delete('/deleteTimeEvent/:id', (req, res) => {
   const deleteUser = [req.params.id];
   // console.log('delete user id is ', deleteUser);
   let sql = `DELETE FROM timeline WHERE id = ${deleteUser[0]}`;
-  let query = db.query(sql, deleteUser[0], (err, results) => {
+  let query = db.query(sql, (err, results) => {
     if (err) throw err;
     // console.log('deleted');
     res.send('successfully deleted!');
