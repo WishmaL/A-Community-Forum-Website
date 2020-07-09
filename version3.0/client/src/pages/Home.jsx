@@ -29,11 +29,11 @@ function Home() {
         subtitle="This will be the description"
       ></Banner>
 
-      <div className="text-center">
+      {/* <div className="text-center">
         <Button variant="outline-primary">
           {<Link to="/Login">Login</Link>}
         </Button>
-      </div>
+      </div> */}
 
       {/* <TheCarousel /> */}
       {/* <Delthis /> */}

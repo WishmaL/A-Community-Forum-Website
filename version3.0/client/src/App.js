@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Member from './pages/Member';
-import Admin from './pages/Admin';
+// import Admin from './pages/Admin';
 import GreatAdmin from './pages/GreatAdmin';
 import Login from './pages/Login';
 import Error from './pages/Error';
@@ -16,28 +16,54 @@ import EditNotice from './pages/EditNotice';
 import { AuthContext } from './context/Auth';
 import PrivateRoute from './PrivateRoute';
 import EditArticle from './pages/EditArticle';
+import Admin_1 from './pages/Admin_1';
+import { LogginProvider } from './context/LoggedIn';
 
 function App(props) {
   const existingTokens = JSON.parse(localStorage.getItem('tokens'));
   const [authTokens, setAuthTokens] = useState(existingTokens);
-
+  
   const setTokens = (data) => {
     localStorage.setItem('tokens', JSON.stringify(data));
     setAuthTokens(data);
   };
 
+  // the parent
+  const [isLoggedIn, setisLoggedIn] = useState(false);
+
+  const callBack = (log_status) => {
+    console.log('log_status:',log_status)
+    setisLoggedIn(log_status)
+  }
+
   return (
     <div>
+      {console.log('isLoggedIn:', isLoggedIn)}
       <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
         {/* <Router> */}
-        <Navbar />
+
+        <LogginProvider value={isLoggedIn}>
+          <Navbar/>
+        </LogginProvider>
+        
+
+
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/Login" component={Login} />
+
+          {/* ___JUST A TRY___ */}
+
+          {/* <Route exact path="/Login" component={Login}/> */}
+          <Route
+            exact
+            path="/Login"
+            render={(props) => <Login {...props} AppCallBack={callBack} />}
+          />
 
           {/* <Route exact path="/delthis/" component={Delthis} /> */}
-          <Route exact path="/Member/:userName" component={Member} />
-          <Route exact path="/Admin/:userName" component={Admin} />
+          <PrivateRoute exact path="/Member/:userName" component={Member} />
+          {/* <Route exact path="/Admin/:userName" component={Admin} /> */}
+          <PrivateRoute exact path="/Admin/:userName" component={Admin_1} />
           <PrivateRoute path="/GreatAdmin/:userName" component={GreatAdmin} />
           <Route exact path="/AddArticle/:userName" component={AddArticle} />
           <Route exact path="/AddGraph/:userName" component={AddGraph} />

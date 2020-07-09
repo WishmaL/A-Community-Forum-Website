@@ -1,46 +1,43 @@
-import React, { Component } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import {LoggingContext} from '../context/LoggedIn'
 
-export class Navbar_ extends Component {
-  constructor(props) {
-    super(props);
+function Navbar_() {
 
-    this.state = {};
-  }
-
-  render() {
-    // const member = 'member';
-    // const admin = 'admin';
-    // const greatAdmin = 'greatAdmin';
-    return (
-      <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home">LEARN Platform</Navbar.Brand>
+const isLoggedIn = useContext(LoggingContext)
+  return (
+    <Navbar bg="light" expand="lg">
+      {console.log(isLoggedIn)}
+        <Navbar.Brand href="/">LEARN Platform</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             {/* ___check following if want___ */}
             {/* <ul class="list-inline"> */}
 
+            {!isLoggedIn ? 
             <div className="d-flex bd-highlight">
               <div className="p-2 flex-grow-1 bd-highlight">
                 <Link to="/">HOME</Link>
               </div>
               <div className="p-2 bd-highlight">
-                <Link to="/Login">Member</Link>
+                <Link to="/Member/:userName">Member</Link>
               </div>
               <div className="p-2 bd-highlight">
-                <Link to="/Login">Admin</Link>
+                <Link to="/Admin/:userName">Admin</Link>
               </div>
               <div className="p-2 bd-highlight">
-                <Link to="/Login">Great Admin</Link>
+                <Link to="/GreatAdmin/:userName">Great Admin</Link>
               </div>
             </div>
+             : null} 
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-    );
-  }
+  )
 }
 
-export default Navbar_;
+// export const Navbar_ = memo(Navbar_);
+export default Navbar_
+
