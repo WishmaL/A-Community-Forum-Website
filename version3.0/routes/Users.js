@@ -19,7 +19,7 @@ router.get('/getUsers', (req, res) => {
   let sql = 'SELECT * FROM users';
   let query = db.query(sql, (err, results) => {
     if (err) throw err;
-    console.log(results);
+    // console.log(results);
     res.send(results);
   });
 });
@@ -48,28 +48,19 @@ router.post('/getUser', (req, res) => {
       //   token:'',
       // });
     } else {
+      console.log(results.length);
+      // console.log('results: ', results)
       
-      // console.log(results.length);
-          jwt.sign({ user }, 'secretkey', (err, token) => {
-            res.json({
-              results,
-              token,
-            });
-          });
+      jwt.sign({ user }, 'secretkey', (err, token) => {
+        console.log(token)
+        res.json({
+          results,
+          token,
+        });
+      });
     }
   });
 });
-
-
-
-
-
-
-
-
-
-
-
 
 router.post('/newUser', (req, res) => {
   const newUser = [
@@ -94,7 +85,7 @@ router.post('/newUser', (req, res) => {
         if (element.constructor == Array) {
           var msg = element[0].msg;
           res.send('inserted element id : ' + msg);
-          console.log(element[0]);
+          // console.log(element[0]);
         }
       });
     }
@@ -117,7 +108,7 @@ router.put('/updateUser', (req, res, next) => {
 
   let query = db.query(sql, update_user, (err, results) => {
     if (err) throw err;
-    console.log(results);
+    // console.log(results);
     res.json(results);
   });
 });
@@ -130,7 +121,7 @@ router.delete('/deleteUser', (req, res) => {
   let sql = `DELETE FROM users WHERE id = ?`;
   let query = db.query(sql, deleteUser[0], (err, results) => {
     if (err) throw err;
-    console.log('deleted');
+    // console.log('deleted');
     res.send('successfully deleted!');
   });
 });

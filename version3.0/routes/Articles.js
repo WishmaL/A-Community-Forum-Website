@@ -10,7 +10,7 @@ router.get('/getArticles', (req, res) => {
   let sql = 'SELECT * FROM articles';
   let query = db.query(sql, (err, rows) => {
     if (err) throw err;
-    console.log(rows);
+    // console.log(rows);
     res.send(rows);
   });
 });
@@ -21,7 +21,7 @@ router.get('/getArticle/:id', (req, res) => {
   let sql = `SELECT * FROM articles WHERE id = ${req.params.id}`;
   let query = db.query(sql, (err, rows) => {
     if (err) throw err;
-    console.log(rows);
+    // console.log(rows);
     res.send(rows);
   });
 });
@@ -34,7 +34,7 @@ router.post('/newArticle', (req, res) => {
     // uuid.v4(),
     'default',
     req.body.userName,
-    req.body.updatedBy, 
+    req.body.updatedBy,
     req.body.title,
     req.body.body,
     // req.body.time,
@@ -69,7 +69,7 @@ router.post('/newArticle', (req, res) => {
           if (element.constructor == Array) {
             var msg = element[0].id;
             res.json(msg);
-            console.log(element[0]);
+            // console.log(element[0]);
           }
         });
       }
@@ -99,7 +99,7 @@ router.put('/updateArticle/:id', (req, res, next) => {
 
   let query = db.query(sql, updated_article, (err, rows) => {
     if (err) throw err;
-    console.log(rows);
+    // console.log(rows);
     res.json(rows);
   });
 });
@@ -112,7 +112,7 @@ router.delete('/deleteArticle/:id', (req, res) => {
   let sql = `DELETE FROM articles WHERE id = ${deleteArticle[0]}`;
   let query = db.query(sql, deleteArticle[0], (err, rows) => {
     if (err) throw err;
-    console.log('deleted');
+    // console.log('deleted');
     res.send('successfully deleted!');
   });
 });

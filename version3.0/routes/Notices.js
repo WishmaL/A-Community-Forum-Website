@@ -11,7 +11,7 @@ router.get('/getNotices', (req, res) => {
   let sql = 'SELECT * FROM notices';
   let query = db.query(sql, (err, rows) => {
     if (err) throw err;
-    console.log(rows);
+    // console.log(rows);
     res.send(rows);
   });
 });
@@ -22,10 +22,10 @@ router.get('/getNotice/:id', (req, res) => {
   let sql = `SELECT * FROM notices WHERE id = ${req.params.id}`;
   let query = db.query(sql, (err, rows) => {
     if (err) throw err;
-    console.log(rows);
+    // console.log(rows);
     res.send(rows);
   });
-}); 
+});
 
 // ///////////////////////////////////////////
 // insert a notice
@@ -71,7 +71,7 @@ router.post('/newNotice', (req, res) => {
             // following msg has the notice id
             res.json(msg);
 
-            console.log(element[0]);
+            // console.log(element[0]);
           }
         });
       }
@@ -81,7 +81,7 @@ router.post('/newNotice', (req, res) => {
 
 // ////////////////////////////////////////////
 // update a notice
-router.put('/updateNotice/:id', (req, res, next) => {   
+router.put('/updateNotice/:id', (req, res, next) => {
   const updated_notice = [
     // req.body.id,
     req.body.userName,
@@ -89,7 +89,7 @@ router.put('/updateNotice/:id', (req, res, next) => {
     req.body.body,
     req.body.time,
     req.body.admin_r,
-    req.body.admin_w, 
+    req.body.admin_w,
     req.body.member_r,
     req.body.member_w,
     req.body.viewer_r,
@@ -100,7 +100,7 @@ router.put('/updateNotice/:id', (req, res, next) => {
 
   let query = db.query(sql, updated_notice, (err, rows) => {
     if (err) throw err;
-    console.log(rows);
+    // console.log(rows);
     res.json(rows);
   });
 });
@@ -113,7 +113,7 @@ router.delete('/deleteNotice/:id', (req, res) => {
   let sql = `DELETE FROM notices WHERE id = ${deleteNotice[0]}`;
   let query = db.query(sql, deleteNotice[0], (err, rows) => {
     if (err) throw err;
-    console.log('deleted');
+    // console.log('deleted');
     res.send('successfully deleted!');
   });
 });

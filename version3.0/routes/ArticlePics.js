@@ -10,7 +10,7 @@ router.get('/getArticlesPics', (req, res) => {
   let sql = 'SELECT * FROM article_pics';
   let query = db.query(sql, (err, rows) => {
     if (err) throw err;
-    console.log(rows);
+    // console.log(rows);
     res.send(rows);
   });
 });
@@ -85,7 +85,7 @@ router.post('/newArticlesPic', (req, res) => {
           var msg = element[0].id;
           // res.send('Inserted notice pic id : ' + msg);
           res.json(msg);
-          console.log(element[0]);
+          // console.log(element[0]);
         }
       });
       // }
@@ -157,7 +157,7 @@ router.put('/updateArticlePics', (req, res, next) => {
 
   let query = db.query(sql, updated_article, (err, rows) => {
     if (err) throw err;
-    console.log(rows);
+    // console.log(rows);
     res.json(rows);
   });
 });
@@ -178,7 +178,7 @@ router.delete('/deleteArticlePics/:id', (req, res) => {
 router.delete('/deletePic/:filePath', (req, res) => {
   // [id, filePath] = req.data;
   const filePic = [req.params.filePic];
-  console.log(filePic);
+  // console.log(filePic);
   let delPic = `G:/Projects/LEARN LMS Analysis System/version3.0/client/public/uploads/article_pics/${filePic}`;
 
   // following eill delete the pic

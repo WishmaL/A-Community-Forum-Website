@@ -10,7 +10,7 @@ router.get('/getGraphs', (req, res) => {
   let sql = 'SELECT * FROM graphs';
   let query = db.query(sql, (err, rows) => {
     if (err) throw err;
-    console.log(rows);
+    // console.log(rows);
     res.send(rows);
   });
 });
@@ -21,7 +21,7 @@ router.get('/getGraph', (req, res) => {
   let sql = `SELECT * FROM graphs WHERE id = ${req.body.id}`;
   let query = db.query(sql, (err, rows) => {
     if (err) throw err;
-    console.log(rows);
+    // console.log(rows);
     res.send(rows);
   });
 });
@@ -63,7 +63,7 @@ router.post('/newGraph', (req, res) => {
           if (element.constructor == Array) {
             var msg = element[0].id;
             res.send('Inserted Graph id : ' + msg);
-            console.log(element[0]);
+            // console.log(element[0]);
           }
         });
       }
@@ -92,7 +92,7 @@ router.put('/updateGraph', (req, res, next) => {
 
   let query = db.query(sql, updated_graph, (err, rows) => {
     if (err) throw err;
-    console.log(rows);
+    // console.log(rows);
     res.json(rows);
   });
 });
@@ -105,7 +105,7 @@ router.delete('/deleteGraph', (req, res) => {
   let sql = `DELETE FROM graphs WHERE id = ?`;
   let query = db.query(sql, deleteNotice[0], (err, rows) => {
     if (err) throw err;
-    console.log('deleted');
+    // console.log('deleted');
     res.send('successfully deleted!');
   });
 });

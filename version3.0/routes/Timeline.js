@@ -10,7 +10,7 @@ router.get('/getTimeEvents', (req, res) => {
   let sql = 'SELECT * FROM timeline';
   let query = db.query(sql, (err, results) => {
     if (err) throw err;
-    console.log(results);
+    // console.log(results);
     res.send(results);
   });
 });
@@ -49,7 +49,7 @@ router.post('/newTimeEvent', (req, res) => {
         if (element.constructor == Array) {
           var msg = element[0].msg;
           res.send('inserted element id : ' + msg);
-          console.log(element[0]);
+          // console.log(element[0]);
         }
       });
     }
@@ -68,7 +68,7 @@ router.put('/updateTimeEvent/:id', (req, res, next) => {
 
   let query = db.query(sql, update_user, (err, results) => {
     if (err) throw err;
-    console.log(results);
+    // console.log(results);
     res.json(results);
   });
 });

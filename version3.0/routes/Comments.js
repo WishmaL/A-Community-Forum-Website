@@ -10,7 +10,7 @@ router.get('/getComments', (req, res) => {
   let sql = 'SELECT * FROM comments';
   let query = db.query(sql, (err, rows) => {
     if (err) throw err;
-    console.log(rows);
+    // console.log(rows);
     res.send(rows);
   });
 });
@@ -21,7 +21,7 @@ router.get('/getcomment', (req, res) => {
   let sql = `SELECT * FROM comments WHERE id = ${req.body.id}`;
   let query = db.query(sql, (err, rows) => {
     if (err) throw err;
-    console.log(rows);
+    // console.log(rows);
     res.send(rows);
   });
 });
@@ -73,7 +73,7 @@ router.put('/updateComment', (req, res, next) => {
 
   let query = db.query(sql, updated_comment, (err, rows) => {
     if (err) throw err;
-    console.log(rows);
+    // console.log(rows);
     res.json(rows);
   });
 });
@@ -86,7 +86,7 @@ router.delete('/deleteComment/:id', (req, res) => {
   let sql = `DELETE FROM comments WHERE id = ${deleteComment[0]}`;
   let query = db.query(sql, deleteComment[0], (err, rows) => {
     if (err) throw err;
-    console.log('deleted');
+    // console.log('deleted');
     res.send('successfully deleted!');
   });
 });

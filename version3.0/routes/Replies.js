@@ -10,7 +10,7 @@ router.get('/getReplies', (req, res) => {
   let sql = 'SELECT * FROM replies';
   let query = db.query(sql, (err, rows) => {
     if (err) throw err;
-    console.log(rows);
+    // console.log(rows);
     res.send(rows);
   });
 });
@@ -74,7 +74,7 @@ router.put('/updateReply', (req, res, next) => {
 
   let query = db.query(sql, updated_reply, (err, rows) => {
     if (err) throw err;
-    console.log(rows);
+    // console.log(rows);
     res.json(rows);
   });
 });
@@ -87,7 +87,7 @@ router.delete('/deleteReply', (req, res) => {
   let sql = `DELETE FROM replies WHERE id = ?`;
   let query = db.query(sql, deleteReply[0], (err, rows) => {
     if (err) throw err;
-    console.log('deleted');
+    // console.log('deleted');
     res.send('Reply successfully deleted!');
   });
 });
