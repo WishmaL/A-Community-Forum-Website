@@ -8,7 +8,7 @@ function Navbar_() {
 const isLoggedIn = useContext(LoggingContext)
   return (
     <Navbar bg="light" expand="lg">
-      {console.log(isLoggedIn)}
+      {/* {console.log(isLoggedIn)} */}
         <Navbar.Brand href="/">LEARN Platform</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

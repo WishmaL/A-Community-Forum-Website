@@ -97,6 +97,7 @@ export class ArtNCom extends Component {
                 // <Button onClick={() => this.clickHandler(userName)}>
 
                 // following will send the current location as prop to AddArticle component
+
                 <Link
                   to={(location) => ({
                     ...location,

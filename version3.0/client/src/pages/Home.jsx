@@ -8,19 +8,20 @@ import ArtNCom from '../components/ArtNCom';
 import { Link } from 'react-router-dom';
 import Delthis from '../components/Delthis';
 import ShowNotices from '../components/ShowNotices';
+import { RollProvider, RollConsumer } from '../context/Roll';
 
 function Home() {
-  const [notices, setNotices] = useState([]);
+  // const [notices, setNotices] = useState([]);
 
-  useEffect(() => {
-    Axios.get('/notices/getNotices')
-      .then((res) => {
-        setNotices(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   Axios.get('/notices/getNotices')
+  //     .then((res) => {
+  //       setNotices(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   return (
     <div>
@@ -37,10 +38,14 @@ function Home() {
 
       {/* <TheCarousel /> */}
       {/* <Delthis /> */}
-      {/* <ShowNotices /> */}
 
+      <ShowNotices />
+      {/* <ShowGraphs /> */}
       <ArtNCom />
+
       <ShowTimeline />
+
+      <ShowNotices />
     </div>
   );
 }

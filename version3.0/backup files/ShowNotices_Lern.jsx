@@ -12,6 +12,9 @@ import { RollContext } from '../context/Roll';
 function ShowNotices() {
   const roll = useContext(RollContext);
 
+  // const roll = 'greatAdmin';
+
+  // console.log(roll)
   // __FOLLOWING IS FOR EXTRACT RELAVENT NOTICES__
 
   // __FOLLOWING IS FOR FETCHING ALL NOTICES__
@@ -39,6 +42,7 @@ function ShowNotices() {
     Axios.get('/noticesPics/getNoticesPics')
       .then((res) => {
         setNoticePics(res.data);
+        // console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -48,6 +52,12 @@ function ShowNotices() {
   useEffect(() => {
     fetchNotices();
     fetchNoticePics();
+    // rollPermission()
+
+    // console.log(roll);
+
+    // setNotices();
+    // dispatch(roll);
   }, []);
 
   const clickHandler = () => {
@@ -68,11 +78,13 @@ function ShowNotices() {
 
   // __FUNCTION FOR RETURN THE allowed NOTICES TO SHOW__
 
-  // <<WORKED>>
+  // TRY #1 <<DIDN'T WORKED>>
   let notices;
-
+  // console.log(roll)
+  // console.log(AllNotices);
   switch (roll) {
     case 'greatAdmin':
+      // setNotices(AllNotices);
       notices = AllNotices;
       console.log(notices);
       break;
@@ -81,62 +93,136 @@ function ShowNotices() {
       notices = AllNotices.filter((notice) => {
         return notice.admin_r === 1;
       });
+
+      // setNotices(data_);
       break;
 
     case 'member':
       notices = AllNotices.filter((notice) => {
         return notice.member_r === 1;
       });
+      // console.log(data_);
+
       break;
 
     default:
       notices = AllNotices.filter((notice) => {
         return notice.viewer_r === 1;
       });
+
+      console.log(notices);
+      // setNotices(notices)
       break;
   }
-  // console.log(notices);
 
-  // Following will be used for displaying the edit button
+  // _TRY #2__<<DIDN'T WORKED>>
 
-  // switch (roll) {
-  //   case 'greatAdmin':
-  //     EnableEditButton = true;
-  //     break;
+  // let data_;
+  // const noticesBasedOnData = new Map([
+  //   [
+  //     'greatAdmin',
+  //     {
+  //       data_: AllNotices,
+  //     },
+  //   ],
+  //   [
+  //     'admin',
+  //     {
+  //       data_: AllNotices.filter((notice) => {
+  //         return notice.admin_r === 1;
+  //       }),
+  //     },
+  //   ],
+  //   [
+  //     'member',
+  //     {
+  //       data_: AllNotices.filter((notice) => {
+  //         return notice.member_r === 1;
+  //       }),
+  //     },
+  //   ],
+  //   [
+  //     'viewer',
 
-  //   case 'admin':
-  //     notice.admin_w ? (EnableEditButton = true) : (EnableEditButton = false);
-  //     break;
+  //     (data_ = AllNotices.filter((notice) => {
+  //       return notice.viewer_r === 1;
+  //     })),
+  //   ],
+  // ]);
 
-  //   case 'member':
-  //     notice.member_w ? (EnableEditButton = true) : (EnableEditButton = false);
-  //     break;
+  // const sta = noticesBasedOnData.get('admin');
+  // // setNotices(noticesBasedOnData.get(roll))
+  // console.log(sta.data_);
 
-  //   default:
-  //     EnableEditButton = false;
-  //     break;
-  // }
+  // useEffect(() => {
+  //   setNotices(sta.data_);
+  // }, [sta.data_]);
 
+  // TRY#3 <<DIDN'T WORKED>>
+
+  // ___too many renders will occur___
+  // setNotices((old) => [...old, sta.data_]);
+
+  // TRY#4 <<DIDN'T WORKED>>
+  // ___too many renders will occur___
+  // setNotices(sta.data_)
+
+  // TRY #4 __USING useReducer__
+
+  // const initState = 'viewer';
+  // let notices = [];
+
+  // const reducer = (notices, roll) => {
+  //   switch (roll) {
+  //     case 'greatAdmin':
+  //       // setNotices(AllNotices);
+  //       return AllNotices;
+  //     case 'admin':
+  //       return AllNotices.filter((notice) => {
+  //         return notice.admin_r === 1;
+  //       });
+  //     case 'member':
+  //       return AllNotices.filter((notice) => {
+  //         return notice.member_r === 1;
+  //       });
+
+  //     case 'viewer':
+  //       return AllNotices.filter((notice) => {
+  //         return notice.viewer_r === 1;
+  //       });
+  //     default:
+  //       return AllNotices.filter((notice) => {
+  //         return notice.viewer_r === 1;
+  //       });
+  //   }
+  // };
+
+  // const [notices_, dispatch] = useReducer(reducer, notices);
+
+  // console.log(roll);
+  // console.log(notices_);
+
+  // dispatch(roll);
   return (
     <div>
-      {/* the following is enable for every role aka (greatAdmin, admin, member) */}
+      {/* {console.log(roll)} */}
+      {}
       <UserConsumer>
         {(userName) => {
           return (
             <div>
               <div className="alert alert-primary" role="alert">
                 <h1>Notice section</h1>
-
-                {roll !== 'viewer' ? (
-                  <Link
-                    to={(location) => ({
-                      ...location,
-                      pathname: `/AddNotice/${userName}`,
-                    })}
-                  >
-                    <Button type="button">Add Notice</Button>
-                  </Link>
-                ) : null}
+                {/* {roll === 'greatAdmin' ? ( */}
+                <Link
+                  to={(location) => ({
+                    ...location,
+                    pathname: `/AddNotice/${userName}`,
+                  })}
+                >
+                  <Button type="button">Add Notice</Button>
+                </Link>
+                {/* // ) : null} */}
               </div>
             </div>
           );
@@ -163,7 +249,7 @@ function ShowNotices() {
                               <Image
                                 className="d-block w-100"
                                 src={picInfo.noticePicPath}
-                                alt="Notice pic"
+                                alt="forrid"
                                 fluid
                               />
                             </div>
@@ -182,27 +268,24 @@ function ShowNotices() {
                   <p>{notice.body}</p> */}
 
                 {/* </Carousel.Caption> */}
-                {roll !== 'viewer' ? (
-                  <div>
-                    <DelNotice id={notice.id} fetchNotices={fetchNotices} />
+                <DelNotice id={notice.id} fetchNotices={fetchNotices} />
 
-                    <UserConsumer>
-                      {(userName) => {
-                        return (
-                          <Link
-                            to={(location) => ({
-                              ...location,
-                              pathname: `/EditNotice/${userName}`,
-                              theProps: { noticeId: notice.id },
-                            })}
-                          >
-                            <Button type="button">Edit Notice</Button>
-                          </Link>
-                        );
-                      }}
-                    </UserConsumer>
-                  </div>
-                ) : null}
+                <UserConsumer>
+                  {(userName) => {
+                    return (
+                      <Link
+                        to={(location) => ({
+                          ...location,
+                          pathname: `/EditNotice/${userName}`,
+                          theProps: { noticeId: notice.id },
+                        })}
+                      >
+                        <Button type="button">Edit Notice</Button>
+                      </Link>
+                    );
+                  }}
+                </UserConsumer>
+
                 {/* <UserConsumer>
                   {(userName) => {
                     return (
@@ -232,7 +315,6 @@ function ShowNotices() {
                   />
                 ) : null} */}
               </Carousel.Item>
-
               //
             );
           })}

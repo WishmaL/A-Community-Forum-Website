@@ -9,6 +9,9 @@ import { useAuth } from '../context/Auth';
 function Login(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [roll, setRoll] = useState('');
+
+
   const { setAuthTokens } = useAuth();
   // const [location, setLocation] = useState(``)
   // const [isLoggedIn, setLoggedIn] = useState(false);
@@ -26,7 +29,7 @@ function Login(props) {
     event.preventDefault();
     let data_ = {
       email: email,
-      password: password,
+      password: password
     };
 
     
@@ -42,14 +45,9 @@ function Login(props) {
           // set the login true
           // setLoggedIn(true);
 
-
-
-
           props.AppCallBack(true);
+          props.RollCallback(response.data.results[0].roll)
 
-
-
-          
 
           if (response.data.results[0].roll === 'greatAdmin') {
             // if({membership} !== response.data[0].roll)alert("You are a great admin")
@@ -127,7 +125,7 @@ function Login(props) {
           <div className="text-center">
             <Button
               block
-              bsSize="large"
+              bssize="large"
               disabled={!validateForm()}
               type="submit"
             >

@@ -6,6 +6,7 @@ import ArtNCom from '../components/ArtNCom';
 import { UserProvider } from '../components/Context';
 import ShowGraphs from '../components/ShowGraphs';
 import ShowNotices from '../components/ShowNotices';
+import { RollProvider, RollConsumer } from '../context/Roll';
 // import TheCarousel from '../components/TheCarousel';
 
 export class GreatAdmin extends Component {
@@ -38,6 +39,7 @@ export class GreatAdmin extends Component {
           <ShowNotices />
           {/* <ShowGraphs /> */}
           <ArtNCom />
+
           <ShowTimeline />
         </UserProvider>
       </div>
