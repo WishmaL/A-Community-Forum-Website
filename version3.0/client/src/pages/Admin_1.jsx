@@ -1,22 +1,14 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CurrentUser from '../components/CurrentUser';
 import Banner from '../components/Banner';
 // import Carousel from '../components/Carousel';
 import ArtNCom from '../components/ArtNCom';
 import { UserProvider } from '../components/Context';
-import ShowGraphs from '../components/ShowGraphs';
+// import ShowGraphs from '../components/ShowGraphs';
 import ShowNotices from '../components/ShowNotices';
 
-import { useAuth } from '../context/Auth';
-
 function Admin_1(props) {
-  //   const { setAuthTokens } = useAuth();
   const [userName, setUserName] = useState('');
-
-  //   function logOut() {
-  //     setAuthTokens();
-  //     localStorage.clear();
-  //   }
 
   useEffect(() => {
     setUserName(props.match.params.userName);
@@ -32,7 +24,7 @@ function Admin_1(props) {
         ></Banner>
 
         <ShowNotices />
-        <ShowGraphs />
+        {/* <ShowGraphs /> */}
 
         <ArtNCom />
       </UserProvider>

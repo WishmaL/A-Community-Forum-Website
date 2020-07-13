@@ -33,7 +33,7 @@ export class Admin extends Component {
           ></Banner>
 
           <ShowNotices />
-          <ShowGraphs />
+          {/* <ShowGraphs /> */}
 
           <ArtNCom />
         </UserProvider>

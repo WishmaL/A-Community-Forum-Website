@@ -45,7 +45,7 @@ function Home() {
 
       <ShowTimeline />
 
-      <ShowNotices />
+      {/* <ShowNotices /> */}
     </div>
   );
 }

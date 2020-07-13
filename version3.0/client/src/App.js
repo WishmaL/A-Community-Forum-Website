@@ -34,12 +34,13 @@ function App(props) {
   const [roll, setRoll] = useState('viewer');
 
   const callBack = (log_status) => {
-    console.log('log_status:', log_status);
+    // console.log('log_status:', log_status);
     setisLoggedIn(log_status);
   };
 
   const RollCallback = (roll) => {
     setRoll(roll);
+    // console.log(roll);
   };
 
   return (
@@ -52,8 +53,6 @@ function App(props) {
           <Navbar />
 
           <Switch>
-            
-
             {/* ___JUST A TRY___ */}
 
             {/* <Route exact path="/Login" component={Login}/> */}

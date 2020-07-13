@@ -12,6 +12,8 @@ import { RollContext } from '../context/Roll';
 function ShowNotices() {
   const roll = useContext(RollContext);
 
+  console.log('roll:', roll);
+
   // __FOLLOWING IS FOR EXTRACT RELAVENT NOTICES__
 
   // __FOLLOWING IS FOR FETCHING ALL NOTICES__
@@ -70,7 +72,9 @@ function ShowNotices() {
 
   // <<WORKED>>
   let notices;
+  let editFlag;
 
+  // console.log(roll);
   switch (roll) {
     case 'greatAdmin':
       notices = AllNotices;
@@ -81,12 +85,14 @@ function ShowNotices() {
       notices = AllNotices.filter((notice) => {
         return notice.admin_r === 1;
       });
+      editFlag = 'admin_w';
       break;
 
     case 'member':
       notices = AllNotices.filter((notice) => {
         return notice.member_r === 1;
       });
+      editFlag = 'member_w';
       break;
 
     default:
@@ -95,6 +101,18 @@ function ShowNotices() {
       });
       break;
   }
+
+  // console.log(notices);
+  // follwing is for enabling eding part
+
+  // const enableEdit;
+
+  //   notices.forEach(notice => {
+  //     if(roll === 'admin'){
+  //       notice.admin_w === 1 ?
+  //     }
+
+  //   });
   // console.log(notices);
 
   // Following will be used for displaying the edit button
@@ -116,7 +134,7 @@ function ShowNotices() {
   //     EnableEditButton = false;
   //     break;
   // }
-
+  let delthis;
   return (
     <div>
       {/* the following is enable for every role aka (greatAdmin, admin, member) */}
@@ -183,26 +201,54 @@ function ShowNotices() {
 
                 {/* </Carousel.Caption> */}
                 {roll !== 'viewer' ? (
-                  <div>
-                    <DelNotice id={notice.id} fetchNotices={fetchNotices} />
+                  (roll === 'admin' && notice.admin_w) ||
+                  (roll === 'member' && notice.member_w) ? (
+                    <div>
+                      <DelNotice id={notice.id} fetchNotices={fetchNotices} />
 
-                    <UserConsumer>
-                      {(userName) => {
-                        return (
-                          <Link
-                            to={(location) => ({
-                              ...location,
-                              pathname: `/EditNotice/${userName}`,
-                              theProps: { noticeId: notice.id },
-                            })}
-                          >
-                            <Button type="button">Edit Notice</Button>
-                          </Link>
-                        );
-                      }}
-                    </UserConsumer>
-                  </div>
+                      <UserConsumer>
+                        {(userName) => {
+                          return (
+                            <Link
+                              to={(location) => ({
+                                ...location,
+                                pathname: `/EditNotice/${userName}`,
+                                theProps: { noticeId: notice.id },
+                              })}
+                            >
+                              <Button type="button">Edit Notice</Button>
+                            </Link>
+                          );
+                        }}
+                      </UserConsumer>
+                    </div>
+                  ) : null
                 ) : null}
+
+                {/* FOLLOWING IS THE DEFAULT WORKING EDIT AND DELETE SECTION */}
+
+                {/* <div>
+                  <DelNotice id={notice.id} fetchNotices={fetchNotices} />
+
+                  <UserConsumer>
+                    {(userName) => {
+                      return (
+                        <Link
+                          to={(location) => ({
+                            ...location,
+                            pathname: `/EditNotice/${userName}`,
+                            theProps: { noticeId: notice.id },
+                          })}
+                        >
+                          <Button type="button">Edit Notice</Button>
+                        </Link>
+                      );
+                    }}
+                  </UserConsumer>
+                </div> */}
+
+                {/* ABOVE IS THE DEFAULT WORKING EDIT AND DELETE SECTION */}
+
                 {/* <UserConsumer>
                   {(userName) => {
                     return (
