@@ -33,16 +33,22 @@ function App(props) {
   const [isLoggedIn, setisLoggedIn] = useState(false);
   const [roll, setRoll] = useState('viewer');
 
+  // __there is a catch here, once login viewer will be playing the role. Then, once login localStorage plays in the picture
   const callBack = (log_status) => {
-    // console.log('log_status:', log_status);
     setisLoggedIn(log_status);
+    localStorage.setItem('isLogged', log_status);
   };
 
   const RollCallback = (roll) => {
     setRoll(roll);
-    // console.log(roll);
+    localStorage.setItem('roll', roll);
   };
 
+  // console.log('roll:', roll);
+  // console.log('localStorage:', localStorage.getItem('roll'));
+
+  // console.log('isLoggedIn:', isLoggedIn);
+  // console.log('localStorage:', localStorage.getItem('isLogged'));
   return (
     <div>
       {/* {console.log('roll:', roll)} */}

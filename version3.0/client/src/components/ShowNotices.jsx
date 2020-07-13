@@ -7,12 +7,11 @@ import { UserConsumer } from './Context';
 import { Link, Redirect } from 'react-router-dom';
 import Carousel_desc from './Carousel_desc';
 import DelNotice from './DelNotice';
-import { RollContext } from '../context/Roll';
+// import { RollContext } from '../context/Roll';
 
 function ShowNotices() {
-  const roll = useContext(RollContext);
-
-  console.log('roll:', roll);
+  // const roll = useContext(RollContext);
+  const roll = localStorage.getItem('roll');
 
   // __FOLLOWING IS FOR EXTRACT RELAVENT NOTICES__
 
