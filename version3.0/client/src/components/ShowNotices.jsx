@@ -71,27 +71,27 @@ function ShowNotices() {
 
   // <<WORKED>>
   let notices;
-  let editFlag;
+  // let editFlag;
 
   // console.log(roll);
   switch (roll) {
     case 'greatAdmin':
       notices = AllNotices;
-      console.log(notices);
+      // console.log(notices);
       break;
 
     case 'admin':
       notices = AllNotices.filter((notice) => {
         return notice.admin_r === 1;
       });
-      editFlag = 'admin_w';
+      // editFlag = 'admin_w';
       break;
 
     case 'member':
       notices = AllNotices.filter((notice) => {
         return notice.member_r === 1;
       });
-      editFlag = 'member_w';
+      // editFlag = 'member_w';
       break;
 
     default:
@@ -133,7 +133,7 @@ function ShowNotices() {
   //     EnableEditButton = false;
   //     break;
   // }
-  let delthis;
+  // let delthis;
   return (
     <div>
       {/* the following is enable for every role aka (greatAdmin, admin, member) */}
@@ -201,7 +201,8 @@ function ShowNotices() {
                 {/* </Carousel.Caption> */}
                 {roll !== 'viewer' ? (
                   (roll === 'admin' && notice.admin_w) ||
-                  (roll === 'member' && notice.member_w) ? (
+                  (roll === 'member' && notice.member_w) ||
+                  roll === 'greatAdmin' ? (
                     <div>
                       <DelNotice id={notice.id} fetchNotices={fetchNotices} />
 
