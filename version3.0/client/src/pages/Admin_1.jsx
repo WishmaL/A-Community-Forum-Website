@@ -10,6 +10,8 @@ import ShowNotices from '../components/ShowNotices';
 function Admin_1(props) {
   const [userName, setUserName] = useState('');
 
+  localStorage.setItem('USERNAME', props.match.params.userName);
+
   useEffect(() => {
     setUserName(props.match.params.userName);
   }, []);

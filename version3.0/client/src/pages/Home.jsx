@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import Delthis from '../components/Delthis';
 import ShowNotices from '../components/ShowNotices';
 import { RollProvider, RollConsumer } from '../context/Roll';
+import CurrentUser from '../components/CurrentUser';
 
 function Home() {
   // const [notices, setNotices] = useState([]);
@@ -23,8 +24,12 @@ function Home() {
   //     });
   // }, []);
 
+  const userName = localStorage.getItem('USERNAME');
+
   return (
     <div>
+      {userName !== null ? <CurrentUser currentUser={userName} /> : null}
+
       <Banner
         title="The Learn Home page"
         subtitle="This will be the description"

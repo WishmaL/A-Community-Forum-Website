@@ -115,7 +115,7 @@ function ArtNCom() {
               // <Button onClick={() => this.clickHandler(userName)}>
 
               // following will send the current location as prop to AddArticle component
-              roll !== 'viewer' ? (
+              roll !== 'viewer' && roll !== 'member' ? (
                 <Link
                   to={(location) => ({
                     ...location,
@@ -195,9 +195,9 @@ function ArtNCom() {
                         )}
                       </Card.Body>
 
-                      {roll !== 'viewer' ? (
+                      {roll !== 'viewer' && roll !== 'member' ? (
                         (roll === 'admin' && article.admin_w) ||
-                        (roll === 'member' && article.member_w) ||
+                        // (roll === 'member' && article.member_w) ||
                         roll === 'greatAdmin' ? (
                           <div>
                             {/* DELETE FEATURE OF THE ARTICLE */}

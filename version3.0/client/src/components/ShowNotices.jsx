@@ -137,6 +137,7 @@ function ShowNotices() {
   return (
     <div>
       {/* the following is enable for every role aka (greatAdmin, admin, member) */}
+
       <UserConsumer>
         {(userName) => {
           return (
@@ -144,7 +145,7 @@ function ShowNotices() {
               <div className="alert alert-primary" role="alert">
                 <h1>Notice section</h1>
 
-                {roll !== 'viewer' ? (
+                {roll !== 'viewer' && roll !== 'member' ? (
                   <Link
                     to={(location) => ({
                       ...location,
@@ -199,9 +200,9 @@ function ShowNotices() {
                   <p>{notice.body}</p> */}
 
                 {/* </Carousel.Caption> */}
-                {roll !== 'viewer' ? (
+                {roll !== 'viewer' && roll !== 'member' ? (
                   (roll === 'admin' && notice.admin_w) ||
-                  (roll === 'member' && notice.member_w) ||
+                  // (roll === 'member' && notice.member_w) ||
                   roll === 'greatAdmin' ? (
                     <div>
                       <DelNotice id={notice.id} fetchNotices={fetchNotices} />
@@ -209,6 +210,7 @@ function ShowNotices() {
                       <UserConsumer>
                         {(userName) => {
                           return (
+                            // roll !== 'viewer' && roll !== 'member' ? (
                             <Link
                               to={(location) => ({
                                 ...location,
@@ -218,6 +220,7 @@ function ShowNotices() {
                             >
                               <Button type="button">Edit Notice</Button>
                             </Link>
+                            // ): null
                           );
                         }}
                       </UserConsumer>

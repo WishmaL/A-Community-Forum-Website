@@ -99,11 +99,11 @@ router.put('/updateGraph', (req, res, next) => {
 
 // ///////////////////////////////////////////
 // Delete a graph
-router.delete('/deleteGraph', (req, res) => {
-  const deleteNotice = [req.body.id];
+router.delete('/deleteGraph/:id', (req, res) => {
+  const deleteGraph = [req.params.id];
 
-  let sql = `DELETE FROM graphs WHERE id = ?`;
-  let query = db.query(sql, deleteNotice[0], (err, rows) => {
+  let sql = `DELETE FROM graphs WHERE id = ${deleteGraph[0]}`;
+  let query = db.query(sql, deleteGraph[0], (err, rows) => {
     if (err) throw err;
     // console.log('deleted');
     res.send('successfully deleted!');

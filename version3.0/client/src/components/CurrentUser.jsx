@@ -13,6 +13,8 @@ function CurrentUser(props) {
   const clickHandler = () => {
     setAuthTokens();
     localStorage.clear();
+    // set the default value (i.e. 'viewer')
+    localStorage.setItem('roll', 'viewer');
   };
 
   return (

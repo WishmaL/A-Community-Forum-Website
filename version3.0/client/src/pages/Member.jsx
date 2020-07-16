@@ -26,6 +26,7 @@ export class Member extends Component {
   }
 
   render() {
+    localStorage.setItem('USERNAME', this.props.match.params.userName);
     return (
       <div>
         <UserProvider value={this.state.userName}>

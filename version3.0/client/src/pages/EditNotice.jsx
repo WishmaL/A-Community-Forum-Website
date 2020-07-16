@@ -100,7 +100,7 @@ function EditNotice(props) {
     axios
       .put('/notices/updateNotice/' + id, data_)
       .then((res) => {
-        alert('New Event is updated!!!');
+        alert('The notice is updated!!!');
         // reset the input fields
         // setTitle('');
         // setBody('');
