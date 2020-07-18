@@ -8,6 +8,7 @@ import { Link, Redirect } from 'react-router-dom';
 import Carousel_desc from './Carousel_desc';
 import DelNotice from './DelNotice';
 // import { RollContext } from '../context/Roll';
+import ReactHtmlParser from 'react-html-parser';
 
 function ShowNotices() {
   // const roll = useContext(RollContext);
@@ -101,6 +102,12 @@ function ShowNotices() {
       break;
   }
 
+  notices.sort(
+    (a, b) => new Date(b.time).getTime() - new Date(a.time).getTime()
+  );
+
+  // console.log(notices);
+
   // console.log(notices);
   // follwing is for enabling eding part
 
@@ -192,7 +199,10 @@ function ShowNotices() {
                     }
                   </Col>
                   <Col md={4}>
-                    <Carousel_desc title={notice.title} body={notice.body} />
+                    <Carousel_desc
+                      title={notice.title}
+                      body={ReactHtmlParser(notice.body)}
+                    />
                   </Col>
                 </Row>
                 {/* <Carousel.Caption> */}

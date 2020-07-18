@@ -8,6 +8,9 @@ import moment from 'moment';
 // import { Redirect } from 'react-router';
 // import Message from './Message';
 
+import CKEditor from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 function AddNotice(props) {
   let history = useHistory();
 
@@ -130,6 +133,10 @@ function AddNotice(props) {
       });
   };
 
+  const onchangeHandler = (e, editor) => {
+    const data = editor.getData();
+    setBody(data);
+  };
   return (
     <div>
       <Container>
@@ -152,13 +159,15 @@ function AddNotice(props) {
 
           <Form.Group controlId="formGridAddress1">
             <Form.Label>Body</Form.Label>
-            <Form.Control
+            {/* <Form.Control
               as="textarea"
               rows="6"
               placeholder=""
               value={body}
               onChange={(e) => setBody(e.target.value)}
-            />
+            /> */}
+
+            <CKEditor editor={ClassicEditor} onChange={onchangeHandler} />
           </Form.Group>
 
           {/* File upload has to be done */}

@@ -20,6 +20,9 @@ import Admin_1 from './pages/Admin_1';
 import { LogginProvider } from './context/LoggedIn';
 import { RollProvider } from './context/Roll';
 
+import { ThemeProvider } from 'styled-components';
+import * as homeStyle from './styled-components/home';
+
 function App(props) {
   const existingTokens = JSON.parse(localStorage.getItem('tokens'));
   const [authTokens, setAuthTokens] = useState(existingTokens);
@@ -76,7 +79,11 @@ function App(props) {
 
             <RollProvider value={roll}>
               {/* {console.log(roll)} */}
-              <Route exact path="/" component={Home} />
+
+              <ThemeProvider theme={homeStyle}>
+                <Route exact path="/" component={Home} />
+              </ThemeProvider>
+
               {/* <Route exact path="/delthis/" component={Delthis} /> */}
               <PrivateRoute exact path="/Member/:userName" component={Member} />
               {/* <Route exact path="/Admin/:userName" component={Admin} /> */}

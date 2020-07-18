@@ -99,6 +99,10 @@ function ArtNCom() {
       break;
   }
 
+  articleList.sort(
+    (a, b) => new Date(b.time).getTime() - new Date(a.time).getTime()
+  );
+
   return (
     <div>
       {/* {console.log(this.state.default_Key)}
@@ -163,7 +167,7 @@ function ArtNCom() {
                                     className="d-block w-100"
                                     src={picInfo.articlePicPath}
                                     alt="forrid"
-                                    fluid
+                                    img-fluid
                                   />
                                 </div>
                               );
@@ -245,8 +249,8 @@ function ArtNCom() {
                       <style type="text/css">
                         {`
                             .my_class {
-                              height:10px;
-                              overflow-y:scroll
+                              height:100px;
+                              overflow:auto
                             }
                           `}
                       </style>
@@ -261,6 +265,7 @@ function ArtNCom() {
                               <CommentsProvider value={fetchComments}>
                                 <CommentIdProvider value={comment.id}>
                                   <Comments
+                                    className="my_class"
                                     thread={comment.thread}
                                     time={moment(comment.time).format(
                                       'dddd, MMMM Do YYYY, h:mm:ss a'

@@ -15,6 +15,14 @@ function Comments({ thread, time, id }) {
 
   return (
     <div>
+      <style type="text/css">
+        {`
+            .my_class {
+              height:10px;
+              overflow:auto
+            }
+          `}
+      </style>
       <Card>
         <Card.Body>
           <Media>
@@ -22,7 +30,7 @@ function Comments({ thread, time, id }) {
               // width={64}
               // height={64}
               className="mr-3"
-              src="http://lorempics.com/64x64/f9b384/142850"
+              src="http://lorempics.com/32x32/f9b384/142850"
               alt="Generic placeholder"
             />
 

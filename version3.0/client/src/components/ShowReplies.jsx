@@ -28,7 +28,7 @@ function ShowReplies({ commentId }) {
           // width={64}
           // height={64}
           className="mr-3"
-          src="http://lorempics.com/64x64/f4c888/142850"
+          src="http://lorempics.com/32x32/f4c888/142850"
           alt="Generic placeholder"
         />
         <Media.Body>
