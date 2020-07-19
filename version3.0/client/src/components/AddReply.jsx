@@ -15,7 +15,7 @@ function AddReply({ updateReplies, userName, commentId }) {
       commentId,
       reply: reply,
     };
-    console.log('the data', data_);
+    // console.log('the data', data_);
 
     axios
       .post('/replies/newReply', data_)

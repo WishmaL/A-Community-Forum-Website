@@ -71,7 +71,6 @@ function ArtNCom() {
   let articleList;
   // let editFlag;
 
-  // console.log(roll);
   switch (roll) {
     case 'greatAdmin':
       articleList = allArticleList;
@@ -105,6 +104,7 @@ function ArtNCom() {
 
   return (
     <div>
+      {/* {console.log(comments)} */}
       {/* {console.log(this.state.default_Key)}
         {console.log(articleList[0])} */}
       <div className="alert alert-primary" role="alert">
@@ -276,19 +276,36 @@ function ArtNCom() {
                               </CommentsProvider>
                             </div>
                           ))}
-                      </div>
 
-                      <UserConsumer>
-                        {(username) => {
-                          return (
-                            <Addcomment
-                              articleId={article.id}
-                              userName={username}
-                              fetchComments={fetchComments}
-                            />
-                          );
-                        }}
-                      </UserConsumer>
+                        {roll !== 'viewer' ? (
+                          (roll === 'admin' && article.admin_w) ||
+                          (roll === 'member' && article.member_w) ||
+                          roll === 'greatAdmin' ? (
+                            <UserConsumer>
+                              {(username) => {
+                                return (
+                                  <Addcomment
+                                    articleId={article.id}
+                                    userName={username}
+                                    fetchComments={fetchComments}
+                                  />
+                                );
+                              }}
+                            </UserConsumer>
+                          ) : null
+                        ) : null}
+                        {/* <UserConsumer>
+                          {(username) => {
+                            return (
+                              <Addcomment
+                                articleId={article.id}
+                                userName={username}
+                                fetchComments={fetchComments}
+                              />
+                            );
+                          }}
+                        </UserConsumer> */}
+                      </div>
                     </Col>
                   </Row>
                 </Col>

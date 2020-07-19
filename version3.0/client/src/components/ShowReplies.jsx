@@ -5,6 +5,8 @@ import AddReply from './AddReply';
 import { UserConsumer } from './Context';
 
 function ShowReplies({ commentId }) {
+  const roll = localStorage.getItem('roll');
+
   const [replies, setReplies] = useState([]);
 
   const updateReplies = () => {
@@ -53,17 +55,23 @@ function ShowReplies({ commentId }) {
         </Media.Body>
       </Media>
 
-      <UserConsumer>
-        {(username) => {
-          return (
-            <AddReply
-              updateReplies={updateReplies}
-              userName={username}
-              commentId={commentId}
-            />
-          );
-        }}
-      </UserConsumer>
+      {roll !== 'viewer' ? (
+        (roll === 'admin' && comment.admin_w) ||
+        (roll === 'member' && comment.member_w) ||
+        roll === 'greatAdmin' ? (
+          <UserConsumer>
+            {(username) => {
+              return (
+                <AddReply
+                  updateReplies={updateReplies}
+                  userName={username}
+                  commentId={commentId}
+                />
+              );
+            }}
+          </UserConsumer>
+        ) : null
+      ) : null}
     </div>
   );
 }
