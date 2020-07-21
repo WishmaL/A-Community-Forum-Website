@@ -99,7 +99,9 @@ export const ShowGraphs = () => {
                 <h2 className="text-center">{graph.title}</h2>
                 <p>{graph.description}</p>
 
-                <DelGraph id={graph.id} fetchGraphs={fetchGraphs} />
+                {roll === 'greatAdmin' ? (
+                  <DelGraph id={graph.id} fetchGraphs={fetchGraphs} />
+                ) : null}
               </Tab>
             );
           })}

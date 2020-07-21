@@ -5,36 +5,17 @@ import { Link } from 'react-router-dom';
 import { LoggingContext } from '../context/LoggedIn';
 
 function Navbar_() {
-  // const isLoggedIn = useContext(LoggingContext)
-
   let history = useHistory();
   const isLoggedIn = localStorage.getItem('isLogged');
   const roll = localStorage.getItem('roll');
   const name = localStorage.getItem('userName');
 
-  console.log(roll);
-
   function handleClick() {
     history.goBack();
   }
 
-  // const rollHandler = () => {
-  //   switch (roll) {
-  //     case 'greatAdmin':
-  //       return <Button onClick={handleClick}>Great Admin page</Button>;
-  //       break;
-  //     case 'admin':
-  //       return <Button onClick={handleClick}>Admin page</Button>;
-  //       break;
-  //     case 'member':
-  //       return <Button onClick={handleClick}>Member page</Button>;
-  //       break;
-  //   }
-  // };
-
   return (
     <Navbar bg="light" expand="lg">
-      {/* {console.log(isLoggedIn)} */}
       <Navbar.Brand href="/">LEARN Platform</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

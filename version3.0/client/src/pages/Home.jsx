@@ -20,8 +20,8 @@ const Div = styled.div`
 `;
 
 function Home() {
-  const userName = localStorage.getItem('USERNAME');
-  console.log(userName);
+  const userName = localStorage.getItem('userName');
+  // console.log(userName);
   return (
     <Div>
       <div>
