@@ -59,7 +59,6 @@ function AddNotice(props) {
       member_w: member_w,
       viewer_r: viewer_r,
     };
-    console.log(data_);
 
     axios
       .post('/notices/newNotice', data_)

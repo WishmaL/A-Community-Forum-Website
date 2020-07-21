@@ -1,5 +1,6 @@
-create database db_learn_del;
-use db_learn_del;
+create database db_learn;
+use db_learn;
+
 
 CREATE TABLE users(
 id INT(10) AUTO_INCREMENT,

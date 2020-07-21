@@ -83,8 +83,9 @@ router.post('/newUser', (req, res) => {
 
       results.forEach((element) => {
         if (element.constructor == Array) {
-          var msg = element[0].msg;
-          res.send('inserted element id : ' + msg);
+          var msg = element[0].id;
+          res.json(msg);
+          // res.send('inserted element id : ' + msg);
           // console.log(element[0]);
         }
       });

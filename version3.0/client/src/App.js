@@ -22,6 +22,7 @@ import { RollProvider } from './context/Roll';
 
 import { ThemeProvider } from 'styled-components';
 import * as homeStyle from './styled-components/home';
+import AddUser from './pages/AddUser';
 
 function App(props) {
   const existingTokens = JSON.parse(localStorage.getItem('tokens'));
@@ -47,6 +48,9 @@ function App(props) {
     localStorage.setItem('roll', roll);
   };
 
+  const nameCallback = (name) => {
+    localStorage.setItem('userName', name);
+  };
   // console.log('roll:', roll);
   // console.log('localStorage:', localStorage.getItem('roll'));
 
@@ -73,6 +77,7 @@ function App(props) {
                   {...props}
                   AppCallBack={callBack}
                   RollCallback={RollCallback}
+                  nameCallback={nameCallback}
                 />
               )}
             />
@@ -92,6 +97,7 @@ function App(props) {
                 path="/GreatAdmin/:userName"
                 component={GreatAdmin}
               />
+              <Route path="/addUser" component={AddUser} />
               <Route
                 exact
                 path="/AddArticle/:userName"
@@ -110,7 +116,6 @@ function App(props) {
                 component={EditArticle}
               />
             </RollProvider>
-
             <Route component={Error} />
 
             {/* setting up the route parameter */}

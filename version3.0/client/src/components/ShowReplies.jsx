@@ -55,23 +55,23 @@ function ShowReplies({ commentId }) {
         </Media.Body>
       </Media>
 
-      {roll !== 'viewer' ? (
+      {/* {roll !== 'viewer' ? (
         (roll === 'admin' && comment.admin_w) ||
         (roll === 'member' && comment.member_w) ||
-        roll === 'greatAdmin' ? (
-          <UserConsumer>
-            {(username) => {
-              return (
-                <AddReply
-                  updateReplies={updateReplies}
-                  userName={username}
-                  commentId={commentId}
-                />
-              );
-            }}
-          </UserConsumer>
-        ) : null
-      ) : null}
+        roll === 'greatAdmin' ? ( */}
+      <UserConsumer>
+        {(username) => {
+          return (
+            <AddReply
+              updateReplies={updateReplies}
+              userName={username}
+              commentId={commentId}
+            />
+          );
+        }}
+      </UserConsumer>
+      {/* ) : null
+       ) : null} */}
     </div>
   );
 }

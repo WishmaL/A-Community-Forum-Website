@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Redirect, useHistory  } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { Container, Row, Col } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
@@ -10,7 +10,6 @@ function Login(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [roll, setRoll] = useState('');
-
 
   const { setAuthTokens } = useAuth();
   // const [location, setLocation] = useState(``)
@@ -29,10 +28,9 @@ function Login(props) {
     event.preventDefault();
     let data_ = {
       email: email,
-      password: password
+      password: password,
     };
 
-    
     axios
       .post('users/getUser/', data_)
       .then(function (response) {
@@ -46,13 +44,13 @@ function Login(props) {
           // setLoggedIn(true);
 
           props.AppCallBack(true);
-          props.RollCallback(response.data.results[0].roll)
-
+          props.RollCallback(response.data.results[0].roll);
+          props.nameCallback(response.data.results[0].name);
 
           if (response.data.results[0].roll === 'greatAdmin') {
             // if({membership} !== response.data[0].roll)alert("You are a great admin")
             // window.location = `/GreatAdmin/${response.data.results[0].name}`;
-            history.push(`/GreatAdmin/${response.data.results[0].name}`)
+            history.push(`/GreatAdmin/${response.data.results[0].name}`);
             // setLocation(`/GreatAdmin/${response.data.results[0].name}`);
           } else if (response.data.results[0].roll === 'admin') {
             // window.location = `/Admin/${response.data.results[0].name}`;
@@ -60,20 +58,20 @@ function Login(props) {
             // following is to open up a new window/tab
             // window.open('/Admin/');
 
-            history.push(`/Admin/${response.data.results[0].name}`)
+            history.push(`/Admin/${response.data.results[0].name}`);
           } else if (response.data.results[0].roll === 'member') {
             // window.location = `/Member/${response.data.results[0].name}`;
             // setLocation(`/Member/${response.data.results[0].name}`);
             // window.open('/Member/');
 
-            history.push(`/Member/${response.data.results[0].name}`)
+            history.push(`/Member/${response.data.results[0].name}`);
           } else {
             alert('Membership is not defined!!');
           }
         }
       })
       .catch(function (error) {
-        console.log(error)
+        console.log(error);
         alert('The username or password provided were incorrect!');
         setEmail('');
         setPassword('');

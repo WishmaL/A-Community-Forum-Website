@@ -21,7 +21,7 @@ const Div = styled.div`
 
 function Home() {
   const userName = localStorage.getItem('USERNAME');
-
+  console.log(userName);
   return (
     <Div>
       <div>
