@@ -44,7 +44,8 @@ function Home() {
 
         <ShowNotices />
         {/* <ShowGraphs /> */}
-        <ArtNCom />
+        {/* <ArtNCom /> */}
+        <Delthis />
 
         <ShowTimeline />
 
