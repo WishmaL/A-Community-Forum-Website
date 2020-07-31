@@ -7,6 +7,7 @@ import { UserProvider } from '../components/Context';
 import ShowGraphs from '../components/ShowGraphs';
 import ShowNotices from '../components/ShowNotices';
 import { RollProvider, RollConsumer } from '../context/Roll';
+import Delthis from '../components/Delthis';
 // import TheCarousel from '../components/TheCarousel';
 
 export class GreatAdmin extends Component {
@@ -39,7 +40,8 @@ export class GreatAdmin extends Component {
 
           <ShowNotices />
           {/* <ShowGraphs /> */}
-          <ArtNCom />
+          {/* <ArtNCom /> */}
+          <Delthis />
 
           <ShowTimeline />
         </UserProvider>

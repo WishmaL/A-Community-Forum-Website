@@ -1,45 +1,92 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Pagination from 'react-bootstrap/Pagination';
+import { Container } from 'react-bootstrap';
 
-const Pagination_ = ({ articlesPerPage, totalPosts, paginate }) => {
-  const pageNumbers = [];
+const Pagination_ = ({ articlesPerPage, totalPosts, paginate, activePage }) => {
+  const [num, setNum] = useState(1);
+  // following is perfectly fine
+  // const Pagination_ = ({ articlesPerPage, totalPosts, paginate }) => {
+  let pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalPosts / articlesPerPage); i++) {
     pageNumbers.push(i);
   }
 
+  // console.log(activePage);
+  // console.log(pageNumbers);
+
+  const pageClickHandler = (num) => {
+    paginate(num);
+    // console.log(num);
+    setNum(num);
+  };
+
   return (
-    <nav>
-      {/* Following is normally works
-       */}
-      {/* <ul className="pagination">
-        {pageNumbers.map((number) => (
-          <li key={number} className="page-item">
-            <a onClick={() => paginate(number)} className="page-link">
-              {number}
-            </a>
-          </li>
-        ))}
-      </ul> */}
+    <Container>
+      <nav>
+        {/* Following is normally works
+         */}
+        {/* <ul className="pagination">
+          {pageNumbers.map((number) => (
+            <li key={number} className="page-item">
+             
+              <a onClick={() => paginate(number)} className="page-link">
+                {number}
+              </a>
+            </li>
+          ))}
+        </ul> */}
 
-      <Pagination>
-        <Pagination.First />
-        <Pagination.Prev />
-        <Pagination.Item>{1}</Pagination.Item>
-        <Pagination.Ellipsis />
-
-        <Pagination.Item>{10}</Pagination.Item>
-        <Pagination.Item>{11}</Pagination.Item>
-        <Pagination.Item active>{12}</Pagination.Item>
-        <Pagination.Item>{13}</Pagination.Item>
-        <Pagination.Item disabled>{14}</Pagination.Item>
-
-        <Pagination.Ellipsis />
-        <Pagination.Item>{20}</Pagination.Item>
-        <Pagination.Next />
-        <Pagination.Last />
-      </Pagination>
-    </nav>
+        {pageNumbers.length <= 3 ? (
+          <Pagination>
+            {pageNumbers.map((number) =>
+              // <Pagination.Item>
+              //   <a onClick={() => paginate(number)}>{number}</a>
+              // </Pagination.Item>
+              number === num ? (
+                // set it as active
+                <Pagination.Item active>
+                  <a onClick={() => pageClickHandler(number)}>{number}</a>
+                </Pagination.Item>
+              ) : (
+                <Pagination.Item>
+                  <a onClick={() => pageClickHandler(number)}>{number}</a>
+                </Pagination.Item>
+              )
+            )}
+          </Pagination>
+        ) : (
+          <Pagination>
+            <Pagination.First onClick={() => paginate(1)} />
+            {activePage !== 1 ? (
+              <>
+                <Pagination.Prev
+                  active="true"
+                  onClick={() => paginate(activePage - 1)}
+                />
+                {/* <Pagination.Item active>{activePage - 1}</Pagination.Item> */}
+              </>
+            ) : null}
+            {pageNumbers.map((number) =>
+              number === num ? (
+                // set it as active
+                <Pagination.Item active>
+                  <a onClick={() => pageClickHandler(number)}>{number}</a>
+                </Pagination.Item>
+              ) : (
+                <Pagination.Item>
+                  <a onClick={() => pageClickHandler(number)}>{number}</a>
+                </Pagination.Item>
+              )
+            )}
+            {activePage !== pageNumbers.length ? (
+              <Pagination.Next onClick={() => paginate(activePage + 1)} />
+            ) : null}
+            <Pagination.Last onClick={() => paginate(pageNumbers.length)} />
+          </Pagination>
+        )}
+      </nav>
+    </Container>
   );
 };
 

@@ -23,13 +23,9 @@ function Banner({ children, title, subtitle }) {
   return (
     <Div>
       <div>
-        <Title>
-          <h1 className="text-center">{title}</h1>
-        </Title>
+        <Title className="text-center">{title}</Title>
         <div>
-          <Para>
-            <h4 className="text-center">{subtitle}</h4>
-          </Para>
+          <Para className="text-center">{subtitle}</Para>
         </div>
 
         {children}

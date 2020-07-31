@@ -23,7 +23,7 @@ function Navbar_() {
           {/* ___check following if want___ */}
           {/* <ul class="list-inline"> */}
 
-          {!isLoggedIn ? (
+          {isLoggedIn === null ? (
             <div className="d-flex bd-highlight">
               <div className="p-2 flex-grow-1 bd-highlight">
                 <Link to="/">HOME</Link>

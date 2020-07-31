@@ -42,10 +42,10 @@ function Home() {
         {/* <TheCarousel /> */}
         {/* <Delthis /> */}
 
-        <ShowNotices />
+        {/* <ShowNotices /> */}
         {/* <ShowGraphs /> */}
-        {/* <ArtNCom /> */}
-        <Delthis />
+        <ArtNCom />
+        {/* <Delthis /> */}
 
         <ShowTimeline />
 
