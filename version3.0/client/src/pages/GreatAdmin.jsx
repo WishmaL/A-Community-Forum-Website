@@ -40,8 +40,8 @@ export class GreatAdmin extends Component {
 
           <ShowNotices />
           {/* <ShowGraphs /> */}
-          {/* <ArtNCom /> */}
-          <Delthis />
+          <ArtNCom />
+          {/* <Delthis /> */}
 
           <ShowTimeline />
         </UserProvider>

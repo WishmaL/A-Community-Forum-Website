@@ -186,10 +186,11 @@ function ShowNotices() {
                           return (
                             <div key={picInfo.id}>
                               <Image
-                                className="d-block w-100"
+                                className="mx-auto d-block"
                                 src={picInfo.noticePicPath}
                                 alt="Notice pic"
-                                fluid
+                                height="300px"
+                                width="300px"
                               />
                             </div>
                           );
@@ -212,7 +213,6 @@ function ShowNotices() {
                 {/* </Carousel.Caption> */}
                 {roll !== 'viewer' && roll !== 'member' ? (
                   (roll === 'admin' && notice.admin_w) ||
-                  // (roll === 'member' && notice.member_w) ||
                   roll === 'greatAdmin' ? (
                     <div>
                       <DelNotice id={notice.id} fetchNotices={fetchNotices} />
@@ -220,7 +220,6 @@ function ShowNotices() {
                       <UserConsumer>
                         {(userName) => {
                           return (
-                            // roll !== 'viewer' && roll !== 'member' ? (
                             <Link
                               to={(location) => ({
                                 ...location,
@@ -230,7 +229,6 @@ function ShowNotices() {
                             >
                               <Button type="button">Edit Notice</Button>
                             </Link>
-                            // ): null
                           );
                         }}
                       </UserConsumer>

@@ -47,21 +47,16 @@ export const ShowTimeline = () => {
         <div className="alert alert-primary" role="alert">
           <h1>The Timeline</h1>
         </div>
-        <AddTimeline set_timeEvents={updateEvents} />
+        {roll === 'greatAdmin' ? (
+          <AddTimeline set_timeEvents={updateEvents} />
+        ) : null}
         <div className="my_class">
           {/* <div className="overflow-auto"> */}
+
           {timeEvents.map((timeEvent) => {
             return (
               <Media key={timeEvent.id}>
-                {/* <img
-                  width={64}
-                  height={64}
-                  className="align-self-start mr-3"
-                  src="http://lorempics.com/64x64/222831/f1d1d1"
-                  alt="Generic placeholder"
-                /> */}
                 <Media.Body>
-                  {/* <div className="overflow-auto"> */}
                   <Timeline>
                     <Event
                       interval={moment(timeEvent.date).format('YYYY-MM-DD')}
@@ -77,7 +72,7 @@ export const ShowTimeline = () => {
                   <p>{timeEvent.description}</p>
                   <p>{moment(timeEvent.date).format('YYYY-MM-DD')}</p> */}
 
-                  {roll !== 'viewer' && roll !== 'member' ? (
+                  {roll === 'greatAdmin' ? (
                     <div>
                       <DelTimeEvent
                         id={timeEvent.id}

@@ -115,6 +115,7 @@ function ArtNCom() {
   // console.log(currentArticles);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  console.log(currentPage);
   // //////////////////////////////////////////////////////////////////////
 
   const AccordianClickHandler = () => {
@@ -142,14 +143,9 @@ function ArtNCom() {
         </UserConsumer>
       </div>
       <div className="container">
-        {/* <Tabs
-          defaultActiveKey={Object.keys(articleList)[0]}
-          transition={false}
-          id="noanim-tab-example"
-        > */}
         {currentArticles.map((article) => {
           return (
-            <li key={article.id} eventkey={article.id} title={article.title}>
+            <div key={article.id} eventkey={article.id} title={article.title}>
               <Col>
                 <Row>
                   <Card>
@@ -157,8 +153,6 @@ function ArtNCom() {
                       <Card.Title>
                         <h1 className="text-center">{article.title}</h1>
                       </Card.Title>
-
-                      {/* /////////////////////////////////// */}
 
                       {articlePics
                         .filter((picInfo) => {
@@ -168,10 +162,11 @@ function ArtNCom() {
                           return (
                             <div key={picInfo.id}>
                               <Image
-                                className="d-block w-100"
+                                className="mx-auto d-block"
                                 src={picInfo.articlePicPath}
                                 alt="forrid"
-                                img-fluid="true"
+                                height="300px"
+                                width="200px"
                               />
                             </div>
                           );
@@ -195,21 +190,18 @@ function ArtNCom() {
                       (roll === 'admin' && article.admin_w) ||
                       roll === 'greatAdmin' ? (
                         <div>
-                          {/* DELETE FEATURE OF THE ARTICLE */}
                           <DelArticle
                             id={article.id}
                             fetchArticles={fetchArticles}
                           />
-                          {/* DELETE FEATURE OF THE ARTICLE */}
 
-                          {/* EDIT THE ARTICLE */}
                           <UserConsumer>
                             {(userName) => {
                               return (
                                 <Link
                                   to={{
                                     pathname: `/EditArticle/${userName}`,
-                                    data: { articleId: article.id }, // your data array of objects
+                                    data: { articleId: article.id },
                                   }}
                                 >
                                   <Button type="button">Edit Article</Button>
@@ -293,9 +285,10 @@ function ArtNCom() {
                   </Col>
                 </Row>
               </Col>
-            </li>
+            </div>
           );
         })}
+
         {/* </Tabs> */}
 
         <Pagination_

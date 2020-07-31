@@ -15,36 +15,33 @@ const Pagination_ = ({ articlesPerPage, totalPosts, paginate, activePage }) => {
   // console.log(activePage);
   // console.log(pageNumbers);
 
-  const pageClickHandler = (num) => {
-    paginate(num);
-    // console.log(num);
-    setNum(num);
-  };
+  // const pageClickHandler = (num) => {
+  //   paginate(num);
+  //   // console.log(num);
+  //   setNum(num);
+  // };
 
   return (
     <Container>
       <nav>
         {/* Following is normally works
          */}
-        {/* <ul className="pagination">
+        <ul className="pagination">
           {pageNumbers.map((number) => (
             <li key={number} className="page-item">
-             
               <a onClick={() => paginate(number)} className="page-link">
                 {number}
               </a>
             </li>
           ))}
-        </ul> */}
+        </ul>
 
-        {pageNumbers.length <= 3 ? (
+        {/* {pageNumbers.length <= 3 ? (
           <Pagination>
             {pageNumbers.map((number) =>
-              // <Pagination.Item>
-              //   <a onClick={() => paginate(number)}>{number}</a>
-              // </Pagination.Item>
+              
               number === num ? (
-                // set it as active
+                
                 <Pagination.Item active>
                   <a onClick={() => pageClickHandler(number)}>{number}</a>
                 </Pagination.Item>
@@ -64,12 +61,11 @@ const Pagination_ = ({ articlesPerPage, totalPosts, paginate, activePage }) => {
                   active="true"
                   onClick={() => paginate(activePage - 1)}
                 />
-                {/* <Pagination.Item active>{activePage - 1}</Pagination.Item> */}
-              </>
+                </>
             ) : null}
             {pageNumbers.map((number) =>
               number === num ? (
-                // set it as active
+                
                 <Pagination.Item active>
                   <a onClick={() => pageClickHandler(number)}>{number}</a>
                 </Pagination.Item>
@@ -84,7 +80,7 @@ const Pagination_ = ({ articlesPerPage, totalPosts, paginate, activePage }) => {
             ) : null}
             <Pagination.Last onClick={() => paginate(pageNumbers.length)} />
           </Pagination>
-        )}
+        )} */}
       </nav>
     </Container>
   );
