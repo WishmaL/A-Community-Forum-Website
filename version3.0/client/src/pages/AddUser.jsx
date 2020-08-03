@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Container, Col, Button, Form, Card } from 'react-bootstrap';
+import { Container, Col, Button, Form, Card, Row } from 'react-bootstrap';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+
+import '../styles/forms.css';
 
 const AddUser = () => {
   const [name, setName] = useState('');
@@ -10,118 +15,154 @@ const AddUser = () => {
   const [contact, setContact] = useState('');
   const [roll, setRoll] = useState('viewer');
 
+  // regarding password visibility
+  const [passwordShown, setPasswordShown] = useState(false);
+
+  const togglePasswordVisiblity = () => {
+    // console.log('clicked');
+    setPasswordShown(passwordShown ? false : true);
+    console.log(passwordShown);
+  };
+
   let history = useHistory();
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    // set the current time here
-    // setTime(moment().format());
     let data_ = {
-      //   name: name,
-      //   email: email,
-      //   password: password,
-      //   contact: contact,
-      //   roll: roll,
       name,
       email,
       password,
       contact,
       roll,
     };
-    // console.log(data_);
 
     axios
       .post('/users/newUser', data_)
       .then((res) => {
-        // console.log(res);
-        // alert('New User is added!!!');
-        // checking following
+        // the option #1
         history.goBack();
-        // console.log(res.data);
 
-        
+        // with the alrt and window.location() method
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
+  // const element = <FontAwesomeIcon icon={faEye} />;
+
   return (
-    <div>
-      <Form>
-        <Form.Row>
-          <Form.Group as={Col} controlId="formGridEmail">
-            <Form.Label>Name</Form.Label>
+    <Container>
+      <div>
+        <Form>
+          <Form.Row>
+            <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridPassword">
+              <Form.Label>Password</Form.Label>
+              <Row>
+                <Col>
+                  <Form.Control
+                    // type="password"
+                    type={passwordShown ? 'text' : 'password'}
+                    placeholder="Password"
+                    defaultValue={password}
+                  />
+                </Col>
+
+                {/* <Button variant="outline-primary"> */}
+                {passwordShown ? (
+                  <FontAwesomeIcon
+                    className="eye"
+                    icon={faEyeSlash}
+                    size="lg"
+                    onClick={togglePasswordVisiblity}
+                  />
+                ) : (
+                  <FontAwesomeIcon
+                    className="eye"
+                    icon={faEye}
+                    size="lg"
+                    onClick={togglePasswordVisiblity}
+                  />
+                )}
+                {/* </Button> */}
+              </Row>
+
+              {/* trying add an icon */}
+              {/*  */}
+            </Form.Group>
+          </Form.Row>
+
+          <Form.Group controlId="formGridAddress1">
+            <Form.Label>Email Address</Form.Label>
             <Form.Control
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              placeholder="name@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
 
-          <Form.Group as={Col} controlId="formGridPassword">
-            <Form.Label>Password</Form.Label>
+          <Form.Group controlId="formGridAddress2">
+            <Form.Label>Contact</Form.Label>
             <Form.Control
-              type="password"
-              placeholder="Password"
-              defaultValue={password}
+              placeholder="Contact Number"
+              value={contact}
+              onChange={(e) => setContact(e.target.value)}
             />
           </Form.Group>
-        </Form.Row>
 
-        <Form.Group controlId="formGridAddress1">
-          <Form.Label>Email Address</Form.Label>
-          <Form.Control
-            placeholder="name@example.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </Form.Group>
-
-        <Form.Group controlId="formGridAddress2">
-          <Form.Label>Contact</Form.Label>
-          <Form.Control
-            value={contact}
-            onChange={(e) => setContact(e.target.value)}
-          />
-        </Form.Group>
-
-        <Form.Row>
-          {/* <Form.Group as={Col} controlId="formGridCity">
+          <Form.Row>
+            {/* <Form.Group as={Col} controlId="formGridCity">
             <Form.Label>City</Form.Label>
             <Form.Control />
           </Form.Group> */}
 
-          <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>Roll</Form.Label>
-            <Form.Control
-              as="select"
-              value={roll}
-              onChange={(e) => setRoll(e.target.value)}
-            >
-              <option>greatAdmin</option>
-              <option>admin</option>
-              <option>member</option>
-            </Form.Control>
-          </Form.Group>
+            <Form.Group as={Col} controlId="formGridState">
+              <Form.Label>Roll</Form.Label>
+              <Form.Control
+                as="select"
+                value={roll}
+                onChange={(e) => setRoll(e.target.value)}
+              >
+                <option>greatAdmin</option>
+                <option>admin</option>
+                <option>member</option>
+              </Form.Control>
+            </Form.Group>
 
-          {/* <Form.Group as={Col} controlId="formGridZip">
+            {/* <Form.Group as={Col} controlId="formGridZip">
             <Form.Label>Zip</Form.Label>
             <Form.Control />
           </Form.Group> */}
-        </Form.Row>
+          </Form.Row>
 
-        {/* <Form.Group id="formGridCheckbox">
+          {/* <Form.Group id="formGridCheckbox">
           <Form.Check type="checkbox" label="Check me out" />
         </Form.Group> */}
 
-        <Button variant="primary" type="submit" onClick={submitHandler}>
-          Submit
-        </Button>
-      </Form>
-    </div>
+          <div className="text-center">
+            <Button
+              className="text-center"
+              variant="primary"
+              type="submit"
+              onClick={submitHandler}
+            >
+              Submit
+            </Button>
+          </div>
+        </Form>
+      </div>
+    </Container>
   );
 };
 
