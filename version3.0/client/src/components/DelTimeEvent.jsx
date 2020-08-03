@@ -41,10 +41,10 @@ export const DelTimeEvent = ({ id, set_timeEvents }) => {
       </Alert>
 
       {!show && (
-        <Button variant="outline-danger" onClick={() => setShow(true)}>
+        <Button variant="outline-dark" onClick={() => setShow(true)}>
           <svg
             className="bi bi-trash-fill"
-            width="1em"
+            width="100%"
             height="1em"
             viewBox="0 0 16 16"
             fill="currentColor"

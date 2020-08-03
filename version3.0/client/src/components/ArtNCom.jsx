@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
 import moment from 'moment';
 import Pagination_ from './Pagination_';
+import EditArticle from './EditArticle';
 
 function ArtNCom() {
   const roll = localStorage.getItem('roll');
@@ -44,7 +45,6 @@ function ArtNCom() {
   };
 
   const fetchComments = () => {
-    // console.log('Fetched!');
     axios
       .get('/comments/getComments')
       .then((res) => {
@@ -190,25 +190,34 @@ function ArtNCom() {
                       (roll === 'admin' && article.admin_w) ||
                       roll === 'greatAdmin' ? (
                         <div>
-                          <DelArticle
-                            id={article.id}
-                            fetchArticles={fetchArticles}
-                          />
+                          <Row>
+                            <Col>
+                              <DelArticle
+                                id={article.id}
+                                fetchArticles={fetchArticles}
+                              />
+                            </Col>
 
-                          <UserConsumer>
-                            {(userName) => {
-                              return (
-                                <Link
-                                  to={{
-                                    pathname: `/EditArticle/${userName}`,
-                                    data: { articleId: article.id },
-                                  }}
-                                >
-                                  <Button type="button">Edit Article</Button>
-                                </Link>
-                              );
-                            }}
-                          </UserConsumer>
+                            <Col>
+                              <UserConsumer>
+                                {(userName) => {
+                                  return (
+                                    <Link
+                                      to={{
+                                        pathname: `/EditArticle/${userName}`,
+                                        data: { articleId: article.id },
+                                      }}
+                                    >
+                                      {/* <Button type="button">
+                                        Edit Article
+                                      </Button> */}
+                                      <EditArticle />
+                                    </Link>
+                                  );
+                                }}
+                              </UserConsumer>
+                            </Col>
+                          </Row>
                         </div>
                       ) : null
                     ) : null}

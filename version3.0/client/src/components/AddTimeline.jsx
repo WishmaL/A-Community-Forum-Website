@@ -34,15 +34,14 @@ const AddTimeline = ({ set_timeEvents }) => {
     <div>
       <Accordion defaultActiveKey="1">
         <Card>
-          <Card.Header>
-            <Accordion.Toggle as={Button} eventKey="0">
+          <Card.Header className="text-center">
+            <Accordion.Toggle as={Button} eventKey="0" variant="outline-dark">
               Add time event
             </Accordion.Toggle>
           </Card.Header>
 
           <Accordion.Collapse eventKey="0">
             <Card.Body>
-              {/* <form id="event_form"> */}
               <Form onSubmit={submitHandler}>
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Event Title</Form.Label>
@@ -70,9 +69,7 @@ const AddTimeline = ({ set_timeEvents }) => {
                     type="date"
                     label=""
                     value={date}
-                    // value = {moment(date).format('DD/MM/YYYY')}
-                    // {moment(e.target.value).format('DD/MM/YYYY')}
-                    // onChange={(e) => setDate(moment(e.target.value).format('DD/MM/YYYY'))}
+                    
                     onChange={(e) => setDate(e.target.value)}
                   />
                 </Form.Group>
@@ -81,7 +78,7 @@ const AddTimeline = ({ set_timeEvents }) => {
                   Submit
                 </Button>
               </Form>
-              {/* </form> */}
+              
             </Card.Body>
           </Accordion.Collapse>
         </Card>

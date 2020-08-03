@@ -23,6 +23,7 @@ import { RollProvider } from './context/Roll';
 import { ThemeProvider } from 'styled-components';
 import * as homeStyle from './styled-components/home';
 import AddUser from './pages/AddUser';
+import Footer from './components/Footer';
 
 function App(props) {
   const existingTokens = JSON.parse(localStorage.getItem('tokens'));
@@ -51,11 +52,7 @@ function App(props) {
   const nameCallback = (name) => {
     localStorage.setItem('userName', name);
   };
-  // console.log('roll:', roll);
-  // console.log('localStorage:', localStorage.getItem('roll'));
 
-  // console.log('isLoggedIn:', isLoggedIn);
-  // console.log('localStorage:', localStorage.getItem('isLogged'));
   return (
     <div>
       {/* {console.log('roll:', roll)} */}
@@ -66,9 +63,6 @@ function App(props) {
           <Navbar />
 
           <Switch>
-            {/* ___JUST A TRY___ */}
-
-            {/* <Route exact path="/Login" component={Login}/> */}
             <Route
               exact
               path="/Login"
@@ -83,15 +77,12 @@ function App(props) {
             />
 
             <RollProvider value={roll}>
-              {/* {console.log(roll)} */}
-
               <ThemeProvider theme={homeStyle}>
                 <Route exact path="/" component={Home} />
               </ThemeProvider>
 
-              {/* <Route exact path="/delthis/" component={Delthis} /> */}
               <PrivateRoute exact path="/Member/:userName" component={Member} />
-              {/* <Route exact path="/Admin/:userName" component={Admin} /> */}
+
               <PrivateRoute exact path="/Admin/:userName" component={Admin_1} />
               <PrivateRoute
                 path="/GreatAdmin/:userName"
@@ -117,12 +108,9 @@ function App(props) {
               />
             </RollProvider>
             <Route component={Error} />
-
-            {/* setting up the route parameter */}
           </Switch>
         </LogginProvider>
-
-        {/* </Router> */}
+        <Footer />
       </AuthContext.Provider>
     </div>
   );

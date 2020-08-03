@@ -106,41 +106,6 @@ function ShowNotices() {
     (a, b) => new Date(b.time).getTime() - new Date(a.time).getTime()
   );
 
-  // console.log(notices);
-
-  // console.log(notices);
-  // follwing is for enabling eding part
-
-  // const enableEdit;
-
-  //   notices.forEach(notice => {
-  //     if(roll === 'admin'){
-  //       notice.admin_w === 1 ?
-  //     }
-
-  //   });
-  // console.log(notices);
-
-  // Following will be used for displaying the edit button
-
-  // switch (roll) {
-  //   case 'greatAdmin':
-  //     EnableEditButton = true;
-  //     break;
-
-  //   case 'admin':
-  //     notice.admin_w ? (EnableEditButton = true) : (EnableEditButton = false);
-  //     break;
-
-  //   case 'member':
-  //     notice.member_w ? (EnableEditButton = true) : (EnableEditButton = false);
-  //     break;
-
-  //   default:
-  //     EnableEditButton = false;
-  //     break;
-  // }
-  // let delthis;
   return (
     <div>
       {/* the following is enable for every role aka (greatAdmin, admin, member) */}
@@ -190,7 +155,7 @@ function ShowNotices() {
                                 src={picInfo.noticePicPath}
                                 alt="Notice pic"
                                 height="300px"
-                                width="300px"
+                                width="400px"
                               />
                             </div>
                           );
@@ -206,11 +171,7 @@ function ShowNotices() {
                     />
                   </Col>
                 </Row>
-                {/* <Carousel.Caption> */}
-                {/* <h3>{notice.title}</h3>
-                  <p>{notice.body}</p> */}
-
-                {/* </Carousel.Caption> */}
+                
                 {roll !== 'viewer' && roll !== 'member' ? (
                   (roll === 'admin' && notice.admin_w) ||
                   roll === 'greatAdmin' ? (

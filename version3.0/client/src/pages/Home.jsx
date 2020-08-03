@@ -15,43 +15,42 @@ import CurrentUser from '../components/CurrentUser';
 import styled from 'styled-components';
 
 const Div = styled.div`
-  height: 300px;
+  height: auto;
   background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+  padding: 20px;
 `;
 
 function Home() {
   const userName = localStorage.getItem('userName');
   // console.log(userName);
   return (
-    <Div>
-      <div>
-        {userName !== null ? <CurrentUser currentUser={userName} /> : null}
-
+    <div>
+      {userName !== null ? <CurrentUser currentUser={userName} /> : null}
+      <Div>
         <Banner
           title="The Learn Home page"
           subtitle="
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem at incidunt accusamus aut mollitia dignissimos cupiditate, aliquam voluptas eius reprehenderit quia, rem voluptatem tempore hic quidem saepe. Maiores, aliquid vero."
         ></Banner>
-
-        {/* <div className="text-center">
+      </Div>
+      {/* <div className="text-center">
         <Button variant="outline-primary">
           {<Link to="/Login">Login</Link>}
         </Button>
       </div> */}
 
-        {/* <TheCarousel /> */}
-        {/* <Delthis /> */}
+      {/* <TheCarousel /> */}
+      {/* <Delthis /> */}
 
-        {/* <ShowNotices /> */}
-        {/* <ShowGraphs /> */}
-        <ArtNCom />
-        {/* <Delthis /> */}
+      <ShowNotices />
+      {/* <ShowGraphs /> */}
+      <ArtNCom />
+      {/* <Delthis /> */}
 
-        <ShowTimeline />
+      <ShowTimeline />
 
-        {/* <ShowNotices /> */}
-      </div>
-    </Div>
+      {/* <ShowNotices /> */}
+    </div>
   );
 }
 

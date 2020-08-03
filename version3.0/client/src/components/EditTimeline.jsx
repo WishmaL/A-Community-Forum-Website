@@ -60,7 +60,7 @@ function EditTimeline({ id, set_timeEvents }) {
         dismissible
       >
         <Alert.Heading>Update the Event</Alert.Heading>
-        <p>This Item will be updated</p>
+        
         <hr />
         <div className="d-flex justify-content-end">
           <Container>
@@ -111,10 +111,10 @@ function EditTimeline({ id, set_timeEvents }) {
       </Alert>
 
       {!show && (
-        <Button variant="outline-warning" onClick={openEdit}>
+        <Button variant="outline-dark" onClick={openEdit}>
           <svg
-            className="bi bi-pencil-square"
-            width="1em"
+            className="bi bi-trash-fill"
+            width="100%"
             height="1em"
             viewBox="0 0 16 16"
             fill="currentColor"

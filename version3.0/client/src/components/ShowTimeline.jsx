@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Media from 'react-bootstrap/Media';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import AddTimeline from './AddTimeline';
 import DelTimeEvent from './DelTimeEvent';
@@ -64,6 +64,25 @@ export const ShowTimeline = () => {
                       subtitle={'Ipsum'}
                     >
                       {timeEvent.description}
+
+                      {roll === 'greatAdmin' ? (
+                        <div>
+                          <Row>
+                            <Col>
+                              <DelTimeEvent
+                                id={timeEvent.id}
+                                set_timeEvents={updateEvents}
+                              />
+                            </Col>
+                            <Col>
+                              <EditTimeline
+                                id={timeEvent.id}
+                                set_timeEvents={updateEvents}
+                              />
+                            </Col>
+                          </Row>
+                        </div>
+                      ) : null}
                     </Event>
                   </Timeline>
                   {/* </div> */}
@@ -72,18 +91,24 @@ export const ShowTimeline = () => {
                   <p>{timeEvent.description}</p>
                   <p>{moment(timeEvent.date).format('YYYY-MM-DD')}</p> */}
 
-                  {roll === 'greatAdmin' ? (
+                  {/* {roll === 'greatAdmin' ? (
                     <div>
-                      <DelTimeEvent
-                        id={timeEvent.id}
-                        set_timeEvents={updateEvents}
-                      />
-                      <EditTimeline
-                        id={timeEvent.id}
-                        set_timeEvents={updateEvents}
-                      />
+                      <Row>
+                        <Col>
+                          <DelTimeEvent
+                            id={timeEvent.id}
+                            set_timeEvents={updateEvents}
+                          />
+                        </Col>
+                        <Col>
+                          <EditTimeline
+                            id={timeEvent.id}
+                            set_timeEvents={updateEvents}
+                          />
+                        </Col>
+                      </Row>
                     </div>
-                  ) : null}
+                  ) : null} */}
                 </Media.Body>
               </Media>
             );

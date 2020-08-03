@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// this represents the notices
-
 // the styles
 
 const Title = styled.h1`
@@ -15,7 +13,7 @@ const Para = styled.h3`
 `;
 
 const Div = styled.div`
-  height: 300px;
+  height: auto;
   background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
 `;
 
